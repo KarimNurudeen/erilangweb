@@ -82,8 +82,13 @@ export function SiteHeader() {
 
                   </button>
 
-                  {communityOpen ?
-                  <div className="absolute left-1/2 top-full z-50 mt-2 w-80 -translate-x-1/2 rounded-2xl border border-line bg-raised p-2 shadow-2xl shadow-black/40">
+                  <div
+                    aria-hidden={!communityOpen}
+                    className={`absolute left-1/2 top-full z-50 mt-2 w-80 origin-top rounded-2xl border border-line bg-raised p-2 shadow-2xl shadow-black/40 transition-[opacity,transform] duration-200 ease-eri ${
+                    communityOpen ?
+                    'pointer-events-auto -translate-x-1/2 translate-y-0 scale-100 opacity-100' :
+                    'pointer-events-none -translate-x-1/2 -translate-y-1 scale-95 opacity-0'}`
+                    }>
                       <ul className="flex flex-col">
                         {channels.map((channel) => {
                           const Icon = CHANNEL_ICONS[channel.icon];
@@ -117,8 +122,7 @@ export function SiteHeader() {
                           Get involved in the community
                         </Link>
                       </div>
-                    </div> :
-                  null}
+                    </div>
                 </div>);
 
             }
