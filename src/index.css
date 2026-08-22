@@ -1,0 +1,143 @@
+/* @import url() FONT IMPORTS MUST ALWAYS BE AT THE VERY TOP OF THIS FILE, ABOVE THE TAILWIND IMPORTS — DO NOT DELETE THIS COMMENT */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+/* CRITICAL: THE FOLLOWING TAILWIND IMPORTS MUST NEVER BE DELETED OR REORDERED — DO NOT DELETE THIS COMMENT */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* END TAILWIND IMPORTS — ALL OTHER CSS MUST GO BELOW THIS LINE */
+
+:root {
+  --eri-ink: #182534;
+  --eri-surface: #101216;
+  --eri-line: #23272f;
+  --eri-accent: #ADDFF1;
+  --eri-sand: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.16'/%3E%3C/svg%3E");
+}
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+body {
+  background-color: var(--eri-ink);
+  background-image: var(--eri-sand);
+  background-repeat: repeat;
+  background-size: 140px 140px;
+  color: #ffffff;
+}
+.eri-sand {
+  background-color: var(--eri-ink);
+  background-image: var(--eri-sand);
+  background-repeat: repeat;
+  background-size: 140px 140px;
+}
+::selection {
+  background-color: var(--eri-accent);
+  color: #08090b;
+}
+*:focus-visible {
+  outline: 2px solid var(--eri-accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+.eri-card-glow {
+  outline: 3px solid #0a2540;
+  outline-offset: 3px;
+  box-shadow:
+    0 0 20px 4px rgba(47, 107, 255, 0.85),
+    0 0 50px 12px rgba(47, 107, 255, 0.55),
+    0 0 90px 24px rgba(47, 107, 255, 0.3);
+}
+
+.eri-grid {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+.eri-snake {
+  isolation: isolate;
+  --eri-snake-color: #ff0000;
+  --eri-snake-glow-1: rgba(255, 0, 0, 1);
+  --eri-snake-glow-2: rgba(255, 0, 0, 0.85);
+  --eri-snake-glow-3: rgba(255, 0, 0, 0.55);
+}
+
+/* Zero-specificity fallback so a Tailwind position utility (e.g. `absolute`)
+   on the same element always wins over this default, regardless of source order. */
+:where(.eri-snake) {
+  position: relative;
+}
+
+/* Buttons trace in deep blue, distinct from the red cards. */
+.eri-snake-blue {
+  --eri-snake-color: #0047ff;
+  --eri-snake-glow-1: rgba(0, 71, 255, 1);
+  --eri-snake-glow-2: rgba(0, 71, 255, 0.85);
+  --eri-snake-glow-3: rgba(0, 71, 255, 0.55);
+}
+
+.eri-snake-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+  z-index: 20;
+}
+
+.eri-snake-svg rect {
+  fill: none;
+  stroke: var(--eri-snake-color);
+  stroke-width: 2;
+  stroke-linecap: round;
+  opacity: 1;
+  transition: stroke 0.15s ease;
+  /* Motion is driven from JS via the Web Animations API (see SnakeBorder.tsx),
+     not a CSS @keyframes rule — see that file for why. */
+  filter: drop-shadow(0 0 1.5px var(--eri-snake-glow-1)) drop-shadow(0 0 3px var(--eri-snake-glow-2));
+}
+
+@keyframes eri-float {
+  0%, 100% {
+    transform: translateY(0) rotate(var(--eri-float-rot-from, 0deg));
+  }
+  50% {
+    transform: translateY(var(--eri-float-y, -16px)) rotate(var(--eri-float-rot-to, 6deg));
+  }
+}
+
+.eri-float {
+  animation: eri-float var(--eri-float-duration, 8s) ease-in-out infinite;
+  animation-delay: var(--eri-float-delay, 0s);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .eri-float {
+    animation: none;
+  }
+}
+
+.eri-shape-sphere {
+  border-radius: 9999px;
+  background:
+    radial-gradient(circle at 32% 26%, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0) 45%),
+    radial-gradient(circle at 68% 72%, rgba(10, 37, 64, 0.5), transparent 60%),
+    linear-gradient(135deg, #d9f1fa, #2b7a99 65%, #0a2540);
+  box-shadow: 0 8px 20px -6px rgba(10, 37, 64, 0.45);
+}
+
+.eri-shape-sphere-striped {
+  border-radius: 9999px;
+  background:
+    radial-gradient(circle at 30% 24%, rgba(255, 255, 255, 0.6), transparent 45%),
+    repeating-linear-gradient(115deg, #addff1 0 10%, #1c5b76 10% 20%);
+  box-shadow: 0 8px 20px -6px rgba(10, 37, 64, 0.45);
+}
+
+.eri-shape-pyramid {
+  clip-path: polygon(50% 0%, 3% 100%, 97% 100%);
+  background: linear-gradient(200deg, #d9f1fa, #2b7a99 70%);
+  filter: drop-shadow(0 6px 12px rgba(10, 37, 64, 0.35));
+}
