@@ -6,6 +6,7 @@ import { SiteHeader } from './components/layout/SiteHeader';
 import { SiteFooter } from './components/layout/SiteFooter';
 import { ScrollToTop } from './components/layout/ScrollToTop';
 import { SmoothScroll } from './components/layout/SmoothScroll';
+import { DismissAppLoader } from './components/layout/DismissAppLoader';
 import { Home } from './pages/Home';
 import { Docs } from './pages/Docs';
 import { DocPage } from './pages/DocPage';
@@ -34,6 +35,7 @@ export function App() {
     <BrowserRouter>
       <AuthProvider>
         <div className="flex min-h-screen w-full flex-col bg-ink">
+          <DismissAppLoader />
           <SmoothScroll />
           <ScrollToTop />
           <AnnouncementBar />
