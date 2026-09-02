@@ -2,7 +2,7 @@ import React, { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronRightIcon, PlayCircleIcon, RocketIcon, SearchIcon } from 'lucide-react';
 import { docEntryPoints, docFirstSteps, flatDocNav } from '../data/docs';
-import { CodeWindow } from '../components/CodeWindow';
+import { RunnableCodeWindow } from '../components/RunnableCodeWindow';
 import { SnakeBorder } from '../components/SnakeBorder';
 import { DocsSidebar } from '../components/docs/DocsSidebar';
 import { DocsContentCard } from '../components/docs/DocsContentCard';
@@ -108,7 +108,7 @@ export function Docs() {
 
           <h2 className="mt-14 text-3xl font-bold tracking-tight">Your first program</h2>
           <div className="mt-6">
-            <CodeWindow filename="hello.eri" code={INSTALL_SAMPLE} output="Hello, world!" />
+            <RunnableCodeWindow filename="hello.eri" initialCode={INSTALL_SAMPLE} idleOutput="Hello, world!" />
           </div>
         </div>
       </DocsContentCard>

@@ -7,6 +7,10 @@ export interface DocBlock {
   output?: string;
   columns?: [string, string];
   rows?: [string, string][];
+  /** False when a 'code' block can't execute standalone in the sandbox (a fragment, a terminal command, a REPL-only feature, or currently-broken syntax). Defaults to true. */
+  runnable?: boolean;
+  /** Shown in place of the Run button when runnable is false. */
+  runNote?: string;
 }
 
 export interface DocPage {
@@ -54,7 +58,13 @@ export const docPages: DocPage[] = [
   },
   { type: 'code', code: 'show("Hello, world!")' },
   { type: 'p', text: 'Run it from a terminal:' },
-  { type: 'code', code: 'erilang run hello.eri', output: 'Hello, world!' },
+  {
+    type: 'code',
+    code: 'erilang run hello.eri',
+    output: 'Hello, world!',
+    runnable: false,
+    runNote: "This is a terminal command, not Erilang source — run it from your own terminal."
+  },
   { type: 'h3', text: 'Two ways to work' },
   {
     type: 'p',
@@ -324,7 +334,7 @@ export const docPages: DocPage[] = [
   {
     type: 'code',
     code: 'SET text_value TO "42"\nSET number_value TO TO_NUMBER(text_value)\nshow(number_value + 1)\n\nshow(TO_STRING(100))\nshow(TO_BOOLEAN("true"))',
-    output: '43\n100\nTRUE'
+    output: '43\n100\nTrue'
   },
   { type: 'h3', text: 'Text strings' },
   { type: 'p', text: 'Strings are joined with the plus operator. Special characters can be written using an escape sequence: \\n for a new line and \\t for a tab.' },
@@ -367,14 +377,14 @@ export const docPages: DocPage[] = [
   { type: 'p', text: 'A map holds values under named keys and can grow or change after it is created.' },
   {
     type: 'code',
-    code: 'SET person TO MAP WITH name AS "Ama", age AS 25\nshow(name OF person)\nSET "city" IN person TO "Accra"\nshow(person)'
+    code: 'SET person TO MAP WITH name AS "Ama", age AS 25\nshow(name OF person)\nmap_set(person, "city", "Accra")\nshow(person)'
   },
   {
     type: 'table',
     rows: [
     ['OF', 'Read a value by key'],
-    ['SET IN TO', 'Add or update an entry'],
-    ['REMOVE FROM', 'Delete an entry'],
+    ['map_set(map, key, value)', 'Add or update an entry'],
+    ['remove(map, key)', 'Delete an entry'],
     ['KEYS OF', 'A list of every key'],
     ['VALUES OF', 'A list of every value'],
     ['HAS KEY IN', 'TRUE if the key exists']]
@@ -417,7 +427,9 @@ export const docPages: DocPage[] = [
   {
     type: 'code',
     code: 'CLASS Circle\nFIELDS radius\nDEFINE area DO\nRETURN 3.14159 * radius OF THIS * radius OF THIS\nEND\nEND\n\nCREATE Circle WITH radius AS 5 INTO c\nCALL area ON c INTO result\nshow(result)',
-    output: '78.53975'
+    output: '78.53975',
+    runnable: false,
+    runNote: 'This example predates a language change: regular classes now declare fields with singular FIELD and need an explicit CONSTRUCT to take arguments. A docs update is pending — DATA CLASS (see Data classes below) is unaffected.'
   },
   {
     type: 'p',
@@ -426,7 +438,7 @@ export const docPages: DocPage[] = [
   { type: 'h3', text: 'Inheritance' },
   {
     type: 'code',
-    code: 'CLASS Animal\nDEFINE speak DO\nshow("...")\nEND\nEND\n\nCLASS Dog INHERITS Animal\nDEFINE speak DO\nshow("Woof")\nEND\nEND\n\nCREATE Dog WITH INTO d\nCALL speak ON d INTO result',
+    code: 'CLASS Animal\nDEFINE speak DO\nshow("...")\nEND\nEND\n\nCLASS Dog INHERITS Animal\nDEFINE speak DO\nshow("Woof")\nEND\nEND\n\nCREATE Dog INTO d\nCALL speak ON d INTO result',
     output: 'Woof'
   },
   {
@@ -440,7 +452,7 @@ export const docPages: DocPage[] = [
   },
   {
     type: 'code',
-    code: 'DATA CLASS Point\nFIELDS x, y\nEND\n\nCREATE Point WITH x AS 1, y AS 2 INTO p1\nCOPY p1 WITH y AS 99 INTO p2\nshow(x OF p2)\nshow(y OF p2)',
+    code: 'DATA CLASS Point\nFIELDS x, y\nEND\n\nCREATE Point WITH 1, 2 INTO p1\nCOPY p1 WITH y AS 99 INTO p2\nshow(x OF p2)\nshow(y OF p2)',
     output: '1\n99'
   },
   { type: 'h3', text: 'Interfaces' },
@@ -450,7 +462,9 @@ export const docPages: DocPage[] = [
   },
   {
     type: 'code',
-    code: 'INTERFACE Shape\nDEFINE area\nDEFINE perimeter\nEND\n\nCLASS Square IMPLEMENTS Shape\nFIELDS side\nDEFINE area DO\nRETURN side OF THIS * side OF THIS\nEND\nDEFINE perimeter DO\nRETURN 4 * side OF THIS\nEND\nEND'
+    code: 'INTERFACE Shape\nDEFINE area\nDEFINE perimeter\nEND\n\nCLASS Square IMPLEMENTS Shape\nFIELDS side\nDEFINE area DO\nRETURN side OF THIS * side OF THIS\nEND\nDEFINE perimeter DO\nRETURN 4 * side OF THIS\nEND\nEND',
+    runnable: false,
+    runNote: 'This example predates a language change: regular classes now declare fields with singular FIELD, not FIELDS. A docs update is pending.'
   },
   { type: 'h3', text: 'Private and static members' },
   {
@@ -460,7 +474,9 @@ export const docPages: DocPage[] = [
   {
     type: 'code',
     code: 'CLASS Counter\nSTATIC FIELDS total AS 0\nDEFINE increment DO\nSET total OF Counter TO total OF Counter + 1\nEND\nEND\n\nCREATE Counter INTO c1\nCREATE Counter INTO c2\nCALL increment ON c1 INTO r1\nCALL increment ON c2 INTO r2\nshow(total OF Counter)',
-    output: '2'
+    output: '2',
+    runnable: false,
+    runNote: 'This example predates a language change: regular classes now declare fields with singular FIELD, not FIELDS. A docs update is pending.'
   },
   { type: 'h3', text: 'Custom iteration' },
   {
@@ -475,7 +491,9 @@ export const docPages: DocPage[] = [
   {
     type: 'code',
     code: 'CLASS Point\nFIELDS x, y\nDEFINE ADD WITH other DO\nSET new_x TO x OF THIS + x OF other\nSET new_y TO y OF THIS + y OF other\nCREATE Point WITH x AS new_x, y AS new_y INTO result\nRETURN result\nEND\nEND\n\nCREATE Point WITH x AS 1, y AS 2 INTO p1\nCREATE Point WITH x AS 3, y AS 4 INTO p2\nSET p3 TO p1 + p2\nshow(x OF p3)\nshow(y OF p3)',
-    output: '4\n6'
+    output: '4\n6',
+    runnable: false,
+    runNote: 'This example predates a language change: regular classes now declare fields with singular FIELD and need an explicit CONSTRUCT for named construction. A docs update is pending.'
   }]
 
 },
@@ -560,20 +578,32 @@ export const docPages: DocPage[] = [
   },
   {
     type: 'code',
-    code: '# helpers.eri\nDEFINE calculate_total WITH price, units DO\nRETURN price * units\nEND\n\n# main.eri\nINCLUDE "helpers.eri" AS helpers\nshow(helpers.calculate_total(9.99, 3))'
+    code: '# helpers.eri\nDEFINE calculate_total WITH price, units DO\nRETURN price * units\nEND\n\n# main.eri\nINCLUDE "helpers.eri" AS helpers\nshow(helpers.calculate_total(9.99, 3))',
+    runnable: false,
+    runNote: 'This spans two files (helpers.eri and main.eri) — a single sandbox run can only execute one file. See it work with the CLI.'
   },
   { type: 'h3', text: 'Controlling what is shared' },
   {
     type: 'p',
     text: 'By default, everything in an included file is reachable from outside it. Adding an EXPORT line to a file limits what is actually available through its namespace to only the names listed, keeping the rest as private, internal detail.'
   },
-  { type: 'code', code: 'EXPORT calculate_total, format_report' },
+  {
+    type: 'code',
+    code: 'EXPORT calculate_total, format_report',
+    runnable: false,
+    runNote: 'This line only makes sense inside the helpers.eri file above — a fragment, not a program on its own.'
+  },
   { type: 'h3', text: 'Packages' },
   {
     type: 'p',
     text: 'A larger, reusable piece of code can be published as its own installable package, with a manifest file describing its name, version, and any packages it depends on. Once published, anyone can install it and use it the same way they would use any built-in capability.'
   },
-  { type: 'code', code: 'erilang search <package name>\nerilang install <package name>' }]
+  {
+    type: 'code',
+    code: 'erilang search <package name>\nerilang install <package name>',
+    runnable: false,
+    runNote: 'These are terminal commands, not Erilang source.'
+  }]
 
 },
 {
@@ -593,7 +623,8 @@ export const docPages: DocPage[] = [
   { type: 'p', text: 'A class method can also be marked ASYNC DEFINE and awaited through the usual method-call form.' },
   {
     type: 'code',
-    code: 'CLASS Fetcher\nASYNC DEFINE get_data WITH n DO\nRETURN n + 100\nEND\nEND\n\nCREATE Fetcher WITH INTO f\nAWAIT CALL get_data ON f WITH 5 INTO result'
+    code: 'CLASS Fetcher\nASYNC DEFINE get_data WITH n DO\nRETURN n + 100\nEND\nEND\n\nCREATE Fetcher INTO f\nAWAIT CALL get_data ON f WITH 5 INTO result\nshow(result)',
+    output: '105'
   }]
 
 },
@@ -605,7 +636,9 @@ export const docPages: DocPage[] = [
   { type: 'h3', text: 'Reading and writing text files' },
   {
     type: 'code',
-    code: 'WRITE "Hello from Erilang" TO FILE "notes.txt"\nREAD FILE "notes.txt" INTO content\nshow(content)'
+    code: 'WRITE "Hello from Erilang" TO FILE "notes.txt"\nREAD FILE "notes.txt" INTO content\nshow(content)',
+    runnable: false,
+    runNote: "The sandbox's filesystem is read-only, so writing a file isn't possible here — this works normally when run locally."
   },
   { type: 'h3', text: 'Loading tabular data' },
   { type: 'p', text: 'LOAD reads a data file into a dataset, ready for inspection and filtering.' },
@@ -616,7 +649,9 @@ export const docPages: DocPage[] = [
   { type: 'h3', text: 'CSV files directly' },
   {
     type: 'code',
-    code: 'SET rows TO LIST OF MAP WITH name AS "Ama", age AS 25\ncsv_write("people.csv", rows)\nSET loaded TO csv_read("people.csv")\nshow(loaded)'
+    code: 'SET rows TO LIST OF MAP WITH name AS "Ama", age AS 25\ncsv_write("people.csv", rows)\nSET loaded TO csv_read("people.csv")\nshow(loaded)',
+    runnable: false,
+    runNote: "The sandbox's filesystem is read-only, so writing a file isn't possible here — this works normally when run locally."
   },
   {
     type: 'note',
@@ -625,7 +660,9 @@ export const docPages: DocPage[] = [
   { type: 'h3', text: 'Working with a database' },
   {
     type: 'code',
-    code: 'SET db TO db_open("mydata.db")\ndb_execute(db, "CREATE TABLE users (id INTEGER, name TEXT)")\ndb_execute(db, "INSERT INTO users VALUES (?, ?)", LIST OF 1, "Ama")\nSET results TO db_query(db, "SELECT * FROM users")\nshow(results)\ndb_close(db)'
+    code: 'SET db TO db_open("mydata.db")\ndb_execute(db, "CREATE TABLE users (id INTEGER, name TEXT)")\ndb_execute(db, "INSERT INTO users VALUES (?, ?)", LIST OF 1, "Ama")\nSET results TO db_query(db, "SELECT * FROM users")\nshow(results)\ndb_close(db)',
+    runnable: false,
+    runNote: "The sandbox's filesystem is read-only, so creating a database file isn't possible here — this works normally when run locally."
   },
   {
     type: 'note',
@@ -670,7 +707,7 @@ export const docPages: DocPage[] = [
     type: 'p',
     text: 'General-purpose hashing (hash, verify_hash, hmac_hash) is kept separate from password hashing, which needs a slower, more deliberate approach. hash_password and verify_password handle storing and checking passwords safely, generating a fresh random component automatically each time so identical passwords never produce identical stored values.'
   },
-  { type: 'code', code: 'SET stored TO hash_password("a secret password")\nshow(verify_password("a secret password", stored))', output: 'TRUE' },
+  { type: 'code', code: 'SET stored TO hash_password("a secret password")\nshow(verify_password("a secret password", stored))', output: 'True' },
   { type: 'h3', text: 'Archives and compression' },
   { type: 'p', text: 'zip_create, zip_extract, tar_create, tar_extract, list_archive_contents.' },
   { type: 'h3', text: 'net and smtp' },
@@ -682,7 +719,9 @@ export const docPages: DocPage[] = [
   },
   {
     type: 'code',
-    code: 'SET server TO socket.create()\nsocket.bind(server, "127.0.0.1", 9423)\nsocket.listen(server, 5)\nSET client TO socket.accept(server)\nSET message TO socket.receive(client)\nsocket.send(client, "echo: " + message)'
+    code: 'SET server TO socket.create()\nsocket.bind(server, "127.0.0.1", 9423)\nsocket.listen(server, 5)\nSET client TO socket.accept(server)\nSET message TO socket.receive(client)\nsocket.send(client, "echo: " + message)',
+    runnable: false,
+    runNote: "This opens a server socket and blocks waiting for an incoming connection, which can't happen in an isolated, network-free sandbox — it would just hang until timeout."
   },
   { type: 'h3', text: 'html' },
   { type: 'p', text: 'Parsing web content: html.parse_html, find_element, find_all_elements, get_text, get_attribute.' },
@@ -723,7 +762,13 @@ export const docPages: DocPage[] = [
     type: 'p',
     text: 'Typing an expression on its own line, without wrapping it in show(...), automatically prints its value and stores it in a special variable named _, letting you reuse the last result on the very next line.'
   },
-  { type: 'code', code: '2 + 2\nshow(_ * 10)', output: '4\n40' },
+  {
+    type: 'code',
+    code: '2 + 2\nshow(_ * 10)',
+    output: '4\n40',
+    runnable: false,
+    runNote: "The automatic _ variable is a feature of the interactive shell itself — it isn't available in a single non-interactive sandbox run."
+  },
   { type: 'h3', text: 'Multi-line blocks' },
   {
     type: 'p',

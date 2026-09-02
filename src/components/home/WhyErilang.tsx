@@ -1,31 +1,36 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FileCode2Icon, PlayIcon, SquareCodeIcon, XIcon } from 'lucide-react';
-import { CodeBlock } from '../CodeBlock';
+import { FileCode2Icon, PlayIcon, RotateCcwIcon, XIcon } from 'lucide-react';
+import { CodeEditor } from '../CodeEditor';
+import { SandboxTerminal } from '../SandboxTerminal';
 import { codeSamples } from '../../data/codeSamples';
 import { SnakeBorder } from '../SnakeBorder';
-import { runErilang } from '../../lib/miniErilang';
+import { sandbox, SandboxLimits } from '../../lib/api';
+import { useSandboxRun } from '../../hooks/useSandboxRun';
 import { ScrollReveal } from '../ScrollReveal';
 
 export function WhyErilang() {
   const [activeId, setActiveId] = useState(codeSamples[0].id);
   const active = codeSamples.find((sample) => sample.id === activeId) ?? codeSamples[0];
+  const [code, setCode] = useState(active.code);
+  const [limits, setLimits] = useState<SandboxLimits | null>(null);
 
-  const [result, setResult] = useState<{output: string[];error: string | null;} | null>(null);
-  const [running, setRunning] = useState(false);
+  const { result, runError, running, elapsed, run, reset } = useSandboxRun();
+
+  useEffect(() => {
+    sandbox.limits().then(setLimits).catch(() => {});
+  }, []);
 
   const onSelectTab = (id: string) => {
+    const sample = codeSamples.find((s) => s.id === id);
     setActiveId(id);
-    setResult(null);
+    setCode(sample?.code ?? '');
+    reset();
   };
 
-  const onRun = () => {
-    setRunning(true);
-    setResult(null);
-    window.setTimeout(() => {
-      setResult(runErilang(active.code));
-      setRunning(false);
-    }, 250);
+  const onReset = () => {
+    setCode(active.code);
+    reset();
   };
 
   return (
@@ -35,7 +40,8 @@ export function WhyErilang() {
         <h2 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">Why Erilang?</h2>
         <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-muted">
           The syntax stays small on purpose. Most of what a team needs — classes, async I/O, modules,
-          and clear errors — is part of the language rather than something you assemble.
+          and clear errors — is part of the language rather than something you assemble. Edit the code
+          below and run it for real.
         </p>
 
         <div className="mt-10 overflow-hidden rounded-xl border border-black/40 bg-[#1e1e1e] shadow-2xl shadow-black/40">
@@ -81,25 +87,28 @@ export function WhyErilang() {
             </div>
 
             <div className="flex shrink-0 items-center gap-1 border-l border-black/40 px-2">
+              {code !== active.code ?
               <button
                 type="button"
-                title="Open in playground"
-                aria-label="Open in playground"
+                onClick={onReset}
+                title="Reset to the original example"
+                aria-label="Reset to the original example"
                 className="rounded p-1.5 text-neutral-400 transition-colors duration-150 ease-eri hover:bg-white/10 hover:text-white">
 
-                <SquareCodeIcon className="h-4 w-4" aria-hidden="true" />
-              </button>
+                  <RotateCcwIcon className="h-3.5 w-3.5" aria-hidden="true" />
+                </button> :
+              null}
               <button
                 type="button"
-                onClick={onRun}
+                onClick={() => run(code)}
                 disabled={running}
                 title="Run"
                 aria-label="Run"
-                className="flex items-center gap-1.5 rounded p-1.5 text-emerald-400 transition-colors duration-150 ease-eri hover:bg-white/10 disabled:opacity-60">
+                className="flex items-center gap-1.5 rounded p-1.5 text-emerald-400 transition-colors duration-150 ease-eri hover:bg-white/10 disabled:opacity-40">
 
                 <PlayIcon className="h-4 w-4 fill-current" aria-hidden="true" />
                 <span className="hidden text-[12.5px] font-medium sm:inline">
-                  {running ? 'Running…' : 'Run'}
+                  {running ? `Running… ${elapsed}s` : 'Run'}
                 </span>
               </button>
             </div>
@@ -112,35 +121,33 @@ export function WhyErilang() {
             aria-labelledby={`tab-${active.id}`}
             className="bg-[#1e1e1e] px-5 py-6 lg:px-7">
 
-            <CodeBlock code={active.code} />
+            <CodeEditor value={code} onChange={setCode} />
           </div>
 
-          {/* Integrated terminal */}
-          {result ?
+          {/* Integrated terminal — runs against the real Erilang sandbox (api.erilang.dev), not a local simulation */}
+          {running || result || runError ?
           <div className="border-t border-black/40 bg-[#181818]">
               <div className="border-b border-black/30 px-4 py-1.5">
                 <span className="border-b-2 border-accent pb-1.5 text-[11px] font-medium uppercase tracking-wide text-neutral-300">
                   Terminal
                 </span>
               </div>
-              <div className="px-4 py-3 font-mono text-[13px] leading-relaxed">
-                <p className="text-neutral-500">
-                  <span className="text-accent">$</span> erilang run {active.id}.eri
-                </p>
-                {result.output.length === 0 && !result.error ?
-              <p className="text-neutral-500">(no output)</p> :
+              <SandboxTerminal
+              command={`erilang run ${active.id}.eri`}
+              running={running}
+              elapsed={elapsed}
+              runError={runError}
+              result={result} />
 
-              result.output.map((line, i) => <p key={i} className="text-emerald-400">{line}</p>)
-              }
-                {result.error ? <p className="text-red-400">{result.error}</p> : null}
-              </div>
             </div> :
           null}
 
           {/* Status bar */}
           <div className="flex items-center justify-between bg-[#007acc] px-4 py-1 text-[11px] text-white">
             <span className="truncate">{active.note}</span>
-            <span className="shrink-0 pl-4">Erilang</span>
+            <span className="shrink-0 pl-4">
+              {limits ? `Real sandbox · ${limits.max_runs_per_minute} runs/min` : 'Erilang'}
+            </span>
           </div>
         </div>
 

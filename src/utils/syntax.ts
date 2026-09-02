@@ -12,10 +12,10 @@ export interface Token {
   kind: TokenKind;
 }
 
-const KEYWORDS = [
+export const KEYWORDS = [
 'AND', 'AS', 'ASYNC', 'AWAIT', 'BREAK', 'CALL', 'CASE', 'CATCH', 'CLASS', 'CONST',
-'CONTINUE', 'COPY', 'CREATE', 'DATA', 'DEFINE', 'DESCRIBE', 'DO', 'DOWN', 'EACH', 'ELSE',
-'END', 'ENUM', 'ERROR', 'EXPORT', 'FALSE', 'FIELDS', 'FILE', 'FILTER', 'FOR', 'FROM',
+'CONSTRUCT', 'CONTINUE', 'COPY', 'CREATE', 'DATA', 'DEFINE', 'DESCRIBE', 'DO', 'DOWN', 'EACH', 'ELSE',
+'END', 'ENUM', 'ERROR', 'EXPORT', 'FALSE', 'FIELD', 'FIELDS', 'FILE', 'FILTER', 'FOR', 'FROM',
 'IF', 'IMPLEMENTS', 'IN', 'INCLUDE', 'INHERITS', 'INTERFACE', 'INTO', 'LIST', 'LOAD', 'MAP',
 'NONE', 'NOT', 'OF', 'OR', 'PRIVATE', 'RAISE', 'READ', 'RETURN', 'SET', 'STATIC',
 'STEP', 'THIS', 'TO', 'TRUE', 'TRY', 'UNIQUE_LIST', 'WHEN', 'WHERE', 'WHILE', 'WITH',

@@ -1,11 +1,12 @@
 import React from 'react';
 import { Link, Navigate, useParams } from 'react-router-dom';
-import { ArrowLeftIcon, ArrowRightIcon, ChevronRightIcon } from 'lucide-react';
+import { ArrowLeftIcon, ArrowRightIcon, ChevronRightIcon, InfoIcon } from 'lucide-react';
 import { docPages, DocBlock } from '../data/docsContent';
 import { flatDocNav } from '../data/docs';
 import { DocsSidebar } from '../components/docs/DocsSidebar';
 import { DocsContentCard } from '../components/docs/DocsContentCard';
 import { CodeWindow } from '../components/CodeWindow';
+import { RunnableCodeWindow } from '../components/RunnableCodeWindow';
 
 function DocBlockView({ block, filename }: {block: DocBlock;filename: string;}) {
   if (block.type === 'p') {
@@ -22,7 +23,22 @@ function DocBlockView({ block, filename }: {block: DocBlock;filename: string;}) 
 
   }
   if (block.type === 'code') {
-    return <CodeWindow filename={filename} code={block.code || ''} output={block.output} />;
+    if (block.runnable === false) {
+      return (
+        <div className="flex flex-col gap-2">
+          <CodeWindow filename={filename} code={block.code || ''} output={block.output} />
+          {block.runNote ?
+          <p className="flex items-start gap-2 text-[12.5px] leading-relaxed text-neutral-500">
+              <InfoIcon className="mt-0.5 h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+              {block.runNote}
+            </p> :
+          null}
+        </div>);
+
+    }
+    return (
+      <RunnableCodeWindow filename={filename} initialCode={block.code || ''} idleOutput={block.output} />);
+
   }
   if (block.type === 'table') {
     return (

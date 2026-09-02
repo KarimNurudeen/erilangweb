@@ -74,10 +74,10 @@ export const docEntryPoints: DocCard[] = [
   to: '/docs/getting-started'
 },
 {
-  title: 'Try the interactive shell',
-  body: 'Open the REPL with erilang and type statements one at a time, seeing results immediately.',
+  title: 'Try the sandbox',
+  body: 'Write real Erilang and run it right in your browser against the real interpreter — no install required.',
   meta: 'No install',
-  to: '/docs/repl'
+  to: '/sandbox'
 }];
 
 

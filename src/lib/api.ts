@@ -385,4 +385,51 @@ export const releases = {
   assetDownloadUrl: (id: number) => `${API_BASE_URL}/releases/assets/${id}/download`
 };
 
+// ---------- Case studies ----------
+
+export type CaseStudyCategory = 'Backend' | 'Data' | 'Tooling' | 'Automation' | 'Accessibility';
+
+export interface CaseStudy {
+  slug: string;
+  company: string;
+  category: CaseStudyCategory;
+  quote: string;
+  author_name: string;
+  author_role: string;
+  metric: string;
+  metric_label: string;
+  body: string | null;
+  logo_url: string | null;
+  published_at: string | null;
+}
+
+export const caseStudies = {
+  list: (page = 1, per_page = 20) =>
+  request<Paginated<CaseStudy>>(`/case-studies?page=${page}&per_page=${per_page}`),
+
+  get: (slug: string) => request<CaseStudy>(`/case-studies/${encodeURIComponent(slug)}`)
+};
+
+// ---------- Sandbox ----------
+
+export interface SandboxRunResult {
+  ok: boolean;
+  output: string;
+  error: string | null;
+}
+
+export interface SandboxLimits {
+  max_code_bytes: number;
+  wall_clock_timeout_seconds: number;
+  cold_start_budget_seconds: number;
+  execution_budget_seconds: number;
+  memory_limit: string;
+  max_runs_per_minute: number;
+}
+
+export const sandbox = {
+  run: (code: string) => request<SandboxRunResult>('/sandbox/run', { method: 'POST', body: { code } }),
+  limits: () => request<SandboxLimits>('/sandbox/limits')
+};
+
 export { API_BASE_URL };

@@ -3,6 +3,8 @@ export interface CodeSample {
   label: string;
   note: string;
   code: string;
+  /** False when the sample can't execute standalone in the single-file sandbox (e.g. spans multiple virtual files). Defaults to true. */
+  runnable?: boolean;
 }
 
 export const codeSamples: CodeSample[] = [
@@ -32,19 +34,22 @@ DEFINE greet WITH user DO
     RETURN "Hi " + name OF user + ", add an email to get updates"
   END
   RETURN "Hi " + name OF user + ", we'll write to " + email OF user
-END`,
+END
+
+CREATE User WITH 1, "Ada", NONE INTO ada
+show(greet(ada))`,
   note: 'Lightweight data classes, plus real inheritance and interfaces.'
 },
 {
   id: 'async',
   label: 'Async',
-  code: `ASYNC DEFINE fetch_price WITH item DO
-  RETURN net.get("https://example.com/price/" + item)
+  code: `ASYNC DEFINE fetch_price WITH item, base_price DO
+  RETURN base_price * 1.08
 END
 
-AWAIT CALL fetch_price WITH "widget" INTO response
-show(response)`,
-  note: 'Mark a function ASYNC DEFINE and AWAIT it — useful for network calls.'
+AWAIT CALL fetch_price WITH "widget", 24.99 INTO price
+show("Price for widget: " + TO_STRING(price))`,
+  note: 'Mark a function ASYNC DEFINE and AWAIT it — the same pattern used for network or file I/O.'
 },
 {
   id: 'modules',
@@ -59,7 +64,8 @@ EXPORT calculate_total
 # main.eri
 INCLUDE "helpers.eri" AS helpers
 show(helpers.calculate_total(9.99, 3))`,
-  note: 'Split code across files and bring it in with INCLUDE.'
+  note: 'Split code across files and bring it in with INCLUDE.',
+  runnable: false
 },
 {
   id: 'assertions',
@@ -69,7 +75,7 @@ show(helpers.calculate_total(9.99, 3))`,
 END
 
 SET result TO total_with_tax(30.50, 0.08)
-assert(result == 32.94, "Tax calculation looks wrong")
+assert(result > 32.93 AND result < 32.95, "Tax calculation looks wrong")
 show(result)`,
   note: 'State assumptions directly in the code with assert.'
 }];
