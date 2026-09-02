@@ -1,11 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { Link, Outlet, useMatch, useNavigate } from 'react-router-dom';
+import { Link, Outlet, useMatch, useNavigate, useOutletContext } from 'react-router-dom';
 import { formatDistanceToNow } from 'date-fns';
 import { PenSquareIcon, XIcon } from 'lucide-react';
 import { forum, ForumThreadSummary, ApiError } from '../../lib/api';
 import { useAuth } from '../../lib/AuthContext';
 import { LoadingBanner, ErrorBanner, EmptyBanner } from '../../components/StatusBanner';
 import { Pagination } from '../../components/Pagination';
+
+interface ForumOutletContext {
+  openCompose: () => void;
+}
+
+export function useForumOutletContext() {
+  return useOutletContext<ForumOutletContext>();
+}
 
 export function ForumLayout() {
   const { user } = useAuth();
@@ -77,27 +85,27 @@ export function ForumLayout() {
 
   return (
     <main className="mx-auto flex w-full max-w-page flex-col px-0 py-0 lg:px-8 lg:py-8">
-      <div className="flex h-[70vh] min-h-[520px] max-h-[780px] w-full overflow-hidden border-line bg-surface shadow-2xl shadow-black/40 lg:rounded-2xl lg:border">
+      <div className="flex h-[70vh] min-h-[520px] max-h-[780px] w-full overflow-hidden border-white/10 bg-[#0a2540] shadow-2xl shadow-black/40 lg:rounded-2xl lg:border">
         {/* Sidebar — conversation list */}
         <aside
-          className={`w-full shrink-0 flex-col border-line bg-raised md:w-[340px] md:border-r ${
+          className={`w-full shrink-0 flex-col border-white/10 bg-[#123252] md:w-[340px] md:border-r ${
           showSidebar ? 'flex' : 'hidden md:flex'}`
           }>
 
-          <div className="flex items-center justify-between gap-2 border-b border-line px-4 py-3.5">
+          <div className="flex items-center justify-between gap-2 border-b border-white/10 px-4 py-3.5">
             <h1 className="text-[17px] font-bold text-white">Forum</h1>
             {user ?
             <button
               type="button"
               onClick={() => setComposing((v) => !v)}
               aria-label={composing ? 'Cancel new thread' : 'Start a new thread'}
-              className="flex h-8 w-8 items-center justify-center rounded-full text-accent transition-colors duration-150 ease-eri hover:bg-raised">
+              className="flex h-8 w-8 items-center justify-center rounded-full text-accent transition-colors duration-150 ease-eri hover:bg-white/10">
 
                 {composing ? <XIcon className="h-4 w-4" /> : <PenSquareIcon className="h-4 w-4" />}
               </button> :
             <Link
               to="/login"
-              className="rounded-full border border-line px-3 py-1 text-[12.5px] font-semibold text-white transition-colors duration-150 ease-eri hover:border-accent hover:text-accent">
+              className="rounded-full border border-white/15 px-3 py-1 text-[12.5px] font-semibold text-white transition-colors duration-150 ease-eri hover:border-accent hover:text-accent">
 
                 Log in
               </Link>
@@ -105,7 +113,7 @@ export function ForumLayout() {
           </div>
 
           {composing ?
-          <form onSubmit={submitThread} className="flex flex-col gap-2.5 border-b border-line bg-surface p-4">
+          <form onSubmit={submitThread} className="flex flex-col gap-2.5 border-b border-white/10 bg-[#0a2540] p-4">
               {postError ? <ErrorBanner message={postError} /> : null}
               <input
               value={title}
@@ -113,7 +121,7 @@ export function ForumLayout() {
               placeholder="Thread title"
               required
               autoFocus
-              className="rounded-lg border border-line bg-transparent px-3 py-2 text-[13.5px] text-white placeholder:text-muted focus:border-accent focus:outline-none" />
+              className="rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-[13.5px] text-white placeholder:text-muted focus:border-accent focus:outline-none" />
 
               <textarea
               value={body}
@@ -121,7 +129,7 @@ export function ForumLayout() {
               placeholder="What's on your mind?"
               rows={3}
               required
-              className="rounded-lg border border-line bg-transparent px-3 py-2 text-[13.5px] text-white placeholder:text-muted focus:border-accent focus:outline-none" />
+              className="rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-[13.5px] text-white placeholder:text-muted focus:border-accent focus:outline-none" />
 
               <button
               type="submit"
@@ -141,7 +149,7 @@ export function ForumLayout() {
             threads.length === 0 ?
             <div className="p-4"><EmptyBanner message="No threads yet — start the first one." /></div> :
 
-            <ul className="flex flex-col divide-y divide-line">
+            <ul className="flex flex-col divide-y divide-white/10">
                 {threads.map((t) =>
               <li key={t.id}>
                     <Link
@@ -155,7 +163,7 @@ export function ForumLayout() {
                       {t.created_by_avatar_url ?
                   <img src={t.created_by_avatar_url} alt="" className="h-10 w-10 shrink-0 rounded-full object-cover" /> :
 
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-surface text-[13px] font-bold text-muted">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/10 text-[13px] font-bold text-white/70">
                           {t.created_by[0]?.toUpperCase()}
                         </div>
                   }
@@ -177,7 +185,7 @@ export function ForumLayout() {
           </div>
 
           {threads && threads.length > 0 ?
-          <div className="border-t border-line px-2 py-1">
+          <div className="border-t border-white/10 px-2 py-1">
               <Pagination page={page} perPage={20} total={total} onChange={setPage} />
             </div> :
           null}
@@ -185,7 +193,7 @@ export function ForumLayout() {
 
         {/* Active conversation */}
         <section className={`min-w-0 flex-1 flex-col ${showSidebar ? 'hidden md:flex' : 'flex'}`}>
-          <Outlet />
+          <Outlet context={{ openCompose: () => setComposing(true) }} />
         </section>
       </div>
     </main>);

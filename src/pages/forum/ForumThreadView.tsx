@@ -89,11 +89,11 @@ export function ForumThreadView() {
   return (
     <div className="flex min-h-0 flex-1 flex-col">
       {/* Header */}
-      <div className="flex shrink-0 items-center gap-3 border-b border-line bg-raised px-4 py-3">
+      <div className="flex shrink-0 items-center gap-3 border-b border-white/10 bg-[#123252] px-4 py-3">
         <Link
           to="/forum"
           aria-label="Back to all threads"
-          className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-muted transition-colors duration-150 ease-eri hover:bg-raised hover:text-white md:hidden">
+          className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-muted transition-colors duration-150 ease-eri hover:bg-white/10 hover:text-white md:hidden">
 
           <ArrowLeftIcon className="h-4 w-4" aria-hidden="true" />
         </Link>
@@ -118,7 +118,7 @@ export function ForumThreadView() {
                 className="h-8 w-8 shrink-0 rounded-full object-cover" /> :
 
 
-              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-raised text-[11px] font-bold text-muted">
+              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/10 text-[11px] font-bold text-white/70">
                   {r.created_by[0]?.toUpperCase()}
                 </div>
               }
@@ -138,7 +138,7 @@ export function ForumThreadView() {
                   className={`whitespace-pre-wrap rounded-2xl px-3.5 py-2.5 text-[14px] leading-relaxed shadow-sm shadow-black/20 ${
                   mine ?
                   'rounded-br-sm bg-accent text-ink' :
-                  'rounded-bl-sm border border-line bg-raised text-white/90'}`
+                  'rounded-bl-sm border border-white/10 bg-[#123252] text-white/90'}`
                   }>
 
                   {r.body}
@@ -151,7 +151,7 @@ export function ForumThreadView() {
       </div>
 
       {/* Composer */}
-      <div className="shrink-0 border-t border-line bg-raised p-3">
+      <div className="shrink-0 border-t border-white/10 bg-[#123252] p-3">
         {postError ? <div className="mb-2"><ErrorBanner message={postError} /></div> : null}
         {user ?
         <form onSubmit={submitReply} className="flex items-end gap-2">
@@ -166,7 +166,7 @@ export function ForumThreadView() {
             }}
             placeholder="Write a message…"
             rows={1}
-            className="max-h-32 min-h-[42px] flex-1 resize-none rounded-2xl border border-line bg-surface px-4 py-2.5 text-[14px] text-white placeholder:text-muted focus:border-accent focus:outline-none" />
+            className="max-h-32 min-h-[42px] flex-1 resize-none rounded-2xl border border-white/10 bg-white/5 px-4 py-2.5 text-[14px] text-white placeholder:text-muted focus:border-accent focus:outline-none" />
 
             <button
             type="submit"
