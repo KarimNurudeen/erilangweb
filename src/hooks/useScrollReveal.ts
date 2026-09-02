@@ -35,18 +35,27 @@ export function useScrollReveal<T extends HTMLElement>({
       return;
     }
 
+    // Fast touch-scroll flicks can carry a reader past a section before a slower,
+    // desktop-tuned fade-in finishes — trigger earlier and resolve faster on small screens
+    // so the reveal has already landed by the time the section leaves the viewport.
+    const isMobile = window.matchMedia('(max-width: 767px)').matches;
+    const effectiveY = isMobile ? Math.min(y, 16) : y;
+    const effectiveDuration = isMobile ? Math.min(duration, 0.35) : duration;
+    const effectiveStagger = isMobile ? Math.min(stagger, 0.04) : stagger;
+    const effectiveStart = isMobile ? 'top 98%' : start;
+
     const ctx = gsap.context(() => {
-      gsap.set(animTargets, { opacity: 0, y });
+      gsap.set(animTargets, { opacity: 0, y: effectiveY });
       gsap.to(animTargets, {
         opacity: 1,
         y: 0,
-        duration,
+        duration: effectiveDuration,
         delay,
-        stagger,
+        stagger: effectiveStagger,
         ease: 'power3.out',
         scrollTrigger: {
           trigger: el,
-          start,
+          start: effectiveStart,
           toggleActions: once ? 'play none none none' : 'play none none reverse'
         }
       });

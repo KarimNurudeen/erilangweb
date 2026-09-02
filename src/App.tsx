@@ -10,7 +10,9 @@ import { DismissAppLoader } from './components/layout/DismissAppLoader';
 import { Home } from './pages/Home';
 import { Docs } from './pages/Docs';
 import { DocPage } from './pages/DocPage';
+import { Sandbox } from './pages/Sandbox';
 import { CaseStudies } from './pages/CaseStudies';
+import { CaseStudyDetail } from './pages/CaseStudyDetail';
 import { Community } from './pages/Community';
 import { Register } from './pages/auth/Register';
 import { VerifyEmail } from './pages/auth/VerifyEmail';
@@ -23,8 +25,9 @@ import { Blog } from './pages/Blog';
 import { BlogPostPage } from './pages/BlogPost';
 import { NewsletterConfirm } from './pages/NewsletterConfirm';
 import { NewsletterUnsubscribe } from './pages/NewsletterUnsubscribe';
-import { Forum } from './pages/Forum';
-import { ForumThreadPage } from './pages/ForumThread';
+import { ForumLayout } from './pages/forum/ForumLayout';
+import { ForumWelcome } from './pages/forum/ForumWelcome';
+import { ForumThreadView } from './pages/forum/ForumThreadView';
 import { Packages } from './pages/Packages';
 import { PackageDetail } from './pages/PackageDetail';
 import { Releases } from './pages/Releases';
@@ -45,7 +48,9 @@ export function App() {
               <Route path="/" element={<Home />} />
               <Route path="/docs" element={<Docs />} />
               <Route path="/docs/:slug" element={<DocPage />} />
+              <Route path="/sandbox" element={<Sandbox />} />
               <Route path="/case-studies" element={<CaseStudies />} />
+              <Route path="/case-studies/:slug" element={<CaseStudyDetail />} />
               <Route path="/community" element={<Community />} />
 
               <Route path="/register" element={<Register />} />
@@ -62,8 +67,10 @@ export function App() {
               <Route path="/newsletter/confirm" element={<NewsletterConfirm />} />
               <Route path="/newsletter/unsubscribe" element={<NewsletterUnsubscribe />} />
 
-              <Route path="/forum" element={<Forum />} />
-              <Route path="/forum/:id" element={<ForumThreadPage />} />
+              <Route path="/forum" element={<ForumLayout />}>
+                <Route index element={<ForumWelcome />} />
+                <Route path=":id" element={<ForumThreadView />} />
+              </Route>
 
               <Route path="/packages" element={<Packages />} />
               <Route path="/packages/:name" element={<PackageDetail />} />

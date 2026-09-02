@@ -7,6 +7,12 @@ export interface Target {
 
 export const targets: Target[] = [
 {
+  id: 'data',
+  label: 'Data science',
+  description: 'Load a CSV or database table with LOAD, get an instant summary with DESCRIBE, then FILTER it down to exactly what you need.',
+  icon: 'cpu'
+},
+{
   id: 'backend',
   label: 'Backend services & APIs',
   description: 'Handlers, database queries, and JSON responses, written in plain English keywords.',
@@ -23,12 +29,6 @@ export const targets: Target[] = [
   label: 'Network programming',
   description: 'Sockets, HTTP requests, and email — call ASYNC DEFINE functions and AWAIT the result.',
   icon: 'globe'
-},
-{
-  id: 'data',
-  label: 'Files, data & databases',
-  description: 'Read and write CSV, generate JSON, query a database, or load a table with LOAD.',
-  icon: 'cpu'
 },
 {
   id: 'gui',

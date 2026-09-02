@@ -4,6 +4,8 @@ import { ChevronDownIcon, MenuIcon, SearchIcon, XIcon } from 'lucide-react';
 import { Brand } from '../Brand';
 import { primaryNav } from '../../data/navigation';
 import { channels } from '../../data/community';
+
+const dropdownChannels = channels.filter((c) => c.name !== 'Forum');
 import { CHANNEL_ICONS } from '../channelIcons';
 import { SnakeBorder } from '../SnakeBorder';
 import { useAuth } from '../../lib/AuthContext';
@@ -90,7 +92,7 @@ export function SiteHeader() {
                     'pointer-events-none -translate-x-1/2 -translate-y-1 scale-95 opacity-0'}`
                     }>
                       <ul className="flex flex-col">
-                        {channels.map((channel) => {
+                        {dropdownChannels.map((channel) => {
                           const Icon = CHANNEL_ICONS[channel.icon];
                           return (
                             <li key={channel.name}>
@@ -235,7 +237,7 @@ export function SiteHeader() {
                 </Link>
                 {item.label === 'Community' ?
             <ul className="mt-1 flex flex-col gap-0.5 pb-1 pl-3">
-                    {channels.map((channel) =>
+                    {dropdownChannels.map((channel) =>
               <li key={channel.name}>
                         <Link
                   to={channel.to}

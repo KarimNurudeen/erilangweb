@@ -5,7 +5,9 @@ export interface NavItem {
 
 export const primaryNav: NavItem[] = [
 { label: 'Docs', to: '/docs' },
+{ label: 'Try Sandbox', to: '/sandbox' },
 { label: 'Case studies', to: '/case-studies' },
+{ label: 'Join Forum', to: '/forum' },
 { label: 'Community', to: '/community' }];
 
 
@@ -21,7 +23,7 @@ export const footerGroups: FooterGroup[] = [
   { label: 'Get started', to: '/docs/getting-started' },
   { label: 'Language guide', to: '/docs/language-basics' },
   { label: 'Standard library', to: '/docs/standard-library' },
-  { label: 'Playground', to: '/docs/repl' }]
+  { label: 'Playground', to: '/sandbox' }]
 
 },
 {

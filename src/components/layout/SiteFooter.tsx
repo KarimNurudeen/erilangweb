@@ -24,8 +24,8 @@ export function SiteFooter() {
           <div>
             <Brand showVersion={false} />
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted">
-              An open source, general-purpose language for backend services, CLI tools, data, and
-              everyday automation.
+              An open source, general-purpose language for data science, backend services, CLI
+              tools, and everyday automation.
             </p>
             <ul className="mt-6 flex flex-wrap items-center gap-2">
               {socials.map(({ label, Icon, to }) =>
