@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { format } from 'date-fns';
+import { formatDistanceToNow } from 'date-fns';
 import ReactMarkdown from 'react-markdown';
 import { ThumbsUpIcon, ThumbsDownIcon, TrashIcon } from 'lucide-react';
 import { blog, BlogPostDetail, BlogComment, ApiError } from '../lib/api';
@@ -76,7 +76,7 @@ export function BlogPostPage() {
       <Link to="/blog" className="text-[13.5px] font-medium text-muted hover:text-white">← All posts</Link>
       <h1 className="mt-4 text-4xl font-bold tracking-tight text-white sm:text-5xl">{post.title}</h1>
       <p className="mt-3 text-[14px] text-muted">
-        by {post.author} · {format(new Date(post.published_at), 'MMMM d, yyyy')}
+        by {post.author} · {formatDistanceToNow(new Date(post.published_at), { addSuffix: true })}
       </p>
 
       <div className="prose prose-invert mt-8 max-w-none text-[15.5px] leading-relaxed text-white/85 [&_a]:text-accent [&_code]:rounded [&_code]:bg-surface [&_code]:px-1.5 [&_code]:py-0.5 [&_h2]:mt-8 [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:text-white [&_h3]:mt-6 [&_h3]:text-xl [&_h3]:font-bold [&_h3]:text-white [&_p]:mt-4 [&_pre]:overflow-x-auto [&_pre]:rounded-lg [&_pre]:bg-surface [&_pre]:p-4 [&_ul]:mt-4 [&_ul]:list-disc [&_ul]:pl-6">
@@ -152,7 +152,7 @@ export function BlogPostPage() {
                 <p className="text-[13.5px] font-semibold text-white">
                   {c.author_display_name || c.author}
                   <span className="ml-2 font-normal text-muted">
-                    {format(new Date(c.created_at), 'MMM d, yyyy')}
+                    {formatDistanceToNow(new Date(c.created_at), { addSuffix: true })}
                   </span>
                 </p>
                 <p className="mt-1 text-[14px] leading-relaxed text-white/80">{c.body}</p>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowUpRightIcon } from 'lucide-react';
-import { format } from 'date-fns';
+import { formatDistanceToNow } from 'date-fns';
 import { blog, BlogPostSummary } from '../../lib/api';
 import { SnakeBorder } from '../SnakeBorder';
 import { ScrollReveal } from '../ScrollReveal';
@@ -38,7 +38,7 @@ export function LatestNews() {
 
                     <SnakeBorder radius={12} />
                     <span className="text-[12.5px] text-muted">
-                      {format(new Date(post.published_at), 'MMMM d, yyyy')}
+                      {formatDistanceToNow(new Date(post.published_at), { addSuffix: true })}
                     </span>
                     <span className="mt-2 text-[16px] font-semibold leading-snug text-white">
                       {post.title}

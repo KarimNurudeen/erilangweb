@@ -141,3 +141,26 @@ body {
   background: linear-gradient(200deg, #d9f1fa, #2b7a99 70%);
   filter: drop-shadow(0 6px 12px rgba(10, 37, 64, 0.35));
 }
+
+/* Decorative post-cover gradients (no real cover images in the API — these
+   stand in for a photo without pretending one exists). Cycled by index. */
+.eri-cover-0 {
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.18), transparent 55%),
+    linear-gradient(135deg, #2b7a99, #182534 75%);
+}
+.eri-cover-1 {
+  background:
+    radial-gradient(circle at 80% 15%, rgba(255, 255, 255, 0.22), transparent 55%),
+    linear-gradient(135deg, #addff1, #2b7a99 60%, #182534 100%);
+}
+.eri-cover-2 {
+  background:
+    radial-gradient(circle at 25% 80%, rgba(255, 255, 255, 0.2), transparent 55%),
+    linear-gradient(160deg, #d9f1fa, #2b7a99 55%, #182534 100%);
+}
+.eri-cover-3 {
+  background:
+    radial-gradient(circle at 70% 70%, rgba(255, 255, 255, 0.16), transparent 55%),
+    linear-gradient(150deg, #182534, #2b7a99 55%, #addff1 100%);
+}
