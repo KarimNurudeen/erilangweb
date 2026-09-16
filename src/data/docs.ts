@@ -22,11 +22,21 @@ export const docsSidebar: DocSection[] = [
 
 },
 {
+  title: 'Data science',
+  items: [
+  { label: 'Inspection, statistics & cleaning', slug: 'data-science-inspection' },
+  { label: 'Transforming, grouping & joining', slug: 'data-science-transform' },
+  { label: 'Accessible visualization', slug: 'data-science-charts' },
+  { label: 'Statistical inference', slug: 'data-science-inference' }]
+
+},
+{
   title: 'Object-oriented & errors',
   items: [
   { label: 'Object-oriented programming', slug: 'oop' },
+  { label: 'Interfaces', slug: 'interfaces' },
+  { label: 'Annotations', slug: 'annotations' },
   { label: 'Error handling', slug: 'error-handling' },
-  { label: 'Pattern matching', slug: 'pattern-matching' },
   { label: 'Enums and constants', slug: 'enums-constants' }]
 
 },
@@ -34,22 +44,48 @@ export const docsSidebar: DocSection[] = [
   title: 'Modules & async',
   items: [
   { label: 'Modules and packages', slug: 'modules-packages' },
+  { label: 'Namespaces', slug: 'namespaces' },
   { label: 'Asynchronous programming', slug: 'async' },
   { label: 'Working with files and data', slug: 'files-data' }]
 
 },
 {
+  title: 'Standard library',
+  items: [
+  { label: 'Core libraries', slug: 'stdlib-core' },
+  { label: 'Networking', slug: 'stdlib-networking' },
+  { label: 'Web framework', slug: 'stdlib-web' },
+  { label: 'Hashing', slug: 'stdlib-hashing' },
+  { label: 'Byte/binary data', slug: 'stdlib-bytes' },
+  { label: 'Compression & archives', slug: 'stdlib-archives' },
+  { label: 'Advanced data structures', slug: 'stdlib-data-structures' },
+  { label: 'Randomness & identifiers', slug: 'stdlib-random' },
+  { label: 'Running external programs', slug: 'stdlib-run-command' },
+  { label: 'Command-line argument parsing', slug: 'stdlib-cli-args' },
+  { label: 'Image handling', slug: 'stdlib-image' },
+  { label: 'Audio', slug: 'stdlib-audio' },
+  { label: 'Video handling', slug: 'stdlib-video' },
+  { label: 'Web scraping (HTML/XML)', slug: 'stdlib-html' },
+  { label: 'GUI & drawing primitives', slug: 'stdlib-gui' },
+  { label: 'OS accessibility (UI automation)', slug: 'stdlib-ui-automation' }]
+
+},
+{
   title: 'Tooling',
   items: [
-  { label: 'The standard library', slug: 'standard-library' },
   { label: 'The interactive shell (REPL)', slug: 'repl' },
-  { label: 'Command-line tools', slug: 'cli-tools' }]
+  { label: 'Command-line tools', slug: 'cli-tools' },
+  { label: 'Linting', slug: 'linting' },
+  { label: 'Documentation generator', slug: 'doc-generator' },
+  { label: 'Formatter', slug: 'formatter' },
+  { label: 'Package manager', slug: 'package-manager' }]
 
 },
 {
   title: 'Reference',
   items: [
   { label: 'Style guide and best practices', slug: 'style-guide' },
+  { label: 'Contextual keywords', slug: 'contextual-keywords' },
   { label: 'Quick reference', slug: 'quick-reference' }]
 
 }];
@@ -95,14 +131,14 @@ export const docFirstSteps: DocCard[] = [
   to: '/docs/control-flow'
 },
 {
-  title: 'Functions',
-  body: 'Defining and calling functions, returning more than one value, closures, and recursion.',
+  title: 'Accessible visualization',
+  body: 'CHART turns a dataset into an image and a genuine, data-computed spoken description — the reason Erilang exists.',
   meta: 'Guide',
-  to: '/docs/functions'
+  to: '/docs/data-science-charts'
 },
 {
   title: 'Object-oriented programming',
-  body: 'Classes, inheritance, interfaces, data classes, and operator overloading.',
+  body: 'Classes, CONSTRUCT/DESTRUCT, inheritance, interfaces, data classes, and operator overloading.',
   meta: 'Guide',
   to: '/docs/oop'
 },
@@ -113,8 +149,8 @@ export const docFirstSteps: DocCard[] = [
   to: '/docs/error-handling'
 },
 {
-  title: 'The standard library',
-  body: 'math, os, time and datetime, regex, bytes, hash, net, socket, gui, and more.',
+  title: 'Core libraries',
+  body: 'math, os, time and datetime, regex, hashing, networking, and much more.',
   meta: 'Reference',
-  to: '/docs/standard-library'
+  to: '/docs/stdlib-core'
 }];

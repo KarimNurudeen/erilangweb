@@ -9,7 +9,7 @@ export const targets: Target[] = [
 {
   id: 'data',
   label: 'Data science',
-  description: 'Load a CSV or database table with LOAD, get an instant summary with DESCRIBE, then FILTER it down to exactly what you need.',
+  description: 'LOAD a table, clean and group it, then CHART it — every chart comes with a real, data-computed spoken description, not just a picture.',
   icon: 'cpu'
 },
 {
