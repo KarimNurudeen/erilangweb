@@ -2,21 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import { format } from 'date-fns';
-import { DownloadIcon, CopyIcon } from 'lucide-react';
 import { releases, ReleaseDetail, ReleaseSummary, ApiError } from '../lib/api';
 import { LoadingBanner, ErrorBanner } from '../components/StatusBanner';
-
-const OS_LABELS: Record<string, string> = {
-  macos: 'macOS',
-  windows: 'Windows',
-  linux: 'Linux'
-};
+import { ReleaseAssets } from '../components/ReleaseAssets';
 
 export function Releases() {
   const [latest, setLatest] = useState<ReleaseDetail | null>(null);
   const [history, setHistory] = useState<ReleaseSummary[] | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [copied, setCopied] = useState<number | null>(null);
 
   useEffect(() => {
     releases.
@@ -25,18 +18,6 @@ export function Releases() {
     catch((err) => setError(err instanceof ApiError ? err.message : 'Something went wrong.'));
     releases.list(1, 20).then((res) => setHistory(res.results)).catch(() => setHistory([]));
   }, []);
-
-  const copy = (assetId: number, value: string) => {
-    navigator.clipboard?.writeText(value).then(() => {
-      setCopied(assetId);
-      setTimeout(() => setCopied(null), 1500);
-    });
-  };
-
-  const groupedAssets = latest?.assets.reduce<Record<string, typeof latest.assets>>((acc, asset) => {
-    (acc[asset.os_type] ||= []).push(asset);
-    return acc;
-  }, {}) || {};
 
   return (
     <main className="mx-auto max-w-page px-5 py-16 lg:px-8 lg:py-20">
@@ -59,44 +40,8 @@ export function Releases() {
               </span>
             </div>
 
-            <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-              {Object.entries(groupedAssets).map(([os, assets]) =>
-            <div key={os}>
-                  <h3 className="text-[13px] font-bold uppercase tracking-wide text-muted">
-                    {OS_LABELS[os] || os}
-                  </h3>
-                  <ul className="mt-3 flex flex-col gap-2">
-                    {assets.map((asset) =>
-                asset.kind === 'command' ?
-                <li key={asset.id}>
-                          <button
-                    type="button"
-                    onClick={() => copy(asset.id, asset.value || '')}
-                    className="flex w-full items-center justify-between gap-2 rounded-lg bg-ink px-3.5 py-2.5 text-left font-mono text-[13px] text-white/90 transition-colors duration-150 ease-eri hover:bg-neutral-800">
-
-                            <span className="truncate">{asset.value}</span>
-                            <CopyIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
-                          </button>
-                          {copied === asset.id ?
-                  <p className="mt-1 text-[11.5px] text-accent">Copied!</p> :
-                  <p className="mt-1 text-[11.5px] text-muted">{asset.label}</p>
-                  }
-                        </li> :
-
-                <li key={asset.id}>
-                          <a
-                    href={releases.assetDownloadUrl(asset.id)}
-                    className="flex items-center justify-between gap-2 rounded-lg border border-line px-3.5 py-2.5 text-[13.5px] text-white transition-colors duration-150 ease-eri hover:border-accent">
-
-                            {asset.label}
-                            <DownloadIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
-                          </a>
-                        </li>
-
-                )}
-                  </ul>
-                </div>
-            )}
+            <div className="mt-6">
+              <ReleaseAssets assets={latest.assets} />
             </div>
           </div>
 

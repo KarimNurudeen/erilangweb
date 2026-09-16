@@ -4,6 +4,7 @@ import ReactMarkdown from 'react-markdown';
 import { format } from 'date-fns';
 import { releases, ReleaseDetail as ReleaseDetailType, ApiError } from '../lib/api';
 import { LoadingBanner, ErrorBanner } from '../components/StatusBanner';
+import { ReleaseAssets } from '../components/ReleaseAssets';
 
 export function ReleaseDetail() {
   const { version = '' } = useParams();
@@ -29,6 +30,10 @@ export function ReleaseDetail() {
       <p className="mt-3 text-[14px] text-muted">
         v{release.version} · {format(new Date(release.published_at), 'MMMM d, yyyy')}
       </p>
+
+      <div className="mt-8">
+        <ReleaseAssets assets={release.assets} />
+      </div>
 
       <div className="prose prose-invert mt-8 max-w-none text-[15.5px] leading-relaxed text-white/85 [&_h2]:mt-6 [&_h2]:text-xl [&_h2]:font-bold [&_h2]:text-white [&_li]:mt-1 [&_p]:mt-3 [&_ul]:mt-3 [&_ul]:list-disc [&_ul]:pl-6">
         <ReactMarkdown>{release.description}</ReactMarkdown>
