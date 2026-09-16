@@ -1,17 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { GithubIcon, MessagesSquareIcon, RssIcon, TwitterIcon, YoutubeIcon } from 'lucide-react';
+import { FacebookIcon, InstagramIcon, XIcon, YoutubeIcon } from 'lucide-react';
 import { Brand } from '../Brand';
 import { footerGroups } from '../../data/navigation';
 import { SnakeBorder } from '../SnakeBorder';
 import { FloatingShapes } from '../FloatingShapes';
+import { TikTokIcon } from '../icons/TikTokIcon';
 
 const socials = [
-{ label: 'GitHub', Icon: GithubIcon, to: '#' },
-{ label: 'Forum', Icon: MessagesSquareIcon, to: '/forum' },
-{ label: 'X', Icon: TwitterIcon, to: '#' },
-{ label: 'YouTube', Icon: YoutubeIcon, to: '#' },
-{ label: 'Blog', Icon: RssIcon, to: '/blog' }];
+{ label: 'Instagram', Icon: InstagramIcon, href: 'https://www.instagram.com/erilangofficial' },
+{ label: 'X', Icon: XIcon, href: 'https://x.com/erilangofficial' },
+{ label: 'YouTube', Icon: YoutubeIcon, href: 'https://www.youtube.com/@Erilang' },
+{ label: 'Facebook', Icon: FacebookIcon, href: 'https://www.facebook.com/erilangofficial' },
+{ label: 'TikTok', Icon: TikTokIcon, href: 'https://www.tiktok.com/@erilang6' }];
 
 
 export function SiteFooter() {
@@ -28,16 +29,18 @@ export function SiteFooter() {
               tools, and everyday automation.
             </p>
             <ul className="mt-6 flex flex-wrap items-center gap-2">
-              {socials.map(({ label, Icon, to }) =>
+              {socials.map(({ label, Icon, href }) =>
               <li key={label}>
-                  <Link
-                  to={to}
+                  <a
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label={label}
                   className="eri-snake eri-snake-blue inline-flex h-9 w-9 items-center justify-center rounded-full border border-line text-muted transition-colors duration-150 ease-eri hover:border-accent hover:text-accent">
 
                     <SnakeBorder radius={999} />
                     <Icon className="h-4 w-4" aria-hidden="true" />
-                  </Link>
+                  </a>
                 </li>
               )}
             </ul>
