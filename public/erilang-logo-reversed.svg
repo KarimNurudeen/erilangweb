@@ -1,0 +1,7 @@
+<svg width="300" height="90" viewBox="0 0 300 90" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Erilang">
+  <rect x="0" y="0" width="24" height="90" fill="#E8402A"/>
+  <path d="M0,0 H80 L100,14 L80,28 H0 Z" fill="#E8402A"/>
+  <path d="M0,34 H56 L74,46 L56,58 H0 Z" fill="#E8402A"/>
+  <path d="M0,62 H80 L100,76 L80,90 H0 Z" fill="#E8402A"/>
+  <text x="112" y="61" font-family="Inter, system-ui, sans-serif" font-weight="800" font-size="46" letter-spacing="-1" fill="#FFFFFF">ERILANG</text>
+</svg>

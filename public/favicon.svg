@@ -1,4 +1,9 @@
 <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-  <rect width="32" height="32" rx="8" fill="#ADDFF1" />
-  <path d="M10 9.5h12M10 16h8.5M10 22.5h12" stroke="#08090b" stroke-width="2.6" stroke-linecap="square" />
+  <rect width="32" height="32" rx="7" fill="#182534" />
+  <g transform="translate(6,4) scale(0.24)">
+    <rect x="0" y="0" width="24" height="90" fill="#E8402A"/>
+    <path d="M0,0 H80 L100,14 L80,28 H0 Z" fill="#E8402A"/>
+    <path d="M0,34 H56 L74,46 L56,58 H0 Z" fill="#E8402A"/>
+    <path d="M0,62 H80 L100,76 L80,90 H0 Z" fill="#E8402A"/>
+  </g>
 </svg>
