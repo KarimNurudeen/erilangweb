@@ -132,7 +132,7 @@ export const docFirstSteps: DocCard[] = [
 },
 {
   title: 'Accessible visualization',
-  body: 'CHART turns a dataset into an image and a genuine, data-computed spoken description. It\'s the reason Erilang exists.',
+  body: 'CHART turns a dataset into an image and a genuine, data-computed spoken description, one of Erilang\'s standout features.',
   meta: 'Guide',
   to: '/docs/data-science-charts'
 },

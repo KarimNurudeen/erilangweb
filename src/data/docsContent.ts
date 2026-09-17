@@ -39,7 +39,7 @@ export const docPages: DocPage[] = [
   },
   {
     type: 'p',
-    text: "This readability is deliberate, and it comes from Erilang's founding motivation: accessible data science for blind and low-vision developers, for whom a wall of dense symbols is far harder to follow by ear than a sentence. That same motivation is why CHART, covered in the Data Science section of this guide, never just draws a picture; it also produces a genuine, data-computed spoken-language description of what the chart shows."
+    text: "This readability is deliberate: code that reads like a sentence is easier for everyone to follow, and it's especially valuable for programmers using screen readers, for whom a wall of dense symbols is far harder to follow by ear than a sentence. That same thinking is why CHART, covered in the Data Science section of this guide, never just draws a picture; it also produces a genuine, data-computed spoken-language description of what the chart shows, useful whether or not you can see the image."
   },
   {
     type: 'p',
@@ -48,7 +48,7 @@ export const docPages: DocPage[] = [
   { type: 'h3', text: 'What Erilang is good for' },
   {
     type: 'p',
-    text: "Data analysis, cleaning, statistics, and accessible reporting are Erilang's core reason for existing. See the Data Science section of this guide. Beyond that, it is a genuinely general-purpose language: people use it for backend services and APIs, command-line tools, network programming, working with files and databases, small games and graphical programs, and automating everyday tasks. If you have written another programming language before, most of Erilang's ideas will feel familiar, since the syntax is simply more readable."
+    text: "Data analysis, cleaning, statistics, and reporting are Erilang's biggest strength. See the Data Science section of this guide. Beyond that, it is a genuinely general-purpose language: people use it for backend services and APIs, command-line tools, network programming, working with files and databases, small games and graphical programs, and automating everyday tasks. If you have written another programming language before, most of Erilang's ideas will feel familiar, since the syntax is simply more readable."
   },
   { type: 'h3', text: 'How this guide is organized' },
   {
@@ -530,7 +530,7 @@ export const docPages: DocPage[] = [
   blocks: [
   {
     type: 'p',
-    text: 'This is the first tier of Erilang\'s core reason for existing: inspecting a loaded table, computing real statistics on it, and cleaning it up, all built directly on LOAD/FILTER/describe(...). It splits into two shapes on purpose: a compute-and-return operation is an expression, extending the existing "<X> OF <Y>" idiom; a dataset-transforming operation is a dedicated, non-mutating INTO statement, matching LOAD/FILTER\'s own shape.'
+    text: 'This is the first tier of Erilang\'s data science toolkit: inspecting a loaded table, computing real statistics on it, and cleaning it up, all built directly on LOAD/FILTER/describe(...). It splits into two shapes on purpose: a compute-and-return operation is an expression, extending the existing "<X> OF <Y>" idiom; a dataset-transforming operation is a dedicated, non-mutating INTO statement, matching LOAD/FILTER\'s own shape.'
   },
   { type: 'h3', text: 'MEAN / MEDIAN / MODE / STD / VARIANCE / STATS OF' },
   {
@@ -657,7 +657,7 @@ export const docPages: DocPage[] = [
   blocks: [
   {
     type: 'p',
-    text: 'This is the feature Erilang exists for. A chart here is never just an image: CHART always produces both a real image file and a genuine, data-driven spoken-language description of what the numbers actually show. It is computed directly from the underlying data, never from the rendered picture itself, so it is exactly as reliable for someone who cannot see the image as for someone who can.'
+    text: 'This is one of Erilang\'s most distinctive features. A chart here is never just an image: CHART always produces both a real image file and a genuine, data-driven spoken-language description of what the numbers actually show. It is computed directly from the underlying data, never from the rendered picture itself, so it is exactly as reliable for someone who cannot see the image as for someone who can.'
   },
   {
     type: 'code',

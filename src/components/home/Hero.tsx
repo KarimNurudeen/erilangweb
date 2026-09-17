@@ -49,8 +49,8 @@ export function Hero() {
 
               <p className="mt-8 max-w-md text-[15px] leading-relaxed text-white/70">
                 Code should read the way you would explain it out loud. Erilang uses full English
-                keywords in place of dense symbols, and it's built for data science and designed from
-                the ground up for programmers using screen readers, and for everyone else besides.
+                keywords in place of dense symbols, built for data science and everyday programming,
+                and genuinely accessible to programmers using screen readers too.
               </p>
 
               <div className="mt-9 flex flex-wrap items-center gap-3">

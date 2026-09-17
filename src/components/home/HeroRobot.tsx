@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 
 const LINES = [
 "Hi! I read like English, using full keywords instead of dense symbols.",
-"Built for accessibility first, especially screen readers.",
+"Reads naturally out loud, screen readers included.",
 "INCLUDE brings in another file directly, with no binding layer.",
 "Try `erilang run hello.eri` and you're building in minutes.",
 "TRY, CATCH, and RAISE let errors carry a plain-language message.",

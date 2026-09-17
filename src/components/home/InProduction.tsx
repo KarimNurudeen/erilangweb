@@ -17,16 +17,16 @@ export function InProduction() {
       <div className="mx-auto max-w-page px-5 lg:px-8">
         <div className="rounded-[2rem] border border-neutral-200 bg-white p-8 shadow-2xl shadow-black/5 sm:p-12 lg:p-16">
           <ScrollReveal>
-          <p className="text-[13px] font-bold uppercase tracking-wide text-accent-deep">Why Erilang really exists</p>
+          <p className="text-[13px] font-bold uppercase tracking-wide text-accent-deep">A standout feature</p>
           <h2 className="mt-3 text-4xl font-bold tracking-tight text-ink sm:text-5xl">
             Charts that talk back
           </h2>
           <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-neutral-600">
             CHART never just draws a picture. Every chart also produces a real, data-computed
             spoken-language description covering the trend, the peak and trough, and the correlation
-            strength, all worked out directly from the numbers, not guessed from the image. That's
-            what makes a chart usable by someone who can't see it, and it's the reason this
-            language exists.
+            strength, all worked out directly from the numbers, not guessed from the image. It's a
+            quick way for anyone to get the takeaway without squinting at a plot, and it also makes
+            every chart usable by someone who can't see it.
           </p>
 
           <div className="mt-10 grid gap-6 lg:grid-cols-2">
