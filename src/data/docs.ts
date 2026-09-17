@@ -111,7 +111,7 @@ export const docEntryPoints: DocCard[] = [
 },
 {
   title: 'Try the sandbox',
-  body: 'Write real Erilang and run it right in your browser against the real interpreter — no install required.',
+  body: 'Write real Erilang and run it right in your browser against the real interpreter. No install required.',
   meta: 'No install',
   to: '/sandbox'
 }];
@@ -132,7 +132,7 @@ export const docFirstSteps: DocCard[] = [
 },
 {
   title: 'Accessible visualization',
-  body: 'CHART turns a dataset into an image and a genuine, data-computed spoken description — the reason Erilang exists.',
+  body: 'CHART turns a dataset into an image and a genuine, data-computed spoken description. It\'s the reason Erilang exists.',
   meta: 'Guide',
   to: '/docs/data-science-charts'
 },

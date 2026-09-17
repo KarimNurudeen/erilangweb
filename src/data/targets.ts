@@ -9,7 +9,7 @@ export const targets: Target[] = [
 {
   id: 'data',
   label: 'Data science',
-  description: 'LOAD a table, clean and group it, then CHART it — every chart comes with a real, data-computed spoken description, not just a picture.',
+  description: 'LOAD a table, clean and group it, then CHART it. Every chart comes with a real, data-computed spoken description, not just a picture.',
   icon: 'cpu'
 },
 {
@@ -27,7 +27,7 @@ export const targets: Target[] = [
 {
   id: 'network',
   label: 'Network programming',
-  description: 'Sockets, HTTP requests, and email — call ASYNC DEFINE functions and AWAIT the result.',
+  description: 'Sockets, HTTP requests, and email, using ASYNC DEFINE functions and AWAIT for the result.',
   icon: 'globe'
 },
 {

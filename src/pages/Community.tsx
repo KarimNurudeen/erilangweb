@@ -10,7 +10,7 @@ const SIGNALS = [
 {
   icon: SparklesIcon,
   label: 'Early days',
-  body: "We're just past 1.0 — there's still a lot of room to shape what comes next."
+  body: "We're just past 1.0, so there's still a lot of room to shape what comes next."
 }];
 
 const CARD =
@@ -26,7 +26,7 @@ export function Community() {
             Get involved in the community
           </h1>
           <p className="mt-8 max-w-xl text-[17px] leading-relaxed text-neutral-700">
-            Erilang just shipped 1.0, and its community is really just getting started — a handful of
+            Erilang just shipped 1.0, and its community is really just getting started: a handful of
             people building the language and the first few trying it out. Ask something in the forum,
             publish a package if you've built one, or subscribe to hear what ships next.
           </p>
@@ -59,7 +59,7 @@ export function Community() {
         <section className={CARD}>
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Where the project lives</h2>
           <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-neutral-600">
-            No separate community platform to track down — these are the only places you need.
+            No separate community platform to track down. These are the only places you need.
           </p>
 
           <ul className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -107,7 +107,7 @@ export function Community() {
             <div>
               <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Get involved today</h2>
               <p className="mt-5 max-w-md text-[15px] leading-relaxed text-neutral-600">
-                There's no source repository to send a pull request to yet — but that's not the same as
+                There's no source repository to send a pull request to yet, but that's not the same as
                 nothing to do. The fastest way in right now is to actually use the language and tell us
                 where it breaks.
               </p>
@@ -160,7 +160,7 @@ export function Community() {
             <div className="rounded-2xl border border-dashed border-neutral-300 bg-neutral-50 p-8 lg:p-10">
               <h2 className="text-2xl font-bold tracking-tight">Local meetups</h2>
               <p className="mt-3 max-w-md text-[15px] leading-relaxed text-neutral-600">
-                There are no Erilang meetups yet — which means there's no "right" city to start one in.
+                There are no Erilang meetups yet, which means there's no "right" city to start one in.
                 If you want to run the first one, online or in person, reach out and we'll help you
                 organize it.
               </p>
@@ -177,8 +177,8 @@ export function Community() {
             <div className="rounded-2xl bg-neutral-100 p-8 lg:p-10">
               <h2 className="text-2xl font-bold tracking-tight">Code of conduct</h2>
               <p className="mt-3 max-w-md text-[15px] leading-relaxed text-neutral-600">
-                Every Erilang space — the forum, and anything that follows it — runs under the same code
-                of conduct. Reports are handled confidentially.
+                Every Erilang space, including the forum and anything that follows it, runs under the
+                same code of conduct. Reports are handled confidentially.
               </p>
               <a
                 href="#"

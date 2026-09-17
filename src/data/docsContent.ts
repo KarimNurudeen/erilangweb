@@ -20,12 +20,12 @@ export interface DocPage {
   blocks: DocBlock[];
 }
 
-const NEEDS_CSV_NOTE = "This needs a real CSV file on disk to LOAD — the sandbox has no sample data and a read-only filesystem, so this works when run locally with your own data.";
-const NEEDS_LOCAL_FS_NOTE = "The sandbox's filesystem is read-only, so this isn't possible here — it works normally when run locally.";
-const NEEDS_DISPLAY_NOTE = "This opens a real window/display, which the sandbox doesn't have — it works normally when run locally.";
-const NEEDS_HARDWARE_NOTE = "This needs real microphone/speaker hardware, which the sandbox doesn't have — it works normally when run locally.";
-const BLOCKS_FOREVER_NOTE = "This blocks forever waiting for connections/events, which can't complete in a single sandboxed run — it works normally when run locally as a long-lived script.";
-const MULTI_FILE_NOTE = "This spans more than one file — a single sandbox run can only execute one file. See it work with the CLI.";
+const NEEDS_CSV_NOTE = "This needs a real CSV file on disk to LOAD. The sandbox has no sample data and a read-only filesystem, so this works when run locally with your own data.";
+const NEEDS_LOCAL_FS_NOTE = "The sandbox's filesystem is read-only, so this isn't possible here. It works normally when run locally.";
+const NEEDS_DISPLAY_NOTE = "This opens a real window/display, which the sandbox doesn't have. It works normally when run locally.";
+const NEEDS_HARDWARE_NOTE = "This needs real microphone/speaker hardware, which the sandbox doesn't have. It works normally when run locally.";
+const BLOCKS_FOREVER_NOTE = "This blocks forever waiting for connections/events, which can't complete in a single sandboxed run. It works normally when run locally as a long-lived script.";
+const MULTI_FILE_NOTE = "This spans more than one file, and a single sandbox run can only execute one file. See it work with the CLI.";
 
 export const docPages: DocPage[] = [
 {
@@ -35,11 +35,11 @@ export const docPages: DocPage[] = [
   blocks: [
   {
     type: 'p',
-    text: 'Erilang is a small, declarative, English-like language built for data science. It reads like plain English rather than dense symbols, and it comes with a real, built-in data engine — loading, cleaning, transforming, grouping, and charting tables of data are first-class parts of the language itself, not something bolted on afterward.'
+    text: 'Erilang is a small, declarative, English-like language built for data science. It reads like plain English rather than dense symbols, and it comes with a real, built-in data engine. Loading, cleaning, transforming, grouping, and charting tables of data are first-class parts of the language itself, not something bolted on afterward.'
   },
   {
     type: 'p',
-    text: 'This readability is deliberate, and it comes from Erilang\'s founding motivation: accessible data science for blind and low-vision developers, for whom a wall of dense symbols is far harder to follow by ear than a sentence. That same motivation is why CHART — covered in the Data Science section of this guide — never just draws a picture; it also produces a genuine, data-computed spoken-language description of what the chart shows.'
+    text: "This readability is deliberate, and it comes from Erilang's founding motivation: accessible data science for blind and low-vision developers, for whom a wall of dense symbols is far harder to follow by ear than a sentence. That same motivation is why CHART, covered in the Data Science section of this guide, never just draws a picture; it also produces a genuine, data-computed spoken-language description of what the chart shows."
   },
   {
     type: 'p',
@@ -48,12 +48,12 @@ export const docPages: DocPage[] = [
   { type: 'h3', text: 'What Erilang is good for' },
   {
     type: 'p',
-    text: "Data analysis, cleaning, statistics, and accessible reporting are Erilang's core reason for existing — see the Data Science section of this guide. Beyond that, it is a genuinely general-purpose language: people use it for backend services and APIs, command-line tools, network programming, working with files and databases, small games and graphical programs, and automating everyday tasks. If you have written another programming language before, most of Erilang's ideas will feel familiar — the syntax is simply more readable."
+    text: "Data analysis, cleaning, statistics, and accessible reporting are Erilang's core reason for existing. See the Data Science section of this guide. Beyond that, it is a genuinely general-purpose language: people use it for backend services and APIs, command-line tools, network programming, working with files and databases, small games and graphical programs, and automating everyday tasks. If you have written another programming language before, most of Erilang's ideas will feel familiar, since the syntax is simply more readable."
   },
   { type: 'h3', text: 'How this guide is organized' },
   {
     type: 'p',
-    text: 'The first several chapters form a tutorial: read them in order and you will go from nothing to writing real, useful programs. The later chapters — including the whole Data Science and Standard Library sections — are a reference: each stands on its own, so once you know the basics, you can jump straight to whichever topic you need. The final chapter is a compact quick-reference you can keep open while you work.'
+    text: 'The first several chapters form a tutorial: read them in order and you will go from nothing to writing real, useful programs. The later chapters, including the whole Data Science and Standard Library sections, are a reference: each stands on its own, so once you know the basics, you can jump straight to whichever topic you need. The final chapter is a compact quick reference you can keep open while you work.'
   }]
 
 },
@@ -79,15 +79,15 @@ export const docPages: DocPage[] = [
     code: 'erilang run hello.eri',
     output: 'Hello, world!',
     runnable: false,
-    runNote: "This is a terminal command, not Erilang source — run it from your own terminal."
+    runNote: "This is a terminal command, not Erilang source. Run it from your own terminal."
   },
   { type: 'h3', text: 'Two ways to work' },
   {
     type: 'p',
-    text: 'You can run a saved .eri file the way you just did, or you can open the interactive shell — simply type erilang at your terminal with no arguments (or erilang repl, spelled explicitly) — and type statements one at a time, seeing results immediately. The interactive shell is covered fully in The Interactive Shell (REPL), and it is an excellent way to experiment as you learn.'
+    text: 'You can run a saved .eri file the way you just did, or you can open the interactive shell. Simply type erilang at your terminal with no arguments (or erilang repl, spelled explicitly), and type statements one at a time, seeing results immediately. The interactive shell is covered fully in The Interactive Shell (REPL), and it is an excellent way to experiment as you learn.'
   },
   { type: 'h3', text: 'Comments' },
-  { type: 'p', text: 'Anything after a # on a line is a comment, ignored when the program runs — as its own line, or trailing after a statement. Comments are for you and for anyone reading your code later.' },
+  { type: 'p', text: 'Anything after a # on a line is a comment, ignored when the program runs, whether as its own line or trailing after a statement. Comments are for you and for anyone reading your code later.' },
   {
     type: 'code',
     code: '# This line explains what happens next\nshow("Comments do not affect the program")'
@@ -95,7 +95,7 @@ export const docPages: DocPage[] = [
   { type: 'h3', text: 'Documentation comments' },
   {
     type: 'p',
-    text: "A comment written with two hashes (##), immediately before a function, class, or interface, is a doc comment: Erilang keeps it attached to that item as real, structured documentation — retrievable at runtime and picked up by the doc generator — not just discarded like a plain comment. Several consecutive ## lines merge into one multi-line doc."
+    text: "A comment written with two hashes (##), immediately before a function, class, or interface, is a doc comment: Erilang keeps it attached to that item as real, structured documentation, retrievable at runtime and picked up by the doc generator, rather than just discarded like a plain comment. Several consecutive ## lines merge into one multi-line doc."
   },
   {
     type: 'code',
@@ -111,7 +111,7 @@ export const docPages: DocPage[] = [
   { type: 'h3', text: 'Variables' },
   {
     type: 'p',
-    text: "A variable is created and assigned with SET ... TO .... Erilang does not require you to declare a variable's type in advance — a variable can hold a number, text, or any other kind of value, and what it holds can change over time."
+    text: "A variable is created and assigned with SET ... TO .... Erilang does not require you to declare a variable's type in advance. A variable can hold a number, text, or any other kind of value, and what it holds can change over time."
   },
   {
     type: 'code',
@@ -121,22 +121,22 @@ export const docPages: DocPage[] = [
   { type: 'h3', text: 'Constants' },
   {
     type: 'p',
-    text: "A constant is declared with CONST ... TO ... instead of SET. Once declared, a constant's value can never be changed again in the same scope — attempting to reassign it is caught at compile time, before the program ever runs. This is a compile-time-only check: CONST generates the exact same code SET does, so there is no runtime cost, and a CONST holding a LIST or MAP can still have its own contents mutated — only rebinding the name itself is rejected."
+    text: "A constant is declared with CONST ... TO ... instead of SET. Once declared, a constant's value can never be changed again in the same scope, since attempting to reassign it is caught at compile time, before the program ever runs. This is a compile-time-only check: CONST generates the exact same code SET does, so there is no runtime cost, and a CONST holding a LIST or MAP can still have its own contents mutated. Only rebinding the name itself is rejected."
   },
   { type: 'code', code: 'CONST max_attempts TO 3\nshow(max_attempts)' },
   {
     type: 'note',
-    text: 'Use a constant whenever a value genuinely should never change during the life of your program — a configuration limit, a fixed conversion rate, and so on.'
+    text: 'Use a constant whenever a value genuinely should never change during the life of your program, like a configuration limit or a fixed conversion rate.'
   },
   { type: 'h3', text: 'Names' },
   {
     type: 'p',
-    text: "Names for variables, functions, and classes can use letters, digits, and underscores, and cannot start with a digit. Most of Erilang's own keywords — words like IF, WHILE, and DEFINE — are true reserved words and cannot be used as names anywhere. A smaller set are contextual (soft) keywords instead, special only in their own specific position — see Contextual Keywords in the Reference section. If you try to use a true reserved word as a name, Erilang tells you plainly that the word is reserved, rather than failing with a cryptic error."
+    text: "Names for variables, functions, and classes can use letters, digits, and underscores, and cannot start with a digit. Most of Erilang's own keywords, words like IF, WHILE, and DEFINE, are true reserved words and cannot be used as names anywhere. A smaller set are contextual (soft) keywords instead, special only in their own specific position (see Contextual Keywords in the Reference section). If you try to use a true reserved word as a name, Erilang tells you plainly that the word is reserved, rather than failing with a cryptic error."
   },
   { type: 'h3', text: 'Printing values' },
   {
     type: 'p',
-    text: 'The show(...) function prints a value. It works on any kind of value — numbers, text, lists, and more all display sensibly, and it renders things like a namespace, a stored function, a SOCKET, or an HTTP response the way an Erilang author should see them, never a raw internal representation.'
+    text: 'The show(...) function prints a value. It works on any kind of value: numbers, text, lists, and more all display sensibly, and it renders things like a namespace, a stored function, a SOCKET, or an HTTP response the way an Erilang author should see them, never a raw internal representation.'
   },
   { type: 'code', code: 'show(42)\nshow("a piece of text")\nshow(3.14)' }]
 
@@ -148,7 +148,7 @@ export const docPages: DocPage[] = [
   blocks: [
   {
     type: 'p',
-    text: 'Erilang has a full, standard set of operators for arithmetic, comparison, and logic, all combining predictably — multiplication before addition, and so on — exactly as you would expect from ordinary arithmetic. This is the one expression grammar in the whole language: SET, IF/WHILE conditions, FILTER\'s comparison value, RETURN, and CALL arguments all share it. Parentheses can always be used to make grouping explicit.'
+    text: 'Erilang has a full, standard set of operators for arithmetic, comparison, and logic, all combining predictably (multiplication before addition, and so on) exactly as you would expect from ordinary arithmetic. This is the one expression grammar in the whole language: SET, IF/WHILE conditions, FILTER\'s comparison value, RETURN, and CALL arguments all share it. Parentheses can always be used to make grouping explicit.'
   },
   { type: 'h3', text: 'Arithmetic' },
   {
@@ -196,7 +196,7 @@ export const docPages: DocPage[] = [
   { type: 'h3', text: 'Text and escape sequences' },
   {
     type: 'p',
-    text: 'Quoted text uses double quotes. \\" and \\\\ escape a literal quote or backslash; \\n, \\t, and \\r produce a real newline, tab, or carriage return, since there is no other way to type one directly into a .eri file. This means an unescaped Windows-style path like "C:\\temp" means something different than its literal characters — forward slashes ("C:/temp") sidestep this entirely and already work everywhere here.'
+    text: 'Quoted text uses double quotes. \\" and \\\\ escape a literal quote or backslash; \\n, \\t, and \\r produce a real newline, tab, or carriage return, since there is no other way to type one directly into a .eri file. This means an unescaped Windows-style path like "C:\\temp" means something different than its literal characters. Forward slashes ("C:/temp") sidestep this entirely and already work everywhere here.'
   }]
 
 },
@@ -216,7 +216,7 @@ export const docPages: DocPage[] = [
   { type: 'h3', text: 'Counting loops' },
   {
     type: 'p',
-    text: 'For a simple counting loop, FOR ... FROM ... TO is more direct than a manual WHILE, and counts up to and including its end value — "from 1 to 10" means ten numbers. An optional STEP changes the increment, and DOWN TO counts backward.'
+    text: 'For a simple counting loop, FOR ... FROM ... TO is more direct than a manual WHILE, and counts up to and including its end value, so "from 1 to 10" means ten numbers. An optional STEP changes the increment, and DOWN TO counts backward.'
   },
   {
     type: 'code',
@@ -231,7 +231,7 @@ export const docPages: DocPage[] = [
   { type: 'h3', text: 'Breaking and skipping' },
   {
     type: 'p',
-    text: 'BREAK exits the nearest enclosing loop immediately. CONTINUE skips the rest of the current pass and moves to the next one. Both only ever affect the loop directly containing them, even when loops are nested — TRY/CATCH and IF/ELSE do not count as boundaries, but crossing into a nested DEFINE does, since a nested function is its own scope.'
+    text: 'BREAK exits the nearest enclosing loop immediately. CONTINUE skips the rest of the current pass and moves to the next one. Both only ever affect the loop directly containing them, even when loops are nested. TRY/CATCH and IF/ELSE do not count as boundaries, but crossing into a nested DEFINE does, since a nested function is its own scope.'
   },
   {
     type: 'code',
@@ -250,7 +250,7 @@ export const docPages: DocPage[] = [
   },
   {
     type: 'p',
-    text: 'A second CASE form, CASE TYPE <expr> DO, matches by type_of(...) instead of by value — the two forms compose freely in the same WHEN.'
+    text: 'A second CASE form, CASE TYPE <expr> DO, matches by type_of(...) instead of by value, and the two forms compose freely in the same WHEN.'
   },
   {
     type: 'code',
@@ -279,7 +279,7 @@ export const docPages: DocPage[] = [
   { type: 'h3', text: 'Two ways to call a function' },
   {
     type: 'p',
-    text: 'A function can be called as its own line with CALL ... WITH ... INTO — useful when the call is the whole point of that step — or inline with parentheses, wherever a value is needed, including nested inside another expression. Both forms generate the exact same call; use whichever reads more naturally for a given line. WITH and INTO are each independently optional on CALL: omit WITH for a no-argument function, omit INTO for a call made purely for its side effects.'
+    text: 'A function can be called as its own line with CALL ... WITH ... INTO, which is useful when the call is the whole point of that step, or inline with parentheses, wherever a value is needed, including nested inside another expression. Both forms generate the exact same call; use whichever reads more naturally for a given line. WITH and INTO are each independently optional on CALL: omit WITH for a no-argument function, omit INTO for a call made purely for its side effects.'
   },
   {
     type: 'code',
@@ -288,7 +288,7 @@ export const docPages: DocPage[] = [
   { type: 'h3', text: 'Default parameter values' },
   {
     type: 'p',
-    text: 'Any parameter can be given a default with AS <expr>, making it optional at the call site. Once one parameter has a default, every parameter after it needs one too. This is not (yet) supported at the call site — CALL\'s own WITH stays positional-only.'
+    text: 'Any parameter can be given a default with AS <expr>, making it optional at the call site. Once one parameter has a default, every parameter after it needs one too. This is not (yet) supported at the call site, so CALL\'s own WITH stays positional only.'
   },
   {
     type: 'code',
@@ -298,7 +298,7 @@ export const docPages: DocPage[] = [
   { type: 'h3', text: 'Returning more than one value' },
   {
     type: 'p',
-    text: 'A function can hand back several values at once. RETURN <v1>, <v2>, ... paired with SET <var1>, <var2>, ... TO <expr> destructures positionally — call-site sugar only, not a real Erilang TUPLE type, so always destructure immediately rather than capturing into one plain variable.'
+    text: 'A function can hand back several values at once. RETURN <v1>, <v2>, ... paired with SET <var1>, <var2>, ... TO <expr> destructures positionally. This is call-site sugar only, not a real Erilang TUPLE type, so always destructure immediately rather than capturing into one plain variable.'
   },
   {
     type: 'code',
@@ -307,7 +307,7 @@ export const docPages: DocPage[] = [
   },
   {
     type: 'p',
-    text: 'When the values need names instead, RETURN a MAP — the same pattern the statistics tier of Data Science uses to return, say, an F-statistic and a p-value together.'
+    text: 'When the values need names instead, RETURN a MAP. It\'s the same pattern the statistics tier of Data Science uses to return, say, an F-statistic and a p-value together.'
   },
   {
     type: 'code',
@@ -326,12 +326,12 @@ export const docPages: DocPage[] = [
   },
   {
     type: 'note',
-    text: 'One gotcha to know: a function defined inside a loop closes over the loop variable by reference, not by the value it had at that iteration — several such functions, called after the loop ends, all see its final value. Give it its own parameter instead if each call needs its own snapshot.'
+    text: 'One gotcha to know: a function defined inside a loop closes over the loop variable by reference, not by the value it had at that iteration. Several such functions, called after the loop ends, all see its final value. Give it its own parameter instead if each call needs its own snapshot.'
   },
   { type: 'h3', text: 'Anonymous functions' },
   {
     type: 'p',
-    text: 'DEFINE with no name is an expression, not a declaration — usable anywhere a value is. It is deliberately restricted to a single RETURN <expr> body with no other statements, keeping it a lightweight inline function. Its flagship use is sort\'s optional comparator: a two-argument function returning negative/positive/zero.'
+    text: 'DEFINE with no name is an expression, not a declaration, and it is usable anywhere a value is. It is deliberately restricted to a single RETURN <expr> body with no other statements, keeping it a lightweight inline function. Its flagship use is sort\'s optional comparator: a two-argument function returning negative/positive/zero.'
   },
   {
     type: 'code',
@@ -348,7 +348,7 @@ export const docPages: DocPage[] = [
   { type: 'h3', text: 'Variable scoping: GLOBAL and OUTER' },
   {
     type: 'p',
-    text: "Reading an outer or top-level variable from inside a function works with no declaration at all. Writing one needs an explicit declaration: GLOBAL <name>, ... (inside any function, writes the true top-level variable) or OUTER <name>, ... (inside a function nested within another function, writes the nearest enclosing function's local — not the true top level, even from several levels deep). Without either, a plain SET on a name that also exists as a global deliberately creates a fresh local instead."
+    text: "Reading an outer or top-level variable from inside a function works with no declaration at all. Writing one needs an explicit declaration: GLOBAL <name>, ... (inside any function, writes the true top-level variable) or OUTER <name>, ... (inside a function nested within another function, writes the nearest enclosing function's local, not the true top level, even from several levels deep). Without either, a plain SET on a name that also exists as a global deliberately creates a fresh local instead."
   },
   {
     type: 'code',
@@ -368,14 +368,14 @@ export const docPages: DocPage[] = [
   blocks: [
   {
     type: 'p',
-    text: "Erilang has a small set of core value types you will use constantly, plus a large set of formal types that specific standard-library features produce (a database connection, a loaded image, a socket, and so on). You never have to declare a variable's type in advance — a variable simply holds whatever value it is given, and type_of(...) always tells you what kind of value that is behind the scenes."
+    text: "Erilang has a small set of core value types you will use constantly, plus a large set of formal types that specific standard-library features produce (a database connection, a loaded image, a socket, and so on). You never have to declare a variable's type in advance. A variable simply holds whatever value it is given, and type_of(...) always tells you what kind of value that is behind the scenes."
   },
   { type: 'h3', text: 'The core types' },
   {
     type: 'table',
     columns: ['Type', 'What it holds'],
     rows: [
-    ['NUMBER', 'Any numeric value, whole or with a decimal point — Erilang treats both the same way.'],
+    ['NUMBER', 'Any numeric value, whole or with a decimal point. Erilang treats both the same way.'],
     ['STRING', 'Text, written in double quotes.'],
     ['BOOLEAN', 'TRUE or FALSE.'],
     ['NONE', 'Represents an absent or unknown value.'],
@@ -389,27 +389,27 @@ export const docPages: DocPage[] = [
   { type: 'h3', text: 'Types produced by specific library features' },
   {
     type: 'p',
-    text: 'Each of these is a formal type type_of(...) reports by name, produced by the standard-library area named alongside it — see that area\'s own page in this guide for the functions that create and use it.'
+    text: 'Each of these is a formal type type_of(...) reports by name, produced by the standard-library area named alongside it. See that area\'s own page in this guide for the functions that create and use it.'
   },
   {
     type: 'table',
     columns: ['Type', 'Produced by'],
     rows: [
-    ['SOCKET', 'socket.create() — synchronous TCP networking'],
-    ['UDP_SOCKET', 'udp.create() — the same underlying class as SOCKET, distinguished by protocol'],
+    ['SOCKET', 'socket.create(), for synchronous TCP networking'],
+    ['UDP_SOCKET', 'udp.create(), the same underlying class as SOCKET, distinguished by protocol'],
     ['CONNECTION', 'the value socket.run_server\'s handler receives per accepted client'],
-    ['WEB_APP', 'web.create_app() — the web framework'],
+    ['WEB_APP', 'web.create_app(), the web framework'],
     ['STACK / QUEUE', 'data_structures.create_stack() / create_queue()'],
     ['LINKED_LIST / BINARY_TREE', 'data_structures.create_linked_list() / create_binary_tree()'],
-    ['GROUPED_DATASET', 'GROUP ... BY — only AGGREGATE turns it back into a real DATASET'],
-    ['CHART', 'CHART ... TO "<path>" INTO — accessible visualization'],
-    ['UI_ELEMENT', 'ui_automation.* — Windows-only accessibility inspection'],
-    ['IMAGE', 'image.load_image(...) — always RGBA internally'],
+    ['GROUPED_DATASET', 'GROUP ... BY. Only AGGREGATE turns it back into a real DATASET.'],
+    ['CHART', 'CHART ... TO "<path>" INTO, for accessible visualization'],
+    ['UI_ELEMENT', 'ui_automation.*, Windows-only accessibility inspection'],
+    ['IMAGE', 'image.load_image(...), always RGBA internally'],
     ['AUDIO', 'audio.load_audio(...) / mic.record_audio(...)'],
     ['VIDEO', 'video.load_video(...)'],
-    ['HTML_ELEMENT', 'html.parse_html(...) — covers a whole document or one matched element'],
-    ['WINDOW', 'gui.create_window(...) — pygame-backed drawing'],
-    ['ENUM', 'ENUM Name ... END — the construct itself; one specific member reports its own enum\'s name instead'],
+    ['HTML_ELEMENT', 'html.parse_html(...), covers a whole document or one matched element'],
+    ['WINDOW', 'gui.create_window(...), real window and drawing surface'],
+    ['ENUM', 'ENUM Name ... END, the construct itself; one specific member reports its own enum\'s name instead'],
     ['NAMESPACE', 'a built-in library referenced directly (math, os, ...), or an INCLUDEd file\'s own namespace']]
 
   },
@@ -430,7 +430,7 @@ export const docPages: DocPage[] = [
   { type: 'h3', text: 'Converting between types' },
   {
     type: 'p',
-    text: 'TO_NUMBER, TO_STRING, and TO_BOOLEAN convert a value from one type to another — this exists because Erilang never auto-coerces (concatenating a STRING and a NUMBER with + is otherwise a raw error). convert.to_number(...)/to_string(...)/to_boolean(...) are the exact same functions under their namespaced spelling; both forms work everywhere.'
+    text: 'TO_NUMBER, TO_STRING, and TO_BOOLEAN convert a value from one type to another. This exists because Erilang never auto-coerces (concatenating a STRING and a NUMBER with + is otherwise a raw error). convert.to_number(...)/to_string(...)/to_boolean(...) are the exact same functions under their namespaced spelling; both forms work everywhere.'
   },
   {
     type: 'code',
@@ -438,14 +438,14 @@ export const docPages: DocPage[] = [
     output: '43\n100\nTrue'
   },
   { type: 'h3', text: 'Text strings' },
-  { type: 'p', text: 'Strings are joined with the plus operator (falling back to a class\'s own TO_STRING or its auto-repr if one side is a STRING and the plain addition fails — see Object-Oriented Programming). Special characters can be written using an escape sequence: \\n for a new line and \\t for a tab.' },
+  { type: 'p', text: "Strings are joined with the plus operator (falling back to a class's own TO_STRING or its auto-repr if one side is a STRING and the plain addition fails; see Object-Oriented Programming). Special characters can be written using an escape sequence: \\n for a new line and \\t for a tab." },
   { type: 'code', code: 'SET first TO "Ama"\nSET last TO "Owusu"\nshow(first + " " + last)', output: 'Ama Owusu' }]
 
 },
 {
   slug: 'data-structures',
   title: 'Data Structures',
-  description: 'Lists, maps, and sets — the everyday collection types.',
+  description: 'Lists, maps, and sets: the everyday collection types.',
   blocks: [
   { type: 'h3', text: 'Lists' },
   { type: 'p', text: 'A list is an ordered collection of values, created with LIST OF.' },
@@ -457,7 +457,7 @@ export const docPages: DocPage[] = [
   { type: 'h3', text: 'Common list operations' },
   {
     type: 'p',
-    text: 'Every one of these is a plain bare-name function, not namespaced — length, remove, and clear in particular are polymorphic across LIST, MAP, and UNIQUE_LIST at runtime. Each takes its container as the first argument, and positions/ranges are 1-indexed and inclusive, matching ITEM and FOR ... FROM ... TO.'
+    text: 'Every one of these is a plain bare-name function, not namespaced. length, remove, and clear in particular are polymorphic across LIST, MAP, and UNIQUE_LIST at runtime. Each takes its container as the first argument, and positions/ranges are 1-indexed and inclusive, matching ITEM and FOR ... FROM ... TO.'
   },
   {
     type: 'table',
@@ -480,7 +480,7 @@ export const docPages: DocPage[] = [
   },
   { type: 'code', code: 'SET nums TO LIST OF 5, 2, 8, 1, 9\nshow(MIN_OF(nums))\nshow(MAX_OF(nums))\nsort(nums)\nshow(nums)' },
   { type: 'h3', text: 'Maps' },
-  { type: 'p', text: 'A map holds values under named keys and is always mutable, however it was built — created with fields up front, or added/updated/removed later at runtime.' },
+  { type: 'p', text: 'A map holds values under named keys and is always mutable, however it was built: created with fields up front, or added/updated/removed later at runtime.' },
   {
     type: 'code',
     code: 'SET person TO MAP WITH name AS "Ama", age AS 25\nshow(name OF person)\nmap_set(person, "city", "Accra")\nshow(person)'
@@ -489,7 +489,7 @@ export const docPages: DocPage[] = [
     type: 'table',
     rows: [
     ['key OF map', 'Read a value by a statically-known key name'],
-    ['map_set(map, key_expr, value)', 'Add or update an entry — key is a general expression, so it can be computed at runtime'],
+    ['map_set(map, key_expr, value)', 'Add or update an entry. Key is a general expression, so it can be computed at runtime'],
     ['remove(map, key)', 'Delete an entry'],
     ['keys(map) / values(map)', 'A list of every key / value, in insertion order'],
     ['has_key(map, key)', 'TRUE if the key exists'],
@@ -502,7 +502,7 @@ export const docPages: DocPage[] = [
     text: 'A bare identifier means different things in the two key positions: age OF person treats age as a literal field name, while map_set(person, age, 31) treats age as a variable whose value becomes the key.'
   },
   { type: 'h3', text: 'Sets' },
-  { type: 'p', text: 'A UNIQUE_LIST behaves like a list that never keeps duplicates — iteration order is not guaranteed.' },
+  { type: 'p', text: 'A UNIQUE_LIST behaves like a list that never keeps duplicates. Iteration order is not guaranteed.' },
   {
     type: 'code',
     code: 'SET tags TO UNIQUE_LIST OF "urgent", "billing", "urgent"\nshow(length(tags))',
@@ -530,7 +530,7 @@ export const docPages: DocPage[] = [
   blocks: [
   {
     type: 'p',
-    text: 'This is the first tier of Erilang\'s core reason for existing — inspecting a loaded table, computing real statistics on it, and cleaning it up — built directly on LOAD/FILTER/describe(...). It splits into two shapes on purpose: a compute-and-return operation is an expression, extending the existing "<X> OF <Y>" idiom; a dataset-transforming operation is a dedicated, non-mutating INTO statement, matching LOAD/FILTER\'s own shape.'
+    text: 'This is the first tier of Erilang\'s core reason for existing: inspecting a loaded table, computing real statistics on it, and cleaning it up, all built directly on LOAD/FILTER/describe(...). It splits into two shapes on purpose: a compute-and-return operation is an expression, extending the existing "<X> OF <Y>" idiom; a dataset-transforming operation is a dedicated, non-mutating INTO statement, matching LOAD/FILTER\'s own shape.'
   },
   { type: 'h3', text: 'MEAN / MEDIAN / MODE / STD / VARIANCE / STATS OF' },
   {
@@ -589,7 +589,7 @@ export const docPages: DocPage[] = [
   { type: 'h3', text: 'CAST COLUMN' },
   {
     type: 'p',
-    text: 'CAST COLUMN <name> OF <dataset> AS "NUMBER"/"STRING"/"BOOLEAN" INTO <result> converts one column\'s values. A missing value always stays missing regardless of target type — a deliberate guard, since casting a missing value to "STRING" would otherwise silently produce the literal text "nan", and to "BOOLEAN" would silently produce TRUE.'
+    text: 'CAST COLUMN <name> OF <dataset> AS "NUMBER"/"STRING"/"BOOLEAN" INTO <result> converts one column\'s values. A missing value always stays missing regardless of target type. This is a deliberate guard, since casting a missing value to "STRING" would otherwise silently produce the literal text "nan", and to "BOOLEAN" would silently produce TRUE.'
   },
   {
     type: 'code',
@@ -607,7 +607,7 @@ export const docPages: DocPage[] = [
   { type: 'h3', text: 'ADD COLUMN' },
   {
     type: 'p',
-    text: 'ADD COLUMN <name> TO <dataset> AS <expression> INTO <result> computes a new column, one value per row. The expression may reference this row\'s own columns via <column> OF THIS — the same THIS already used as a CLASS method\'s implicit receiver, reused here for "the implicit context in this row" rather than a new reserved word.'
+    text: 'ADD COLUMN <name> TO <dataset> AS <expression> INTO <result> computes a new column, one value per row. The expression may reference this row\'s own columns via <column> OF THIS, the same THIS already used as a CLASS method\'s implicit receiver, reused here for "the implicit context in this row" rather than a new reserved word.'
   },
   {
     type: 'code',
@@ -618,7 +618,7 @@ export const docPages: DocPage[] = [
   { type: 'h3', text: 'GROUP ... BY / AGGREGATE' },
   {
     type: 'p',
-    text: 'GROUP <dataset> BY <column>, ... INTO <grouped> produces a GROUPED_DATASET — not itself a DATASET, and useful for nothing except AGGREGATE, which turns it back into a real one: one row per group, plus one new column per aggregation clause. <FUNC> is SUM, MEAN, MEDIAN, COUNT, MIN, MAX, or STD.'
+    text: 'GROUP <dataset> BY <column>, ... INTO <grouped> produces a GROUPED_DATASET, not itself a DATASET, and useful for nothing except AGGREGATE, which turns it back into a real one: one row per group, plus one new column per aggregation clause. <FUNC> is SUM, MEAN, MEDIAN, COUNT, MIN, MAX, or STD.'
   },
   {
     type: 'code',
@@ -629,7 +629,7 @@ export const docPages: DocPage[] = [
   { type: 'h3', text: 'SORT' },
   {
     type: 'p',
-    text: 'SORT <name> BY <column> [ASCENDING/DESCENDING] INTO <result> — defaults to ASCENDING. <name> here must be a bare variable name (not a general expression), which is what disambiguates this statement from the pre-existing sort(list) function call. The result\'s row index is freshly reset, since a sort fundamentally redefines row order.'
+    text: 'SORT <name> BY <column> [ASCENDING/DESCENDING] INTO <result> defaults to ASCENDING. <name> here must be a bare variable name (not a general expression), which is what disambiguates this statement from the pre-existing sort(list) function call. The result\'s row index is freshly reset, since a sort fundamentally redefines row order.'
   },
   {
     type: 'code',
@@ -653,11 +653,11 @@ export const docPages: DocPage[] = [
 {
   slug: 'data-science-charts',
   title: 'Data Science: Accessible Visualization',
-  description: 'CHART and describe_chart — a real image and a genuine, data-computed spoken description, together, always.',
+  description: 'CHART and describe_chart: a real image and a genuine, data-computed spoken description, together, always.',
   blocks: [
   {
     type: 'p',
-    text: 'This is the feature Erilang exists for. A chart here is never just an image: CHART always produces both a real image file and a genuine, data-driven spoken-language description of what the numbers actually show — computed directly from the underlying data, never from the rendered picture itself, so it is exactly as reliable for someone who cannot see the image as for someone who can.'
+    text: 'This is the feature Erilang exists for. A chart here is never just an image: CHART always produces both a real image file and a genuine, data-driven spoken-language description of what the numbers actually show. It is computed directly from the underlying data, never from the rendered picture itself, so it is exactly as reliable for someone who cannot see the image as for someone who can.'
   },
   {
     type: 'code',
@@ -667,18 +667,18 @@ export const docPages: DocPage[] = [
   },
   {
     type: 'p',
-    text: 'TO "<path>" is required directly on CHART itself, not a separate save step — there is no way to end up with a CHART value and no image file on disk. The description text is computed once, in that same statement; describe_chart(<chart>) only ever prints what is already there.'
+    text: 'TO "<path>" is required directly on CHART itself, not a separate save step. There is no way to end up with a CHART value and no image file on disk. The description text is computed once, in that same statement; describe_chart(<chart>) only ever prints what is already there.'
   },
   {
     type: 'code',
     code: 'LOAD "monthly_revenue.csv" INTO sales\nCHART sales BY month SHOWING revenue AS "LINE" TO "trend.png" INTO chart\ndescribe_chart(chart)',
-    output: 'This line chart shows revenue over month, starting at 120 and ending at 355 — an increase of 196%. The trend is generally upward. The highest point is 355 at month Jul; the lowest is 120 at month Jan. The largest single change is between month Mar and month Apr, rising by 82.',
+    output: 'This line chart shows revenue over month, starting at 120 and ending at 355, an increase of 196%. The trend is generally upward. The highest point is 355 at month Jul; the lowest is 120 at month Jan. The largest single change is between month Mar and month Apr, rising by 82.',
     runnable: false,
     runNote: NEEDS_CSV_NOTE
   },
   {
     type: 'p',
-    text: 'Every chart also defaults to a colorblind-safe, high-contrast palette for whoever does look at the rendered image — the description text is the real accessibility mechanism, but the picture is never an afterthought either.'
+    text: 'Every chart also defaults to a colorblind-safe, high-contrast palette for whoever does look at the rendered image. The description text is the real accessibility mechanism, but the picture is never an afterthought either.'
   },
   { type: 'h3', text: 'What each chart type actually describes' },
   {
@@ -686,14 +686,14 @@ export const docPages: DocPage[] = [
     columns: ['Type', 'Real statistics in the description']!,
     rows: [
     ['LINE', 'Trend direction from a real regression slope (classified against the overall Y range, not a bare sign check); start-to-end value and percent change; the peak and trough with their own x position; the single largest step-to-step change.'],
-    ['BAR', 'Highest and lowest bar by name and value; every bar in dataset order (or the top 5 by value past 8 bars); a relative-magnitude callout when one bar dominates. If the x column repeats a label — the data was not GROUPed/AGGREGATEd first — it says so explicitly, since raw ungrouped data can otherwise sound self-contradictory.'],
+    ['BAR', 'Highest and lowest bar by name and value; every bar in dataset order (or the top 5 by value past 8 bars); a relative-magnitude callout when one bar dominates. If the x column repeats a label, meaning the data was not GROUPed/AGGREGATEd first, it says so explicitly, since raw ungrouped data can otherwise sound self-contradictory.'],
     ['SCATTER', 'Pearson correlation coefficient, described qualitatively (strong/moderate/weak/no clear, positive/negative) against fixed thresholds, plus each axis\'s own range. Both columns must be numeric.'],
     ['HISTOGRAM', 'Mean, median, and standard deviation; skew direction; which bin holds the most values, by its own range.']]
 
   },
   {
     type: 'note',
-    text: "HISTOGRAM gets its own grammar shape — no BY clause — since a histogram shows the distribution of one column, and forcing an x-column parameter on it would be required but meaningless."
+    text: "HISTOGRAM gets its own grammar shape, with no BY clause, since a histogram shows the distribution of one column, and forcing an x-column parameter on it would be required but meaningless."
   },
   {
     type: 'code',
@@ -703,7 +703,7 @@ export const docPages: DocPage[] = [
   },
   {
     type: 'p',
-    text: 'Rendered via matplotlib, forced onto the headless Agg backend before pyplot is ever imported — Erilang scripts routinely run with no display at all, this project\'s own test suite included.'
+    text: "Rendered through Erilang's own charting engine, forced into headless mode so it never needs a real display. Erilang scripts routinely run with no display at all, this project's own test suite included."
   }]
 
 },
@@ -714,12 +714,12 @@ export const docPages: DocPage[] = [
   blocks: [
   {
     type: 'p',
-    text: 'The fourth tier: T_TEST, ANOVA, and CORRELATION are expressions, joining STATS OF\'s own compute-and-return family — nothing here transforms a DATASET. NORMALIZE COLUMN and STANDARDIZE COLUMN do transform a column, so they match CAST COLUMN\'s statement shape instead. Every p-value here comes from scipy.stats, the standard, correct source, rather than a hand-reimplemented distribution.'
+    text: "The fourth tier: T_TEST, ANOVA, and CORRELATION are expressions, joining STATS OF's own compute-and-return family, and nothing here transforms a DATASET. NORMALIZE COLUMN and STANDARDIZE COLUMN do transform a column, so they match CAST COLUMN's statement shape instead. Every p-value here comes from Erilang's own trusted statistics engine, the standard, correct source, rather than a hand-reimplemented distribution."
   },
   { type: 'h3', text: 'T_TEST' },
   {
     type: 'p',
-    text: 'T_TEST COMPARING <column> IN <dataset1>, <column> IN <dataset2> — Welch\'s two-sample t-test (does not assume equal variance, the safer modern default). Returns a MAP: {t_statistic, p_value, is_significant, mean_a, mean_b}. Each group is typically already sitting exactly where a prior FILTER put it.'
+    text: 'T_TEST COMPARING <column> IN <dataset1>, <column> IN <dataset2> runs Welch\'s two-sample t-test (does not assume equal variance, the safer modern default). Returns a MAP: {t_statistic, p_value, is_significant, mean_a, mean_b}. Each group is typically already sitting exactly where a prior FILTER put it.'
   },
   {
     type: 'code',
@@ -730,12 +730,12 @@ export const docPages: DocPage[] = [
   { type: 'h3', text: 'ANOVA' },
   {
     type: 'p',
-    text: 'ANOVA COMPARING <column> IN <dataset1>, <column> IN <dataset2>, ... — one-way ANOVA across 2 or more groups. Returns a MAP: {f_statistic, p_value, is_significant}.'
+    text: 'ANOVA COMPARING <column> IN <dataset1>, <column> IN <dataset2>, ... runs a one-way ANOVA across 2 or more groups. Returns a MAP: {f_statistic, p_value, is_significant}.'
   },
   { type: 'h3', text: 'CORRELATION' },
   {
     type: 'p',
-    text: 'CORRELATION BETWEEN <column1>, <column2> IN <dataset> — Pearson correlation, returning both the coefficient and its own significance. Returns a MAP: {r, p_value, is_significant}.'
+    text: 'CORRELATION BETWEEN <column1>, <column2> IN <dataset> runs a Pearson correlation, returning both the coefficient and its own significance. Returns a MAP: {r, p_value, is_significant}.'
   },
   {
     type: 'p',
@@ -761,12 +761,12 @@ export const docPages: DocPage[] = [
   blocks: [
   {
     type: 'p',
-    text: 'CLASS uses an implicit receiver, Kotlin-style — methods never declare a self/this parameter. THIS is a keyword, valid only inside a method body, referring to the current instance. Construction is deliberately non-magic: every field\'s value comes from its own declared initializer or from CONSTRUCT\'s own body, never from CREATE silently matching argument names to field names.'
+    text: 'CLASS uses an implicit receiver, Kotlin-style, so methods never declare a self/this parameter. THIS is a keyword, valid only inside a method body, referring to the current instance. Construction is deliberately non-magic: every field\'s value comes from its own declared initializer or from CONSTRUCT\'s own body, never from CREATE silently matching argument names to field names.'
   },
   { type: 'h3', text: 'Defining a class' },
   {
     type: 'p',
-    text: 'FIELD is singular — one per line — and unrelated to DATA CLASS\'s own plural FIELDS (see Data classes below, a distinct, lightweight, immutable construct). A method needing no parameters of its own needs no WITH clause.'
+    text: 'FIELD is singular, one per line, and unrelated to DATA CLASS\'s own plural FIELDS (see Data classes below, a distinct, lightweight, immutable construct). A method needing no parameters of its own needs no WITH clause.'
   },
   {
     type: 'code',
@@ -776,7 +776,7 @@ export const docPages: DocPage[] = [
   { type: 'h3', text: 'Construction: CONSTRUCT, and the real, non-magic rule' },
   {
     type: 'p',
-    text: 'With no CONSTRUCT at all, a class gets a real Java-style default constructor: no arguments, running every FIELD\'s own initializer (or leaving it NONE). With an explicit CONSTRUCT, its own WITH <params> — exactly like DEFINE\'s — become the only way to pass values in. CREATE\'s WITH is a plain positional argument list, mapped to CONSTRUCT\'s params by position, never by matching a field name.'
+    text: 'With no CONSTRUCT at all, a class gets a real Java-style default constructor: no arguments, running every FIELD\'s own initializer (or leaving it NONE). With an explicit CONSTRUCT, its own WITH <params>, exactly like DEFINE\'s, become the only way to pass values in. CREATE\'s WITH is a plain positional argument list, mapped to CONSTRUCT\'s params by position, never by matching a field name.'
   },
   {
     type: 'code',
@@ -785,16 +785,16 @@ export const docPages: DocPage[] = [
   },
   {
     type: 'note',
-    text: 'Field initializers (FIELD name AS expr) run first, in declaration order, before CONSTRUCT\'s own body — so CONSTRUCT can read an already-initialized field and adjust it. A field with no initializer starts as NONE.'
+    text: 'Field initializers (FIELD name AS expr) run first, in declaration order, before CONSTRUCT\'s own body, so CONSTRUCT can read an already-initialized field and adjust it. A field with no initializer starts as NONE.'
   },
   {
     type: 'p',
-    text: 'CONSTRUCT runs immediately after every field initializer, still before CREATE\'s own INTO assignment completes — so it can RAISE to reject an invalid instance outright, and nothing gets bound to INTO\'s target at all.'
+    text: 'CONSTRUCT runs immediately after every field initializer, still before CREATE\'s own INTO assignment completes, so it can RAISE to reject an invalid instance outright, and nothing gets bound to INTO\'s target at all.'
   },
   { type: 'h3', text: 'Inheritance and SUPER' },
   {
     type: 'p',
-    text: 'INHERITS gives real, genuine inheritance. A redefined method overrides the parent\'s. SUPER reaches the parent explicitly — CALL CONSTRUCT ON SUPER [WITH <args>] must be the literal first statement of a subclass\'s own CONSTRUCT (matching Java\'s own rule), and CALL <method> ON SUPER calls the parent\'s version of an overridden method from any method.'
+    text: 'INHERITS gives real, genuine inheritance. A redefined method overrides the parent\'s. SUPER reaches the parent explicitly. CALL CONSTRUCT ON SUPER [WITH <args>] must be the literal first statement of a subclass\'s own CONSTRUCT (matching Java\'s own rule), and CALL <method> ON SUPER calls the parent\'s version of an overridden method from any method.'
   },
   {
     type: 'code',
@@ -803,17 +803,17 @@ export const docPages: DocPage[] = [
   },
   {
     type: 'note',
-    text: 'SUPER can never reach a parent\'s PRIVATE members — the same rule PRIVATE enforces everywhere else applies unchanged from a subclass\'s point of view.'
+    text: 'SUPER can never reach a parent\'s PRIVATE members. The same rule PRIVATE enforces everywhere else applies unchanged from a subclass\'s point of view.'
   },
   { type: 'h3', text: 'Every class gets a readable repr for free' },
   {
     type: 'p',
-    text: 'show(...) on any CLASS instance with no custom TO_STRING prints a real, generated summary from its actual field values (Circle(radius=5)) — never a raw, unreadable default. Define your own TO_STRING method (see below) to fully control this.'
+    text: 'show(...) on any CLASS instance with no custom TO_STRING prints a real, generated summary from its actual field values (Circle(radius=5)), never a raw, unreadable default. Define your own TO_STRING method (see below) to fully control this.'
   },
   { type: 'h3', text: 'DESTRUCT and WITH RESOURCE' },
   {
     type: 'p',
-    text: 'DESTRUCT DO ... END is deterministic cleanup, independent of garbage collection — never triggered by an ordinary CREATE, only by a WITH RESOURCE CREATE <ClassName> ... INTO <var> DO ... END block exiting. Erilang guarantees DESTRUCT runs on normal completion, an uncaught error, or a RETURN/BREAK/CONTINUE jumping out — an error inside the block still triggers DESTRUCT before that error propagates outward. Neither CONSTRUCT nor DESTRUCT is directly callable (CALL CONSTRUCT ON SUPER is the one exception), and WITH RESOURCE on a class with no DESTRUCT anywhere in its own INHERITS chain is a compile-time error.'
+    text: 'DESTRUCT DO ... END is deterministic cleanup, independent of garbage collection. It is never triggered by an ordinary CREATE, only by a WITH RESOURCE CREATE <ClassName> ... INTO <var> DO ... END block exiting. Erilang guarantees DESTRUCT runs on normal completion, an uncaught error, or a RETURN/BREAK/CONTINUE jumping out. An error inside the block still triggers DESTRUCT before that error propagates outward. Neither CONSTRUCT nor DESTRUCT is directly callable (CALL CONSTRUCT ON SUPER is the one exception), and WITH RESOURCE on a class with no DESTRUCT anywhere in its own INHERITS chain is a compile-time error.'
   },
   {
     type: 'code',
@@ -823,7 +823,7 @@ export const docPages: DocPage[] = [
   { type: 'h3', text: 'Data classes' },
   {
     type: 'p',
-    text: 'A DATA CLASS is a lightweight, immutable data holder — Kotlin-style, backed by a real @dataclass(frozen=True). It uses its own, still-plural FIELDS syntax and gets equality, a readable repr, and immutability for free (attempting SET <field> OF <instance> TO ... raises a friendly error pointing at COPY). DATA CLASS construction is still positional, in field-declaration order — never field AS value pairs.'
+    text: "A DATA CLASS is a lightweight, immutable data holder, Kotlin-style, with real immutability enforced underneath. It uses its own, still-plural FIELDS syntax and gets equality, a readable repr, and immutability for free (attempting SET <field> OF <instance> TO ... raises a friendly error pointing at COPY). DATA CLASS construction is still positional, in field declaration order, never field AS value pairs."
   },
   {
     type: 'code',
@@ -832,12 +832,12 @@ export const docPages: DocPage[] = [
   },
   {
     type: 'note',
-    text: 'DATA CLASS does not support INHERITS, manual DEFINEs, or CONSTRUCT — use a regular CLASS if you need any of those.'
+    text: 'DATA CLASS does not support INHERITS, manual DEFINEs, or CONSTRUCT. Use a regular CLASS if you need any of those.'
   },
   { type: 'h3', text: 'Private and static members' },
   {
     type: 'p',
-    text: "A field or method marked PRIVATE can only be used from inside that class's own methods, reached only through THIS — checked once at compile time, not enforced at runtime. A field or method marked STATIC belongs to the class itself rather than to any one instance, is shared by every instance, and is reached via <name> OF <ClassName> instead of an instance — a STATIC method takes no implicit THIS at all, and using THIS inside one is a compile-time error."
+    text: "A field or method marked PRIVATE can only be used from inside that class's own methods, reached only through THIS. This is checked once at compile time, not enforced at runtime. A field or method marked STATIC belongs to the class itself rather than to any one instance, is shared by every instance, and is reached via <name> OF <ClassName> instead of an instance. A STATIC method takes no implicit THIS at all, and using THIS inside one is a compile-time error."
   },
   {
     type: 'code',
@@ -846,12 +846,12 @@ export const docPages: DocPage[] = [
   },
   {
     type: 'p',
-    text: 'PRIVATE CONSTRUCT blocks CREATE <ClassName> from anywhere outside that class\'s own methods — the classic no-external-instantiation pattern for a singleton exposed only through a public STATIC factory method.'
+    text: 'PRIVATE CONSTRUCT blocks CREATE <ClassName> from anywhere outside that class\'s own methods. It\'s the classic no-external-instantiation pattern for a singleton exposed only through a public STATIC factory method.'
   },
   { type: 'h3', text: 'Custom iteration (ITERATE)' },
   {
     type: 'p',
-    text: 'A method named exactly ITERATE (not EACH, since that word is already reserved inside FOR EACH\'s own grammar) makes a class usable directly in FOR EACH. It takes no parameters and returns whatever should be iterated — almost always a LIST built up inside the method.'
+    text: 'A method named exactly ITERATE (not EACH, since that word is already reserved inside FOR EACH\'s own grammar) makes a class usable directly in FOR EACH. It takes no parameters and returns whatever should be iterated, almost always a LIST built up inside the method.'
   },
   { type: 'h3', text: 'Operator overloading' },
   {
@@ -866,7 +866,7 @@ export const docPages: DocPage[] = [
   { type: 'h3', text: 'String conversion (TO_STRING)' },
   {
     type: 'p',
-    text: 'A method named exactly TO_STRING controls how an instance renders as text everywhere that happens — show(...), TO_STRING(...), FORMAT, and + string concatenation all automatically respect a custom TO_STRING the moment it exists. Without one, every class still gets the auto-generated summary described above.'
+    text: 'A method named exactly TO_STRING controls how an instance renders as text everywhere that happens. show(...), TO_STRING(...), FORMAT, and + string concatenation all automatically respect a custom TO_STRING the moment it exists. Without one, every class still gets the auto-generated summary described above.'
   },
   {
     type: 'code',
@@ -891,7 +891,7 @@ export const docPages: DocPage[] = [
   },
   {
     type: 'p',
-    text: 'IMPLEMENTS accepts a comma-separated list — a class can honor more than one interface at once, since an interface carries no implementation to conflict over. Checked once at compile time: every declared method must exist, matching by name and parameter count, either directly on the class or inherited through its INHERITS chain. A class missing one or more required methods is rejected with a friendly error listing everything missing at once.'
+    text: 'IMPLEMENTS accepts a comma-separated list, so a class can honor more than one interface at once, since an interface carries no implementation to conflict over. Checked once at compile time: every declared method must exist, matching by name and parameter count, either directly on the class or inherited through its INHERITS chain. A class missing one or more required methods is rejected with a friendly error listing everything missing at once.'
   },
   {
     type: 'code',
@@ -900,7 +900,7 @@ export const docPages: DocPage[] = [
   },
   {
     type: 'note',
-    text: 'INTERFACE has no runtime representation at all, like EXPORT — it exists purely as a compile-time contract, with nothing underneath at runtime. There is no ABSTRACT CLASS either: INTERFACE (a pure contract) and INHERITS (real implementation sharing) already cover the two things an abstract class usually blends together.'
+    text: 'INTERFACE has no runtime representation at all, like EXPORT. It exists purely as a compile-time contract, with nothing underneath at runtime. There is no ABSTRACT CLASS either: INTERFACE (a pure contract) and INHERITS (real implementation sharing) already cover the two things an abstract class usually blends together.'
   }]
 
 },
@@ -911,7 +911,7 @@ export const docPages: DocPage[] = [
   blocks: [
   {
     type: 'p',
-    text: 'Written directly above a CLASS, a DEFINE/ASYNC DEFINE (including CONSTRUCT/DESTRUCT), or a FIELD declaration. An annotation name is never reserved and is pure, inert metadata by default — the foundation any future framework (a web router reading @Route("/path")) can build on.'
+    text: 'Written directly above a CLASS, a DEFINE/ASYNC DEFINE (including CONSTRUCT/DESTRUCT), or a FIELD declaration. An annotation name is never reserved and is pure, inert metadata by default, the foundation any future framework (a web router reading @Route("/path")) can build on.'
   },
   {
     type: 'code',
@@ -924,7 +924,7 @@ export const docPages: DocPage[] = [
   { type: 'h3', text: '@Override' },
   {
     type: 'p',
-    text: 'A real compile-time check: the annotated method must genuinely override an existing method somewhere in its own INHERITS chain — same name, same parameter count, checked up the whole ancestor chain, not just the immediate parent.'
+    text: 'A real compile-time check: the annotated method must genuinely override an existing method somewhere in its own INHERITS chain, same name, same parameter count, checked up the whole ancestor chain, not just the immediate parent.'
   },
   {
     type: 'code',
@@ -934,14 +934,14 @@ export const docPages: DocPage[] = [
   { type: 'h3', text: '@Deprecated' },
   {
     type: 'p',
-    text: '@Deprecated / @Deprecated("use <replacement> instead") is a real erilang lint warning at every statement-form CALL/AWAIT CALL naming the annotated function or method — purely static, no runtime cost, and no compile-time error.'
+    text: '@Deprecated / @Deprecated("use <replacement> instead") is a real erilang lint warning at every statement-form CALL/AWAIT CALL naming the annotated function or method. It is purely static, with no runtime cost, and no compile-time error.'
   },
   {
     type: 'code',
     code: '@Deprecated("use area instead")\nDEFINE old_area_calc WITH r DO\nRETURN 3.14159 * r * r\nEND\n\nCALL old_area_calc WITH 2 INTO legacy_result',
     output: "erilang lint: 'old_area_calc' is a deprecated function (use area instead) and shouldn't be called from here.",
     runnable: false,
-    runNote: 'This output is what erilang lint reports on this file — it is not printed by running the program, which the sandbox otherwise runs fine.'
+    runNote: 'This output is what erilang lint reports on this file. It is not printed by running the program, which the sandbox otherwise runs fine.'
   }]
 
 },
@@ -963,7 +963,7 @@ export const docPages: DocPage[] = [
   { type: 'h3', text: 'Custom errors' },
   {
     type: 'p',
-    text: 'A class declared CLASS ... INHERITS ERROR is a real, RAISE-able, CATCH-able error type of its own — an ordinary class in every other way (FIELDs, DEFINE methods, CONSTRUCT). RAISE deliberately kept the older named-field syntax (RAISE <ClassName> WITH <field> AS <value>, ...) even though CREATE moved to positional — it is pure control flow, like RETURN, with no INTO. Because of that, the class needs a CONSTRUCT whose own parameter names match the field names RAISE passes.'
+    text: 'A class declared CLASS ... INHERITS ERROR is a real, RAISE-able, CATCH-able error type of its own, an ordinary class in every other way (FIELDs, DEFINE methods, CONSTRUCT). RAISE deliberately kept the older named-field syntax (RAISE <ClassName> WITH <field> AS <value>, ...) even though CREATE moved to positional, since it is pure control flow, like RETURN, with no INTO. Because of that, the class needs a CONSTRUCT whose own parameter names match the field names RAISE passes.'
   },
   {
     type: 'code',
@@ -972,7 +972,7 @@ export const docPages: DocPage[] = [
   },
   {
     type: 'note',
-    text: 'type OF <caught error> (a field read on the caught MAP) and type_of(<value>) (general introspection) are unrelated things that share a word on purpose — the former asks "what kind of error was this", the latter "what Erilang type is this value". An uncaught RAISE gets the same friendly top-level reporting as any other uncaught error, never a raw traceback.'
+    text: 'type OF <caught error> (a field read on the caught MAP) and type_of(<value>) (general introspection) are unrelated things that share a word on purpose. The former asks "what kind of error was this", the latter "what Erilang type is this value". An uncaught RAISE gets the same friendly top-level reporting as any other uncaught error, never a raw traceback.'
   },
   { type: 'h3', text: 'Assertions' },
   {
@@ -982,7 +982,7 @@ export const docPages: DocPage[] = [
   { type: 'code', code: 'SET balance TO 100\nassert(balance >= 0, "Balance should never go negative")' },
   {
     type: 'note',
-    text: 'assert is recognized structurally by text ("assert" immediately followed by "("), not resolved as a bound-name function call — this keeps it working reliably as a real, callable check rather than colliding with a reserved word.'
+    text: 'assert is recognized structurally by text ("assert" immediately followed by "("), not resolved as a bound-name function call. This keeps it working reliably as a real, callable check rather than colliding with a reserved word.'
   }]
 
 },
@@ -1003,12 +1003,12 @@ export const docPages: DocPage[] = [
   },
   {
     type: 'note',
-    text: 'ENUM is a contextual keyword — SET enum TO 5 still works; only ENUM immediately followed by a name opens a declaration. Members carry no associated data of their own, just a fixed set of distinct named values.'
+    text: 'ENUM is a contextual keyword, so SET enum TO 5 still works; only ENUM immediately followed by a name opens a declaration. Members carry no associated data of their own, just a fixed set of distinct named values.'
   },
   { type: 'h3', text: 'Constants' },
   {
     type: 'p',
-    text: 'As introduced in Language Basics, CONST creates a value that can never be reassigned, in either direction — a name already used as a constant cannot become an ordinary variable, and a name already used as an ordinary variable cannot become a constant, checked once at compile time across the whole scope regardless of source order.'
+    text: 'As introduced in Language Basics, CONST creates a value that can never be reassigned, in either direction. A name already used as a constant cannot become an ordinary variable, and a name already used as an ordinary variable cannot become a constant, checked once at compile time across the whole scope regardless of source order.'
   }]
 
 },
@@ -1020,7 +1020,7 @@ export const docPages: DocPage[] = [
   { type: 'h3', text: 'Splitting code across files' },
   {
     type: 'p',
-    text: 'INCLUDE "<path>" AS <namespace> brings in another file, making every top-level name it defines — functions and plain values alike — reachable as <namespace>.<name>. There is no flat/wildcard import. <path> resolves relative to the directory of the file containing the INCLUDE, never the current working directory, and circular includes are caught as a normal compile-time error naming the cycle.'
+    text: 'INCLUDE "<path>" AS <namespace> brings in another file, making every top-level name it defines, functions and plain values alike, reachable as <namespace>.<name>. There is no flat/wildcard import. <path> resolves relative to the directory of the file containing the INCLUDE, never the current working directory, and circular includes are caught as a normal compile-time error naming the cycle.'
   },
   {
     type: 'code',
@@ -1031,13 +1031,13 @@ export const docPages: DocPage[] = [
   { type: 'h3', text: 'Controlling what is shared' },
   {
     type: 'p',
-    text: 'By default, everything in an included file is reachable from outside it. Adding an EXPORT line to a file limits what is actually available through its namespace to only the names listed, keeping the rest as private, internal detail. A file with no EXPORT at all keeps the original, fully-open behavior — this is purely additive and opt-in.'
+    text: 'By default, everything in an included file is reachable from outside it. Adding an EXPORT line to a file limits what is actually available through its namespace to only the names listed, keeping the rest as private, internal detail. A file with no EXPORT at all keeps the original, fully open behavior. This is purely additive and opt-in.'
   },
   {
     type: 'code',
     code: 'EXPORT calculate_total, format_report',
     runnable: false,
-    runNote: 'This line only makes sense inside the helpers.eri file above — a fragment, not a program on its own.'
+    runNote: 'This line only makes sense inside the helpers.eri file above. It is a fragment, not a program on its own.'
   },
   { type: 'h3', text: 'Packages' },
   {
@@ -1059,7 +1059,7 @@ export const docPages: DocPage[] = [
   blocks: [
   {
     type: 'p',
-    text: 'INCLUDE links in one specific file. NAMESPACE / USE NAMESPACE is a separate mechanism for when a library\'s functions naturally split across several files but callers just want one merged surface — useful when math_ops.eri and string_ops.eri should both feel like one utils namespace to whoever uses them.'
+    text: 'INCLUDE links in one specific file. NAMESPACE / USE NAMESPACE is a separate mechanism for when a library\'s functions naturally split across several files but callers just want one merged surface, useful when math_ops.eri and string_ops.eri should both feel like one utils namespace to whoever uses them.'
   },
   {
     type: 'p',
@@ -1073,11 +1073,11 @@ export const docPages: DocPage[] = [
   },
   {
     type: 'note',
-    text: 'Every file that declares NAMESPACE must also use EXPORT — unlike a plain INCLUDEd file, USE NAMESPACE needs a concrete, statically-known public-name list from each member to merge them and catch a name two different files both claim to export, which is itself a compile-time error rather than silent last-wins.'
+    text: 'Every file that declares NAMESPACE must also use EXPORT. Unlike a plain INCLUDEd file, USE NAMESPACE needs a concrete, statically known public name list from each member to merge them and catch a name two different files both claim to export, which is itself a compile-time error rather than silent last-wins.'
   },
   {
     type: 'p',
-    text: 'A NAMESPACE-bearing file can still be INCLUDEd directly by itself if only that one file\'s contents are wanted — the two mechanisms don\'t interact. Circular USE NAMESPACE is detected the same way circular INCLUDE is: a normal syntax error naming the cycle, never a raw recursion error.'
+    text: 'A NAMESPACE-bearing file can still be INCLUDEd directly by itself if only that one file\'s contents are wanted. The two mechanisms don\'t interact. Circular USE NAMESPACE is detected the same way circular INCLUDE is: a normal syntax error naming the cycle, never a raw recursion error.'
   }]
 
 },
@@ -1088,7 +1088,7 @@ export const docPages: DocPage[] = [
   blocks: [
   {
     type: 'p',
-    text: 'A function marked ASYNC DEFINE can be awaited, allowing other asynchronous work to make progress while it runs — genuinely useful for network-bound work like the net/socket libraries, where waiting on a response is where async actually pays for itself. No erilang run event-loop wrapper is needed: every top-level script stays ordinary and synchronous, and Erilang bridges into its async runtime automatically wherever AWAIT is used.'
+    text: 'A function marked ASYNC DEFINE can be awaited, allowing other asynchronous work to make progress while it runs. This is genuinely useful for network-bound work like the net/socket libraries, where waiting on a response is where async actually pays for itself. No erilang run event-loop wrapper is needed: every top-level script stays ordinary and synchronous, and Erilang bridges into its async runtime automatically wherever AWAIT is used.'
   },
   {
     type: 'code',
@@ -1103,12 +1103,12 @@ export const docPages: DocPage[] = [
   },
   {
     type: 'note',
-    text: 'AWAIT only ever makes sense on a genuinely ASYNC DEFINEd call — awaiting a plain function or a value that already ran synchronously is a friendly, catchable error naming what it actually got, not a raw asyncio failure.'
+    text: 'AWAIT only ever makes sense on a genuinely ASYNC DEFINEd call. Awaiting a plain function or a value that already ran synchronously is a friendly, catchable error naming what it actually got, not a raw internal failure.'
   },
   { type: 'h3', text: 'Real non-blocking sleep' },
   {
     type: 'p',
-    text: 'AWAIT time.sleep_async(<seconds>) is genuinely non-blocking, backed by asyncio.sleep — unlike plain time.sleep(<seconds>) (a real blocking call that also stalls anything else scheduled on the same loop, including other items in a GATHER).'
+    text: 'AWAIT time.sleep_async(<seconds>) is genuinely non-blocking, backed by Erilang\'s own async runtime, unlike plain time.sleep(<seconds>) (a real blocking call that also stalls anything else scheduled on the same loop, including other items in a GATHER).'
   },
   { type: 'h3', text: 'Running calls concurrently: GATHER' },
   {
@@ -1122,7 +1122,7 @@ export const docPages: DocPage[] = [
   },
   {
     type: 'note',
-    text: 'Known limitation: the synchronous bridge can\'t start a second event loop inside one that\'s already running, so a plain (non-ASYNC) function that uses AWAIT can\'t be reached from inside an ASYNC DEFINE\'s own call chain — make that function ASYNC DEFINE too. This surfaces as a friendly, catchable error, never a raw RuntimeError.'
+    text: 'Known limitation: the synchronous bridge can\'t start a second event loop inside one that\'s already running, so a plain (non-ASYNC) function that uses AWAIT can\'t be reached from inside an ASYNC DEFINE\'s own call chain. Make that function ASYNC DEFINE too. This surfaces as a friendly, catchable error, never a raw internal crash.'
   }]
 
 },
@@ -1159,7 +1159,7 @@ export const docPages: DocPage[] = [
   },
   {
     type: 'note',
-    text: 'A value read back from a CSV file always comes back as text — convert it back with TO_NUMBER if you need to do arithmetic with it. csv_write\'s header is the union of every row\'s keys, not just the first row\'s, so heterogeneous rows still write sensibly.'
+    text: 'A value read back from a CSV file always comes back as text. Convert it back with TO_NUMBER if you need to do arithmetic with it. csv_write\'s header is the union of every row\'s keys, not just the first row\'s, so heterogeneous rows still write sensibly.'
   },
   { type: 'h3', text: 'True streaming with csv_stream' },
   {
@@ -1181,7 +1181,7 @@ export const docPages: DocPage[] = [
   },
   {
     type: 'note',
-    text: 'Always pass values through the question-mark placeholders shown above, rather than building the query text by joining strings together — this keeps user-provided data safely separated from the query itself, structurally, not just by convention.'
+    text: 'Always pass values through the question-mark placeholders shown above, rather than building the query text by joining strings together. This keeps user-provided data safely separated from the query itself, structurally, not just by convention.'
   },
   {
     type: 'p',
@@ -1200,11 +1200,11 @@ export const docPages: DocPage[] = [
 {
   slug: 'stdlib-core',
   title: 'Standard Library: Core',
-  description: 'math, sys, os, time, datetime, json, regex, and convert — pre-built, no INCLUDE required.',
+  description: 'math, sys, os, time, datetime, json, regex, and convert: pre-built, no INCLUDE required.',
   blocks: [
   {
     type: 'p',
-    text: 'A handful of built-in libraries are available in every script with no INCLUDE — pre-built namespaces, reached with the same dotted-call syntax an INCLUDEd file\'s own namespace uses. Each covers a deliberately small, commonly-needed subset of functionality, not everything imaginable.'
+    text: 'A handful of built-in libraries are available in every script with no INCLUDE. These are pre-built namespaces, reached with the same dotted-call syntax an INCLUDEd file\'s own namespace uses. Each covers a deliberately small, commonly needed subset of functionality, not everything imaginable.'
   },
   { type: 'h3', text: 'math' },
   {
@@ -1230,7 +1230,7 @@ export const docPages: DocPage[] = [
   { type: 'h3', text: 'os' },
   {
     type: 'p',
-    text: 'Files, directories, and the surrounding environment — a large namespace covered in full detail in the next section.'
+    text: 'Files, directories, and the surrounding environment: a large namespace covered in full detail in the next section.'
   },
   {
     type: 'table',
@@ -1240,11 +1240,11 @@ export const docPages: DocPage[] = [
     ['is_dir(path) / is_directory(path), is_file(path)', 'Kind checks'],
     ['make_dir(path) / create_directory(path)', 'Create a directory'],
     ['delete_file(path) / remove_file(path), delete_directory(path)', 'Delete (directory deletion is recursive)'],
-    ['copy_file(src, dst), move_file(src, dst)', 'Wraps shutil.copy2 / shutil.move'],
-    ['find_files(dir, pattern)', 'Glob search — "**/*.csv" for every match at any depth'],
+    ['copy_file(src, dst), move_file(src, dst)', 'Copies or moves a file, preserving its metadata'],
+    ['find_files(dir, pattern)', 'Glob search, e.g. "**/*.csv" for every match at any depth'],
     ['file_size(path), file_modified_time(path)', 'Bytes; a raw Unix timestamp'],
     ['walk_directory(path)', 'Every file and subdirectory at every depth, as one flat LIST'],
-    ['create_temp_file() / create_temp_directory()', 'Auto-removed at script exit via atexit'],
+    ['create_temp_file() / create_temp_directory()', 'Auto-removed automatically when the script exits'],
     ['is_symlink(path), create_symlink(target, link)', 'Symlink handling'],
     ['compare_files(path1, path2)', 'Real byte-for-byte content comparison']]
 
@@ -1252,15 +1252,15 @@ export const docPages: DocPage[] = [
   { type: 'h3', text: 'time and datetime' },
   {
     type: 'p',
-    text: 'time.now() gives the current moment as a raw Unix timestamp — exactly what duration arithmetic needs, but not human-readable on its own. For "what time is it right now, as text a person can read", reach for datetime.format_now() instead.'
+    text: 'time.now() gives the current moment as a raw Unix timestamp, exactly what duration arithmetic needs, but not human-readable on its own. For "what time is it right now, as text a person can read", reach for datetime.format_now() instead.'
   },
   {
     type: 'table',
     rows: [
     ['time.now(), time.sleep(seconds), time.elapsed_since(start), time.monotonic()', 'Raw timing'],
     ['datetime.now(), today(), utc_now()', 'Current moment (utc_now is timezone-aware)'],
-    ['datetime.format(dt, pattern), format_now([pattern])', 'strftime-style formatting; format_now defaults to "YYYY-MM-DD HH:MM:SS"'],
-    ['datetime.parse(text, pattern)', 'strptime-style parsing'],
+    ['datetime.format(dt, pattern), format_now([pattern])', 'Familiar pattern-based formatting; format_now defaults to "YYYY-MM-DD HH:MM:SS"'],
+    ['datetime.parse(text, pattern)', 'Familiar pattern-based parsing'],
     ['datetime.add_days/add_hours/add_minutes(dt, n)', 'Date arithmetic'],
     ['datetime.difference_in_days(dt1, dt2), weekday(dt)', 'Comparing dates; "Monday".."Sunday"'],
     ['datetime.year/month/day/hour/minute(dt)', 'Component extraction']]
@@ -1270,13 +1270,13 @@ export const docPages: DocPage[] = [
   { type: 'h3', text: 'json' },
   { type: 'table', rows: [['json.parse(text)', 'STRING → LIST/MAP/NUMBER/STRING/BOOLEAN/NONE'], ['json.stringify(value)', 'Any value → STRING']] },
   { type: 'h3', text: 'regex' },
-  { type: 'p', text: 'A dedicated regular-expressions engine — it gets its own detail in Regular Expressions below.' },
+  { type: 'p', text: 'A dedicated regular expressions engine. It gets its own detail in Regular Expressions below.' },
   {
     type: 'table',
     rows: [
-    ['regex.match(pattern, string)', 'BOOLEAN — found anywhere (like re.search)'],
+    ['regex.match(pattern, string)', 'BOOLEAN, TRUE if found anywhere in the string'],
     ['regex.extract(pattern, string)', 'First match\'s groups: a MAP (named groups), LIST (unnamed), STRING (no groups), or NONE'],
-    ['regex.replace(pattern, string, replacement)', 'Every match replaced (like re.sub), returns a STRING']]
+    ['regex.replace(pattern, string, replacement)', 'Every match replaced, returns a STRING']]
 
   },
   {
@@ -1296,20 +1296,20 @@ export const docPages: DocPage[] = [
   { type: 'h3', text: 'HTTP: net' },
   {
     type: 'p',
-    text: 'net.get/net.post return the real underlying requests.Response object, not a MAP wrapper — .text, .status_code, .headers are all reachable through the same <field> OF <container> syntax MAP/class instances use. get_json/post_json skip straight to the already-parsed body.'
+    text: 'net.get/net.post return a real response object, not a MAP wrapper. .text, .status_code, .headers are all reachable through the same <field> OF <container> syntax MAP/class instances use. get_json/post_json skip straight to the already-parsed body.'
   },
   {
     type: 'code',
     code: 'SET response TO net.get("https://example.com")\nSET body TO text OF response\nSET code TO status_code OF response\nshow(code)',
     runnable: false,
-    runNote: "This makes a real outbound HTTP request, which the sandbox blocks entirely — it works normally when run locally."
+    runNote: "This makes a real outbound HTTP request, which the sandbox blocks entirely. It works normally when run locally."
   },
   { type: 'h3', text: 'Email: smtp' },
   { type: 'p', text: 'smtp.send(to, subject, body, server, port, username, password) and smtp.send_with_attachment(...) send real email over SMTP.' },
   { type: 'h3', text: 'Raw sockets: socket' },
   {
     type: 'p',
-    text: 'A formal SOCKET type. Client: socket.create(), connect(sock, host, port), send(sock, data), receive(sock), close(sock). Server: bind(sock, host, port), listen(sock[, backlog]), accept(sock) — accept blocks until a client connects, then returns a new socket for that one connection. socket.get_peer_address(sock) reads a connected socket\'s remote {host, port} fresh from the OS, on either side of a connection.'
+    text: 'A formal SOCKET type. Client: socket.create(), connect(sock, host, port), send(sock, data), receive(sock), close(sock). Server: bind(sock, host, port), listen(sock[, backlog]), accept(sock). accept blocks until a client connects, then returns a new socket for that one connection. socket.get_peer_address(sock) reads a connected socket\'s remote {host, port} fresh from the OS, on either side of a connection.'
   },
   {
     type: 'code',
@@ -1320,7 +1320,7 @@ export const docPages: DocPage[] = [
   { type: 'h3', text: 'Async socket server' },
   {
     type: 'p',
-    text: 'socket.run_server(port, handler[, host]) is genuinely concurrent — every accepted connection runs as its own asyncio task. handler must be ASYNC DEFINE, called once per connection with a CONNECTION; inside it, AWAIT socket.receive_async(connection)/send_async(connection, data)/close_async(connection) do the actual I/O. run_server closes the connection itself once the handler returns or raises.'
+    text: 'socket.run_server(port, handler[, host]) is genuinely concurrent, since every accepted connection runs as its own independent task on Erilang\'s async runtime. handler must be ASYNC DEFINE, called once per connection with a CONNECTION; inside it, AWAIT socket.receive_async(connection)/send_async(connection, data)/close_async(connection) do the actual I/O. run_server closes the connection itself once the handler returns or raises.'
   },
   {
     type: 'code',
@@ -1331,7 +1331,7 @@ export const docPages: DocPage[] = [
   { type: 'h3', text: 'UDP: udp' },
   {
     type: 'p',
-    text: 'A genuinely separate namespace from socket.*, not a protocol flag — UDP has no listen/accept, and every send/receive needs an explicit destination/origin per datagram. udp.create()/bind/send_to/receive_from/close mirror the sync socket.* tier; udp.receive_from returns {data, host, port} in one call, since UDP has no fixed peer to query separately. A formal UDP_SOCKET type — calling a TCP-only function on it (or vice versa) is a clear, friendly error.'
+    text: 'A genuinely separate namespace from socket.*, not a protocol flag. UDP has no listen/accept, and every send/receive needs an explicit destination/origin per datagram. udp.create()/bind/send_to/receive_from/close mirror the sync socket.* tier; udp.receive_from returns {data, host, port} in one call, since UDP has no fixed peer to query separately. A formal UDP_SOCKET type. Calling a TCP-only function on it (or vice versa) is a clear, friendly error.'
   },
   {
     type: 'code',
@@ -1352,7 +1352,7 @@ export const docPages: DocPage[] = [
   blocks: [
   {
     type: 'p',
-    text: 'web.create_app()/route(app, method, path, handler)/response(status, body[, headers])/run_app(app, port[, host]) — built directly on socket.run_server\'s architecture, since a genuinely concurrent HTTP server is really just a genuinely concurrent TCP server with an HTTP format on the wire. A deliberate first slice: exact-path and {param} routing only, no static files, middleware, cookies, or WebSocket support.'
+    text: 'web.create_app()/route(app, method, path, handler)/response(status, body[, headers])/run_app(app, port[, host]) are built directly on socket.run_server\'s architecture, since a genuinely concurrent HTTP server is really just a genuinely concurrent TCP server with an HTTP format on the wire. A deliberate first slice: exact-path and {param} routing only, no static files, middleware, cookies, or WebSocket support.'
   },
   {
     type: 'code',
@@ -1362,14 +1362,14 @@ export const docPages: DocPage[] = [
   },
   {
     type: 'p',
-    text: 'handler must be ASYNC DEFINE, taking one request MAP: {method, path, headers, query, body, params}. A request matching no route gets a 404; a handler that raises gets a 500 — either way the server keeps running, unaffected, the same "one failure doesn\'t take the whole thing down" guarantee socket.run_server gives per connection.'
+    text: 'handler must be ASYNC DEFINE, taking one request MAP: {method, path, headers, query, body, params}. A request matching no route gets a 404; a handler that raises gets a 500. Either way the server keeps running, unaffected, the same "one failure doesn\'t take the whole thing down" guarantee socket.run_server gives per connection.'
   }]
 
 },
 {
   slug: 'stdlib-hashing',
   title: 'Standard Library: Hashing',
-  description: 'General-purpose hashing and password hashing are two different tools — never use one for the other\'s job.',
+  description: 'General-purpose hashing and password hashing are two different tools. Never use one for the other\'s job.',
   blocks: [
   {
     type: 'p',
@@ -1378,14 +1378,14 @@ export const docPages: DocPage[] = [
   { type: 'h3', text: 'General-purpose hashing' },
   {
     type: 'p',
-    text: 'For file integrity, checksums, cache keys, deduplication — never passwords. <algorithm> defaults to "sha256"; also accepts sha1/sha224/sha384/sha512/md5.'
+    text: 'For file integrity, checksums, cache keys, and deduplication, never passwords. <algorithm> defaults to "sha256"; also accepts sha1/sha224/sha384/sha512/md5.'
   },
   {
     type: 'table',
     rows: [
     ['hash(value[, algorithm])', 'Returns a hex-digest STRING'],
     ['verify_hash(value, digest[, algorithm])', 'Re-hashes and compares'],
-    ['hmac_hash(value, key[, algorithm])', 'Keyed hashing — proves a message came from someone holding key']]
+    ['hmac_hash(value, key[, algorithm])', 'Keyed hashing, proves a message came from someone holding key']]
 
   },
   {
@@ -1396,7 +1396,7 @@ export const docPages: DocPage[] = [
   { type: 'h3', text: 'Password hashing' },
   {
     type: 'p',
-    text: 'hash_password(password) / verify_password(password, stored_hash) use PBKDF2-HMAC-SHA256 with a fresh cryptographically random salt per call and 600,000 iterations (current OWASP guidance). hash_password returns one self-contained STRING — "pbkdf2_sha256$600000$<salt>$<hash>", the same convention Django/passlib use — so nothing needs tracking separately, and verify_password compares with a constant-time comparison so the check itself can\'t leak timing information.'
+    text: 'hash_password(password) / verify_password(password, stored_hash) use PBKDF2-HMAC-SHA256 with a fresh cryptographically random salt per call and 600,000 iterations (current OWASP guidance). hash_password returns one self-contained STRING, "pbkdf2_sha256$600000$<salt>$<hash>", a well-known convention, so nothing needs tracking separately, and verify_password compares with a constant-time comparison so the check itself can\'t leak timing information.'
   },
   {
     type: 'code',
@@ -1412,7 +1412,7 @@ export const docPages: DocPage[] = [
   blocks: [
   {
     type: 'p',
-    text: 'BYTES is a formal type produced by READ BYTES FROM FILE or built directly with bytes.* functions. show(...) always renders it safely regardless of content — a byte count and a truncated hex preview, never a raw dump.'
+    text: 'BYTES is a formal type produced by READ BYTES FROM FILE or built directly with bytes.* functions. show(...) always renders it safely regardless of content: a byte count and a truncated hex preview, never a raw dump.'
   },
   { type: 'h3', text: 'Encoding' },
   {
@@ -1433,7 +1433,7 @@ export const docPages: DocPage[] = [
   { type: 'h3', text: 'Binary-protocol packing' },
   {
     type: 'p',
-    text: 'bytes.pack_bytes(format, value1, ...) / bytes.unpack_bytes(format, bytes) — format is a comma-separated STRING of readable type names (int8/uint8, int16/uint16, int32/uint32, int64/uint64, float32, float64), not struct\'s cryptic codes. Always big-endian, unpadded — the portable default for file formats and protocols.'
+    text: "bytes.pack_bytes(format, value1, ...) / bytes.unpack_bytes(format, bytes) take format as a comma-separated STRING of readable type names (int8/uint8, int16/uint16, int32/uint32, int64/uint64, float32, float64), not cryptic single-letter codes. Always big-endian, unpadded, the portable default for file formats and protocols."
   },
   {
     type: 'code',
@@ -1451,7 +1451,7 @@ export const docPages: DocPage[] = [
   { type: 'h3', text: 'Mutable byte buffers' },
   {
     type: 'p',
-    text: 'For building BYTES up incrementally rather than concatenating repeatedly. A buffer is still a real, ordinary BYTES value everywhere else — there is no separate "finalize" step, but set_byte_at only works on a buffer specifically, since an ordinary BYTES value (from bytes.to_bytes, say) is immutable.'
+    text: 'For building BYTES up incrementally rather than concatenating repeatedly. A buffer is still a real, ordinary BYTES value everywhere else. There is no separate "finalize" step, but set_byte_at only works on a buffer specifically, since an ordinary BYTES value (from bytes.to_bytes, say) is immutable.'
   },
   {
     type: 'code',
@@ -1463,11 +1463,11 @@ export const docPages: DocPage[] = [
 {
   slug: 'stdlib-archives',
   title: 'Standard Library: Compression & Archives',
-  description: 'zip and tar — creating, extracting, inspecting, and appending.',
+  description: 'zip and tar: creating, extracting, inspecting, and appending.',
   blocks: [
   {
     type: 'p',
-    text: 'One bare function per concrete format. <file_list> is a LIST of paths, each stored under its own basename — never its full path, so an archive never leaks source directory structure.'
+    text: 'One bare function per concrete format. <file_list> is a LIST of paths, each stored under its own basename, never its full path, so an archive never leaks source directory structure.'
   },
   {
     type: 'table',
@@ -1478,7 +1478,7 @@ export const docPages: DocPage[] = [
     ['tar_extract(path, destination)', 'Extract everything'],
     ['list_archive_contents(path)', 'Names, without extracting'],
     ['extract_specific_files(path, file_list, to)', 'Only the named entries'],
-    ['add_file_to_archive(path, new_file)', 'Append without recreating — .zip or plain .tar only, not compressed .tar.gz']]
+    ['add_file_to_archive(path, new_file)', 'Append without recreating; .zip or plain .tar only, not compressed .tar.gz']]
 
   },
   {
@@ -1492,21 +1492,21 @@ export const docPages: DocPage[] = [
 {
   slug: 'stdlib-data-structures',
   title: 'Standard Library: Advanced Data Structures',
-  description: 'Stack, queue, linked list, binary tree, and heap — for when the Big-O of a specific structure matters.',
+  description: 'Stack, queue, linked list, binary tree, and heap, for when the Big-O of a specific structure matters.',
   blocks: [
   {
     type: 'p',
-    text: 'data_structures.* — beyond LIST/MAP/UNIQUE_LIST, genuine node-based (linked list, binary tree) or deque-backed (stack, queue) implementations, not built on top of LIST, since the whole point of reaching for one is a real Big-O difference LIST would defeat.'
+    text: 'data_structures.* goes beyond LIST/MAP/UNIQUE_LIST, with genuine node-based (linked list, binary tree) or deque-backed (stack, queue) implementations, not built on top of LIST, since the whole point of reaching for one is a real Big-O difference LIST would defeat.'
   },
   {
     type: 'table',
     rows: [
-    ['create_stack() / push(stack, v) / pop(stack)', 'LIFO — pop raises a friendly error if empty'],
-    ['create_queue() / enqueue(queue, v) / dequeue(queue)', 'FIFO — dequeue raises a friendly error if empty'],
+    ['create_stack() / push(stack, v) / pop(stack)', 'LIFO. pop raises a friendly error if empty'],
+    ['create_queue() / enqueue(queue, v) / dequeue(queue)', 'FIFO. dequeue raises a friendly error if empty'],
     ['peek(stack_or_queue)', 'Looks at the next value pop/dequeue would remove, without removing it'],
     ['create_linked_list() / append_node / prepend_node / to_list', 'prepend_node is O(1), unlike a LIST\'s own insert-at-front'],
-    ['create_binary_tree() / insert_node / in_order', 'A plain BST (not self-balancing) — in_order gives a sorted LIST'],
-    ['create_heap() / push_heap / pop_heap', 'A plain LIST underneath, kept in heap order — pop_heap always returns the smallest value']]
+    ['create_binary_tree() / insert_node / in_order', 'A plain BST (not self-balancing). in_order gives a sorted LIST'],
+    ['create_heap() / push_heap / pop_heap', 'A plain LIST underneath, kept in heap order. pop_heap always returns the smallest value']]
 
   },
   {
@@ -1533,7 +1533,7 @@ export const docPages: DocPage[] = [
     ['random_choice(list)', 'One item from a non-empty LIST'],
     ['shuffle(list)', 'Reorders in place, returns NONE'],
     ['generate_uuid()', 'A random (version 4) UUID as a STRING'],
-    ['random_sample(list, count)', 'count distinct items, no repeats — an error if count exceeds the list\'s length'],
+    ['random_sample(list, count)', 'count distinct items, no repeats. An error if count exceeds the list\'s length'],
     ['weighted_random_choice(list, weights)', 'One item, where weights[i] is list[i]\'s relative likelihood']]
 
   },
@@ -1544,7 +1544,7 @@ export const docPages: DocPage[] = [
   { type: 'h3', text: 'Reproducibility' },
   {
     type: 'p',
-    text: 'set_random_seed(value) makes every subsequent call to random_number, random_choice, shuffle, random_sample, and weighted_random_choice deterministic together, since they all draw from the one shared random state it seeds — critical for reproducible data-science and ML work.'
+    text: 'set_random_seed(value) makes every subsequent call to random_number, random_choice, shuffle, random_sample, and weighted_random_choice deterministic together, since they all draw from the one shared random state it seeds. This is critical for reproducible data science and ML work.'
   },
   {
     type: 'code',
@@ -1555,11 +1555,11 @@ export const docPages: DocPage[] = [
 {
   slug: 'stdlib-run-command',
   title: 'Standard Library: Running External Programs',
-  description: 'run_command — arguments as a list, never a shell string, by design.',
+  description: 'run_command: arguments as a list, never a shell string, by design.',
   blocks: [
   {
     type: 'p',
-    text: 'run_command(<command_list>[, <timeout>][, <env>]) — the program and its arguments as separate LIST entries, run with no shell in between. This is the only form offered, deliberately: a single command string would need a shell to split it into arguments, and a shell re-parses metacharacters spliced into that string — the classic shell-injection shape. With list arguments, each entry reaches the program exactly as written.'
+    text: 'run_command(<command_list>[, <timeout>][, <env>]) takes the program and its arguments as separate LIST entries, run with no shell in between. This is the only form offered, deliberately: a single command string would need a shell to split it into arguments, and a shell re-parses metacharacters spliced into that string, the classic shell-injection shape. With list arguments, each entry reaches the program exactly as written.'
   },
   {
     type: 'code',
@@ -1568,7 +1568,7 @@ export const docPages: DocPage[] = [
   },
   {
     type: 'p',
-    text: 'Always returns a MAP {stdout, stderr, exit_code} — a non-zero exit_code does not raise on its own. <timeout> (seconds) actually kills a hanging process; <env> is a MAP of extra/overriding variables merged on top of the current process\'s own environment, not replacing it.'
+    text: 'Always returns a MAP {stdout, stderr, exit_code}. A non-zero exit_code does not raise on its own. <timeout> (seconds) actually kills a hanging process; <env> is a MAP of extra/overriding variables merged on top of the current process\'s own environment, not replacing it.'
   }]
 
 },
@@ -1588,28 +1588,28 @@ export const docPages: DocPage[] = [
   },
   {
     type: 'p',
-    text: '<required> (a BOOLEAN) raises a friendly, immediate error if the argument is missing entirely, rather than pressing on with NONE and crashing confusingly later. <type> ("STRING"/"NUMBER"/"BOOLEAN") casts the raw text — "BOOLEAN" accepts true/1/yes and false/0/no, and a bare --name with no value is TRUE specifically for a BOOLEAN-typed argument.'
+    text: '<required> (a BOOLEAN) raises a friendly, immediate error if the argument is missing entirely, rather than pressing on with NONE and crashing confusingly later. <type> ("STRING"/"NUMBER"/"BOOLEAN") casts the raw text. "BOOLEAN" accepts true/1/yes and false/0/no, and a bare --name with no value is TRUE specifically for a BOOLEAN-typed argument.'
   },
   {
     type: 'code',
     code: 'SET port TO get_arg("port", NONE, TRUE, "NUMBER")',
     runnable: false,
-    runNote: 'This intentionally raises when --port isn\'t supplied on the command line — a real (required) missing-argument demo, not something to run in the sandbox without arguments.'
+    runNote: 'This intentionally raises when --port isn\'t supplied on the command line. It\'s a real (required) missing-argument demo, not something to run in the sandbox without arguments.'
   },
   {
     type: 'p',
-    text: 'generate_help_text(arg_descriptions) is deliberately stateless — it reads only the LIST of MAP descriptions it is given (each with name required, type/required/description optional), not an implicit registry built from earlier get_arg calls, so it works in any order, including as the very first thing a script does.'
+    text: 'generate_help_text(arg_descriptions) is deliberately stateless. It reads only the LIST of MAP descriptions it is given (each with name required, type/required/description optional), not an implicit registry built from earlier get_arg calls, so it works in any order, including as the very first thing a script does.'
   }]
 
 },
 {
   slug: 'stdlib-image',
   title: 'Standard Library: Image Handling',
-  description: 'Load, transform, and pixel-edit images, wrapping Pillow.',
+  description: 'Load, transform, and pixel-edit images with a real image processing engine.',
   blocks: [
   {
     type: 'p',
-    text: 'A new IMAGE type, always kept internally as RGBA regardless of the source file\'s own mode — one consistent {r, g, b, a} shape everywhere a color is read or written.'
+    text: 'A new IMAGE type, always kept internally as RGBA regardless of the source file\'s own mode, giving one consistent {r, g, b, a} shape everywhere a color is read or written.'
   },
   {
     type: 'table',
@@ -1617,7 +1617,7 @@ export const docPages: DocPage[] = [
     ['image.load_image(path) / save_image(image, path)', 'Format guessed from the extension; .jpg/.jpeg auto-saves a plain-RGB copy'],
     ['image.resize_image(image, w, h) / crop_image(image, l, t, r, b)', 'Both return a new IMAGE; crop uses top-left origin, right/bottom exclusive'],
     ['image.rotate_image(image, degrees)', 'Expands the canvas so nothing clips at the corners'],
-    ['image.apply_filter(image, name)', '"blur"/"sharpen"/"edge_enhance" (real Pillow filters) or "grayscale"'],
+    ['image.apply_filter(image, name)', '"blur"/"sharpen"/"edge_enhance" (real image filters) or "grayscale"'],
     ['image.get_pixel(image, x, y) / set_pixel(image, x, y, color)', 'set_pixel mutates in place, matching append/push elsewhere'],
     ['image.get_image_size(image)', '{width, height}']]
 
@@ -1638,7 +1638,7 @@ export const docPages: DocPage[] = [
   { type: 'h3', text: 'File-based editing: audio' },
   {
     type: 'p',
-    text: 'Wraps pydub. All transforms return a new AUDIO — the original is untouched. Times are always milliseconds. pydub shells out to ffmpeg for anything beyond raw WAV.'
+    text: "A real audio editing engine. All transforms return a new AUDIO, and the original is untouched. Times are always milliseconds. It shells out to ffmpeg for anything beyond raw WAV."
   },
   {
     type: 'table',
@@ -1660,7 +1660,7 @@ export const docPages: DocPage[] = [
   { type: 'h3', text: 'Real-time audio I/O: mic' },
   {
     type: 'p',
-    text: 'Wraps sounddevice, talking to real hardware via PortAudio — distinct from audio.* in kind, not just name, but bridges into the same AUDIO type both ways: a live recording is immediately usable with every audio.* function.'
+    text: 'Talks to real microphone and speaker hardware directly. It is distinct from audio.* in kind, not just name, but bridges into the same AUDIO type both ways: a live recording is immediately usable with every audio.* function.'
   },
   {
     type: 'table',
@@ -1681,18 +1681,18 @@ export const docPages: DocPage[] = [
 {
   slug: 'stdlib-video',
   title: 'Standard Library: Video Handling',
-  description: 'Load, trim, and extract frames from video, wrapping moviepy.',
+  description: 'Load, trim, and extract frames from video.',
   blocks: [
   {
     type: 'p',
-    text: 'A new VIDEO type. The smallest, most contained slice in this whole batch, deliberately — moviepy itself shells out to ffmpeg for every real encode/decode, so this is fundamentally a thin wrapper, not a from-scratch engine.'
+    text: 'A new VIDEO type. The smallest, most contained slice in this whole batch, deliberately. It shells out to ffmpeg for every real encode/decode, so this is fundamentally a thin wrapper, not a from-scratch engine.'
   },
   {
     type: 'table',
     rows: [
-    ['video.load_video(path) / save_video(video, path)', 'save_video re-encodes — can take longer than the clip\'s own runtime'],
-    ['video.trim_video(video, start_sec, end_sec)', 'A new VIDEO — times are seconds throughout'],
-    ['video.extract_frame(video, time_sec)', 'Returns a real, editable IMAGE — every image.* function works on it directly'],
+    ['video.load_video(path) / save_video(video, path)', 'save_video re-encodes; can take longer than the clip\'s own runtime'],
+    ['video.trim_video(video, start_sec, end_sec)', 'A new VIDEO; times are seconds throughout'],
+    ['video.extract_frame(video, time_sec)', 'Returns a real, editable IMAGE; every image.* function works on it directly'],
     ['video.get_video_info(video)', '{duration, fps, width, height}']]
 
   },
@@ -1704,41 +1704,41 @@ export const docPages: DocPage[] = [
   },
   {
     type: 'note',
-    text: 'Be honest about performance: this is the heaviest, slowest area in the whole standard library, and needs ffmpeg genuinely installed and on PATH — a real system dependency, unlike image.*/audio.*, which mostly don\'t need one.'
+    text: 'Be honest about performance: this is the heaviest, slowest area in the whole standard library, and needs ffmpeg genuinely installed and on PATH. It is a real system dependency, unlike image.*/audio.*, which mostly don\'t need one.'
   }]
 
 },
 {
   slug: 'stdlib-html',
   title: 'Standard Library: Web Scraping (HTML/XML)',
-  description: 'Parsing markup with real CSS selectors, wrapping BeautifulSoup.',
+  description: 'Parsing markup with real CSS selectors.',
   blocks: [
   {
     type: 'p',
-    text: 'One HTML_ELEMENT type covers both a whole parsed document and one matched element within it — BeautifulSoup\'s own object model doesn\'t distinguish the two either.'
+    text: "One HTML_ELEMENT type covers both a whole parsed document and one matched element within it, since the underlying object model doesn't distinguish the two either."
   },
   {
     type: 'table',
     rows: [
     ['html.parse_html(text) / parse_xml(text)', 'parse_xml is stricter and preserves tag-name case'],
-    ['html.find_element(doc, selector)', 'First match, or NONE — a real CSS selector like "div.item"'],
+    ['html.find_element(doc, selector)', 'First match, or NONE. A real CSS selector like "div.item"'],
     ['html.find_all_elements(doc, selector)', 'Always a LIST, empty if nothing matches'],
     ['html.get_text(element)', 'Visible text, with nested tags stripped'],
-    ['html.get_attribute(element, name)', 'One attribute by name, NONE if absent — multi-valued (e.g. class) comes back space-joined']]
+    ['html.get_attribute(element, name)', 'One attribute by name, NONE if absent. Multi-valued (e.g. class) comes back space-joined']]
 
   },
   {
     type: 'code',
     code: 'SET response TO net.get("https://example.com")\nSET doc TO html.parse_html(text OF response)\nSET heading TO html.find_element(doc, "h1")\nshow(html.get_text(heading))',
     runnable: false,
-    runNote: "This needs a real outbound HTTP request, which the sandbox blocks entirely — it works normally when run locally."
+    runNote: "This needs a real outbound HTTP request, which the sandbox blocks entirely. It works normally when run locally."
   }]
 
 },
 {
   slug: 'stdlib-gui',
   title: 'Standard Library: GUI & Drawing Primitives',
-  description: 'Real primitives to build a UI toolkit on top of, wrapping pygame.',
+  description: 'Real primitives to build a UI toolkit on top of.',
   blocks: [
   {
     type: 'p',
@@ -1746,7 +1746,7 @@ export const docPages: DocPage[] = [
   },
   {
     type: 'p',
-    text: 'gui.run(window, on_frame[, on_event][, fps]) is a blocking construct that owns pygame\'s own poll-based event loop internally — deliberately not ASYNC/AWAIT-based, since that loop isn\'t awaitable. on_frame/on_event are plain functions, called directly each frame/event.'
+    text: "gui.run(window, on_frame[, on_event][, fps]) is a blocking construct that owns its own poll-based event loop internally, deliberately not ASYNC/AWAIT-based, since that loop isn't awaitable. on_frame/on_event are plain functions, called directly each frame/event."
   },
   {
     type: 'code',
@@ -1766,18 +1766,18 @@ export const docPages: DocPage[] = [
   },
   {
     type: 'note',
-    text: 'Each frame, gui.run translates queued input into a MAP {type, key, x, y, button} for on_event; the loop stops when the window\'s close button is clicked, or the moment on_frame returns FALSE. One honest limitation: pygame\'s own display API is single-window — a second gui.create_window reconfigures the one global display, not a genuinely independent second window.'
+    text: "Each frame, gui.run translates queued input into a MAP {type, key, x, y, button} for on_event; the loop stops when the window's close button is clicked, or the moment on_frame returns FALSE. One honest limitation: the underlying display is single-window, so a second gui.create_window reconfigures the one global display, not a genuinely independent second window."
   }]
 
 },
 {
   slug: 'stdlib-ui-automation',
   title: 'Standard Library: OS Accessibility (UI Automation)',
-  description: 'Windows-only read-only desktop inspection and a global key-press listener — a first step toward a screen reader in Erilang.',
+  description: 'Windows-only read-only desktop inspection and a global key-press listener: a first step toward a screen reader in Erilang.',
   blocks: [
   {
     type: 'p',
-    text: 'ui_automation.* wraps the Win32 UI Automation API (via pywinauto — the same library real Windows accessibility tools and UI test-automation frameworks build on) and, for on_key_press, the raw Win32 low-level keyboard hook. There is no cross-platform accessibility API this could fall back to — on any other platform, or if pywinauto isn\'t installed, every function here raises a friendly, catchable error instead of silently doing nothing.'
+    text: "ui_automation.* wraps the Windows UI Automation API, the same underlying system real Windows accessibility tools and UI test automation frameworks build on, and, for on_key_press, the raw low-level keyboard hook. There is no cross-platform accessibility API this could fall back to. On any other platform, or if the required system component isn't available, every function here raises a friendly, catchable error instead of silently doing nothing."
   },
   {
     type: 'table',
@@ -1793,7 +1793,7 @@ export const docPages: DocPage[] = [
     type: 'code',
     code: 'SET windows TO ui_automation.list_windows()\nSET first_window TO ITEM 1 OF windows\nshow(ui_automation.get_window_text(first_window))',
     runnable: false,
-    runNote: "This is Windows-only and needs the desktop UI Automation API, which the sandbox doesn't have — it works normally when run locally on Windows."
+    runNote: "This is Windows-only and needs the desktop UI Automation API, which the sandbox doesn't have. It works normally when run locally on Windows."
   },
   {
     type: 'note',
@@ -1808,7 +1808,7 @@ export const docPages: DocPage[] = [
   blocks: [
   {
     type: 'p',
-    text: 'Typing erilang with no file argument (or erilang repl, spelled explicitly) opens the interactive shell, where you type one statement at a time and see the result immediately. It is an excellent way to experiment, test an idea, or explore what a function does before committing it to a saved file. The startup banner (also :help) shows the version, read from pyproject.toml — one real source of truth.'
+    text: 'Typing erilang with no file argument (or erilang repl, spelled explicitly) opens the interactive shell, where you type one statement at a time and see the result immediately. It is an excellent way to experiment, test an idea, or explore what a function does before committing it to a saved file. The startup banner (also :help) shows the version, read from Erilang\'s own package manifest, one real source of truth.'
   },
   { type: 'h3', text: 'Everything you type is remembered' },
   {
@@ -1818,29 +1818,29 @@ export const docPages: DocPage[] = [
   { type: 'h3', text: 'Bare expressions' },
   {
     type: 'p',
-    text: 'Typing an expression on its own line, without wrapping it in show(...), automatically prints its value and stores it in a special variable named _, letting you reuse the last result on the very next line — familiar interactive-console style. A statement like SET or IF keeps its own unrelated behavior and is never auto-printed; a result of NONE prints nothing.'
+    text: 'Typing an expression on its own line, without wrapping it in show(...), automatically prints its value and stores it in a special variable named _, letting you reuse the last result on the very next line, familiar interactive-console style. A statement like SET or IF keeps its own unrelated behavior and is never auto-printed; a result of NONE prints nothing.'
   },
   {
     type: 'code',
     code: '2 + 2\nshow(_ * 10)',
     output: '4\n40',
     runnable: false,
-    runNote: "The automatic _ variable is a feature of the interactive shell itself — it isn't available in a single non-interactive sandbox run."
+    runNote: "The automatic _ variable is a feature of the interactive shell itself. It isn't available in a single non-interactive sandbox run."
   },
   { type: 'h3', text: 'Multi-line blocks' },
   {
     type: 'p',
-    text: 'A block that spans several lines — IF, WHILE, FOR, DEFINE, CLASS, TRY, DATA CLASS — is gathered automatically until its matching END is entered, shown by a "..." continuation prompt while it is still open, then run as one unit.'
+    text: 'A block that spans several lines (IF, WHILE, FOR, DEFINE, CLASS, TRY, DATA CLASS) is gathered automatically until its matching END is entered, shown by a "..." continuation prompt while it is still open, then run as one unit.'
   },
   { type: 'h3', text: 'Exiting' },
   {
     type: 'p',
-    text: 'Ctrl+D / Ctrl+Z, or :exit/:quit, end the session. Ctrl+C twice in a row within 2 seconds at the primary prompt also exits; a single Ctrl+C there just warns and returns to the prompt, so one reflexive keypress can\'t end the session by accident. Ctrl+C while a multi-line block is open instead just cancels that one block. Errors never end the session — a bad input prints the same friendly message erilang run would show and returns to the prompt with everything defined so far still intact.'
+    text: 'Ctrl+D / Ctrl+Z, or :exit/:quit, end the session. Ctrl+C twice in a row within 2 seconds at the primary prompt also exits; a single Ctrl+C there just warns and returns to the prompt, so one reflexive keypress can\'t end the session by accident. Ctrl+C while a multi-line block is open instead just cancels that one block. Errors never end the session. A bad input prints the same friendly message erilang run would show and returns to the prompt with everything defined so far still intact.'
   },
   { type: 'h3', text: 'A timing trap worth knowing' },
   {
     type: 'p',
-    text: 'While a line is genuinely blocked inside input(...), the REPL is not reading a new command — whatever is typed next is consumed as the answer, statement-shaped or not. Always give input(...) a descriptive prompt so it is obvious you are being asked something.'
+    text: 'While a line is genuinely blocked inside input(...), the REPL is not reading a new command. Whatever is typed next is consumed as the answer, statement-shaped or not. Always give input(...) a descriptive prompt so it is obvious you are being asked something.'
   },
   { type: 'h3', text: 'Session commands' },
   {
@@ -1853,7 +1853,7 @@ export const docPages: DocPage[] = [
   },
   {
     type: 'note',
-    text: 'The REPL is pure, linear, sequential text — a prompt, then output, one line at a time. No color is relied on for meaning, and nothing is redrawn or overwritten in place, so it works cleanly with a screen reader — a deliberate design goal, not an afterthought.'
+    text: 'The REPL is pure, linear, sequential text: a prompt, then output, one line at a time. No color is relied on for meaning, and nothing is redrawn or overwritten in place, so it works cleanly with a screen reader, a deliberate design goal, not an afterthought.'
   }]
 
 },
@@ -1867,10 +1867,10 @@ export const docPages: DocPage[] = [
     rows: [
     ['erilang run <script.eri>', 'Lex, parse, compile, and execute'],
     ['erilang / erilang repl', 'Open the interactive shell'],
-    ['erilang lint <target>', 'Check for likely mistakes, without running it — see Linting'],
-    ['erilang format <target>', 'Rewrite into a consistent, standard style — see Formatter'],
-    ['erilang doc <target>', 'Generate reference documentation from doc comments — see Documentation Generator'],
-    ['erilang install / publish / search / login / register / logout', 'Package manager — see Package Manager']]
+    ['erilang lint <target>', 'Check for likely mistakes, without running it. See Linting'],
+    ['erilang format <target>', 'Rewrite into a consistent, standard style. See Formatter'],
+    ['erilang doc <target>', 'Generate reference documentation from doc comments. See Documentation Generator'],
+    ['erilang install / publish / search / login / register / logout', 'Package manager. See Package Manager']]
 
   },
   {
@@ -1882,7 +1882,7 @@ export const docPages: DocPage[] = [
 {
   slug: 'linting',
   title: 'Linting',
-  description: 'erilang lint — advisory, AST-only static analysis; never blocks a script from running.',
+  description: 'erilang lint: advisory, AST-only static analysis; never blocks a script from running.',
   blocks: [
   {
     type: 'code',
@@ -1892,7 +1892,7 @@ export const docPages: DocPage[] = [
   },
   {
     type: 'p',
-    text: 'Lexes and parses the target exactly like erilang run, then walks the AST looking for common mistakes, without ever executing anything. Every finding is advisory — unlike erilang run\'s own compile-time checks (an unsatisfied IMPLEMENTS, bad scoping, ...), nothing lint reports ever blocks a script from running. Exits 0 (with a summary line) when nothing was found, 1 otherwise — safe to wire into CI.'
+    text: 'Lexes and parses the target exactly like erilang run, then walks the AST looking for common mistakes, without ever executing anything. Every finding is advisory. Unlike erilang run\'s own compile-time checks (an unsatisfied IMPLEMENTS, bad scoping, ...), nothing lint reports ever blocks a script from running. Exits 0 (with a summary line) when nothing was found, 1 otherwise, safe to wire into CI.'
   },
   { type: 'h3', text: 'Checks' },
   {
@@ -1900,9 +1900,9 @@ export const docPages: DocPage[] = [
     rows: [
     ['Unused variables', 'A SET/CONST target never read anywhere in its own scope, including via a nested closure'],
     ['Unreachable code', 'A statement following RETURN/BREAK/CONTINUE in the same block'],
-    ['Reserved-word-adjacent naming', 'A name one character away from a contextual keyword (clas for CLASS) — informational, not a spell-checker'],
+    ['Reserved-word-adjacent naming', 'A name one character away from a contextual keyword (clas for CLASS). Informational, not a spell-checker'],
     ['Unused PRIVATE members', 'A PRIVATE field/method never read, written, or called anywhere in its own class'],
-    ['IMPLEMENTS satisfied entirely through inheritance', 'Informational — not wrong, just worth knowing when reading one class in isolation'],
+    ['IMPLEMENTS satisfied entirely through inheritance', 'Informational, not wrong, just worth knowing when reading one class in isolation'],
     ['@Deprecated calls', 'Every statement-form CALL/AWAIT CALL naming an @Deprecated function/method']]
 
   }]
@@ -1911,7 +1911,7 @@ export const docPages: DocPage[] = [
 {
   slug: 'doc-generator',
   title: 'Documentation Generator',
-  description: 'erilang doc — plain Markdown from every top-level CLASS/DEFINE/INTERFACE and its doc comments.',
+  description: 'erilang doc: plain Markdown from every top-level CLASS/DEFINE/INTERFACE and its doc comments.',
   blocks: [
   {
     type: 'code',
@@ -1925,14 +1925,14 @@ export const docPages: DocPage[] = [
   },
   {
     type: 'p',
-    text: 'Each entry shows the full signature (parameter names and default values), PRIVATE/STATIC/ASYNC markers, the doc comment text itself, and — for a CLASS — what it INHERITS/IMPLEMENTS. An INTERFACE\'s own ## doc comment renders too, even though it has no runtime __doc__ to attach to otherwise.'
+    text: "Each entry shows the full signature (parameter names and default values), PRIVATE/STATIC/ASYNC markers, the doc comment text itself, and, for a CLASS, what it INHERITS/IMPLEMENTS. An INTERFACE's own ## doc comment renders too, even though it has no runtime documentation attribute to attach to otherwise."
   }]
 
 },
 {
   slug: 'formatter',
   title: 'Formatter',
-  description: 'erilang format — a second, independent AST-to-text renderer producing canonical .eri source.',
+  description: 'erilang format: a second, independent AST-to-text renderer producing canonical .eri source.',
   blocks: [
   {
     type: 'code',
@@ -1942,7 +1942,7 @@ export const docPages: DocPage[] = [
   },
   {
     type: 'p',
-    text: 'Safe by default, matching gofmt/black\'s own convention: the bare command never modifies a file. --write/-w rewrites in place; --check reports without writing or printing anything.'
+    text: 'Safe by default, matching the common convention of well-known code formatters in other languages: the bare command never modifies a file. --write/-w rewrites in place; --check reports without writing or printing anything.'
   },
   { type: 'h3', text: 'Canonical style rules' },
   {
@@ -1957,7 +1957,7 @@ export const docPages: DocPage[] = [
   },
   {
     type: 'note',
-    text: 'Idempotent by construction: formatting already-canonical source produces no changes. Comments are preserved — only ## right before a DEFINE/CLASS/INTERFACE has an AST representation of its own; every plain # comment is tracked separately and reinserted by original line number.'
+    text: 'Idempotent by construction: formatting already-canonical source produces no changes. Comments are preserved. Only ## right before a DEFINE/CLASS/INTERFACE has an AST representation of its own; every plain # comment is tracked separately and reinserted by original line number.'
   }]
 
 },
@@ -1980,22 +1980,22 @@ export const docPages: DocPage[] = [
   { type: 'h3', text: 'erilang.toml' },
   {
     type: 'p',
-    text: 'A hand-authored manifest, one per package/project: a [package] table (name, version, description, author, license, entry — defaulting to "src/main.eri"), a [dependencies] table using caret (^) version constraints (npm/Cargo-style: ^2.1.0 allows any 2.x.y at or above it, never 3.0.0; ^0.2.1 treats the minor number as the breaking boundary instead), and an optional [hooks] table.'
+    text: 'A hand-authored manifest, one per package/project: a [package] table (name, version, description, author, license, entry, defaulting to "src/main.eri"), a [dependencies] table using caret (^) version constraints (npm/Cargo-style: ^2.1.0 allows any 2.x.y at or above it, never 3.0.0; ^0.2.1 treats the minor number as the breaking boundary instead), and an optional [hooks] table.'
   },
   { type: 'h3', text: 'erilang.lock' },
   {
     type: 'p',
-    text: 'Auto-generated by erilang install, never hand-edited — records the exact resolved version, download URL, checksum, and dependency list of every direct and transitive dependency, so a later install reproduces the identical set rather than potentially landing on newer versions.'
+    text: 'Auto-generated by erilang install, never hand-edited. It records the exact resolved version, download URL, checksum, and dependency list of every direct and transitive dependency, so a later install reproduces the identical set rather than potentially landing on newer versions.'
   },
   { type: 'h3', text: 'One flat version per package, not nested/duplicated versions' },
   {
     type: 'p',
-    text: "One version of each package for the whole project, not nested/duplicated versions. Erilang's own INCLUDE model gives every included file one flat namespace in the same process — no per-package isolated scoping — so resolution fails loudly, naming every conflicting requirer, rather than silently picking one, if no single version satisfies every constraint on a package across the whole dependency graph."
+    text: "One version of each package for the whole project, not nested/duplicated versions. Erilang's own INCLUDE model gives every included file one flat namespace in the same process, with no per-package isolated scoping, so resolution fails loudly, naming every conflicting requirer, rather than silently picking one, if no single version satisfies every constraint on a package across the whole dependency graph."
   },
   { type: 'h3', text: 'Install hooks are off by default, always' },
   {
     type: 'p',
-    text: 'Even a package that declares a hook in its own [hooks] table never runs it unless the installing user explicitly passes --allow-hooks (every declared hook) or --allow-hooks=name1,name2 (only those specific packages). A hook being declared and a hook being trusted are two separate, both-required opt-ins — the same mitigation pnpm uses against a dependency silently running arbitrary code on install.'
+    text: "Even a package that declares a hook in its own [hooks] table never runs it unless the installing user explicitly passes --allow-hooks (every declared hook) or --allow-hooks=name1,name2 (only those specific packages). A hook being declared and a hook being trusted are two separate, both-required opt-ins, the same mitigation other modern package managers use against a dependency silently running arbitrary code on install."
   },
   { type: 'h3', text: 'Including an installed package' },
   {
@@ -2006,12 +2006,12 @@ export const docPages: DocPage[] = [
     type: 'code',
     code: 'INCLUDE "mathlib" AS mathlib\nCALL mathlib.double WITH 21 INTO result',
     runnable: false,
-    runNote: 'This needs an actual installed package under erilang_packages/ — it works when run locally after erilang install mathlib.'
+    runNote: 'This needs an actual installed package under erilang_packages/. It works when run locally after erilang install mathlib.'
   },
   { type: 'h3', text: 'The registry' },
   {
     type: 'p',
-    text: 'erilang.dev is the one canonical registry (no multi-registry fallback chain, avoiding dependency-confusion attack surface). Package-name ownership: the first successful publish of a name claims it for that account; only that account can publish later versions. Versions are immutable once published (matching npm/PyPI/Cargo) — republishing an existing name+version is rejected, never overwritten.'
+    text: 'erilang.dev is the one canonical registry (no multi-registry fallback chain, avoiding dependency-confusion attack surface). Package-name ownership: the first successful publish of a name claims it for that account; only that account can publish later versions. Versions are immutable once published (matching npm/Cargo and other modern registries). Republishing an existing name+version is rejected, never overwritten.'
   }]
 
 },
@@ -2028,12 +2028,12 @@ export const docPages: DocPage[] = [
   { type: 'h3', text: 'Choose the clearest form, not the shortest' },
   {
     type: 'p',
-    text: 'Erilang deliberately offers two ways to call a function: as its own line with CALL ... WITH ... INTO, and inline with parentheses. Use the standalone form when a call is the entire point of a line, and the inline form when a result needs to feed directly into a larger expression. Neither is more correct than the other — pick whichever reads better in context.'
+    text: 'Erilang deliberately offers two ways to call a function: as its own line with CALL ... WITH ... INTO, and inline with parentheses. Use the standalone form when a call is the entire point of a line, and the inline form when a result needs to feed directly into a larger expression. Neither is more correct than the other, so pick whichever reads better in context.'
   },
   { type: 'h3', text: 'Build classes the explicit way' },
   {
     type: 'p',
-    text: 'Give a class an explicit CONSTRUCT whenever it needs values at creation time, with parameter names that read naturally alongside the FIELDs they set. There is no shortcut that infers fields from constructor arguments by name — that is deliberate, since a Java-style, non-magic CONSTRUCT is also what makes a PRIVATE field genuinely private, never settable from outside through CREATE.'
+    text: 'Give a class an explicit CONSTRUCT whenever it needs values at creation time, with parameter names that read naturally alongside the FIELDs they set. There is no shortcut that infers fields from constructor arguments by name. That is deliberate, since a Java-style, non-magic CONSTRUCT is also what makes a PRIVATE field genuinely private, never settable from outside through CREATE.'
   },
   { type: 'h3', text: 'Prefer errors over silent failure' },
   {
@@ -2043,7 +2043,7 @@ export const docPages: DocPage[] = [
   { type: 'h3', text: 'Keep secrets out of source code and hashed correctly' },
   {
     type: 'p',
-    text: 'Never hash a password with a general-purpose function such as hash — always use hash_password, which is specifically designed to resist the kind of brute-force checking a plain hash is vulnerable to.'
+    text: 'Never hash a password with a general-purpose function such as hash. Always use hash_password, which is specifically designed to resist the kind of brute-force checking a plain hash is vulnerable to.'
   },
   { type: 'h3', text: 'Document as you go' },
   {
@@ -2055,11 +2055,11 @@ export const docPages: DocPage[] = [
 {
   slug: 'contextual-keywords',
   title: 'Contextual Keywords',
-  description: 'A smaller set of words that are only special in their own specific position — everything else is a true reserved word.',
+  description: 'A smaller set of words that are only special in their own specific position. Everything else is a true reserved word.',
   blocks: [
   {
     type: 'p',
-    text: 'Most of Erilang\'s grammar words (IF, WHILE, DEFINE, AND, ...) are true reserved words — never usable as a name anywhere. A smaller set of contextual (soft) keywords are special only in the one grammatical shape their own construct needs, and an ordinary identifier everywhere else. Each is recognized by a structural check at the exact point its construct can start.'
+    text: 'Most of Erilang\'s grammar words (IF, WHILE, DEFINE, AND, ...) are true reserved words, never usable as a name anywhere. A smaller set of contextual (soft) keywords are special only in the one grammatical shape their own construct needs, and an ordinary identifier everywhere else. Each is recognized by a structural check at the exact point its construct can start.'
   },
   {
     type: 'table',
@@ -2122,9 +2122,9 @@ export const docPages: DocPage[] = [
     ['TRY ... CATCH ERROR INTO e ... END', 'Handle errors'],
     ['RAISE ErrorType [WITH field AS value, ...]', 'Raise a custom error (needs a matching CONSTRUCT)'],
     ['assert(condition[, message])', 'Raise AssertionFailed if condition is falsy'],
-    ['CLASS Name [INHERITS Parent] [IMPLEMENTS I, ...] ... END', 'Define a class — FIELD is singular'],
+    ['CLASS Name [INHERITS Parent] [IMPLEMENTS I, ...] ... END', 'Define a class. FIELD is singular'],
     ['CONSTRUCT [WITH params] DO ... END / DESTRUCT DO ... END', 'Construction / deterministic cleanup'],
-    ['CREATE Name [WITH args] INTO var', 'Create an instance — args are positional'],
+    ['CREATE Name [WITH args] INTO var', 'Create an instance. Args are positional'],
     ['WITH RESOURCE CREATE Name [WITH args] INTO var DO ... END', 'Guarantees DESTRUCT runs on exit'],
     ['DATA CLASS Name FIELDS f1, f2 END', 'Immutable data holder (plural FIELDS, unlike CLASS)'],
     ['COPY instance WITH field AS value INTO var', 'A modified copy of a DATA CLASS instance'],
@@ -2143,7 +2143,7 @@ export const docPages: DocPage[] = [
     type: 'table',
     rows: [
     ['NUMBER, STRING, BOOLEAN, NONE, BYTES', 'Core scalar types'],
-    ['DATASET', 'A loaded table of data — from LOAD or FILTER'],
+    ['DATASET', 'A loaded table of data, from LOAD or FILTER'],
     ['LIST OF ... / MAP WITH key AS value, ... / UNIQUE_LIST OF ...', 'Ordered / key-value / no-duplicates collections'],
     ['SOCKET, UDP_SOCKET, CONNECTION, WEB_APP', 'Networking'],
     ['STACK, QUEUE, LINKED_LIST, BINARY_TREE', 'Advanced data structures'],

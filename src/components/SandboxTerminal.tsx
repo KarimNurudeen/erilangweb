@@ -28,7 +28,7 @@ export function SandboxTerminal({
       </p>
       {running ?
       <p className="text-neutral-500">
-          Running in an isolated sandbox — usually takes 12–20s… ({elapsed}s)
+          Running in an isolated sandbox, usually takes 12 to 20 seconds… ({elapsed}s)
         </p> :
       runError ?
       <p className="text-red-400">{runError}</p> :

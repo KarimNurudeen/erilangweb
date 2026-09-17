@@ -82,7 +82,7 @@ export function Blog() {
         !posts ?
         <BlogSkeleton /> :
         posts.length === 0 ?
-        <EmptyBanner message="No posts yet — check back soon." /> :
+        <EmptyBanner message="No posts yet. Check back soon." /> :
 
         <>
             <div className="grid gap-6 lg:grid-cols-3">

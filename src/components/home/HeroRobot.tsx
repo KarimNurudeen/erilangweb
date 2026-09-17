@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 
 const LINES = [
-"Hi! I read like English — full keywords, not dense symbols.",
+"Hi! I read like English, using full keywords instead of dense symbols.",
 "Built for accessibility first, especially screen readers.",
-"INCLUDE brings in another file directly — no binding layer.",
+"INCLUDE brings in another file directly, with no binding layer.",
 "Try `erilang run hello.eri` and you're building in minutes.",
-"TRY, CATCH, and RAISE — errors carry a plain-language message.",
-"ASYNC DEFINE and AWAIT — network calls without blocking.",
+"TRY, CATCH, and RAISE let errors carry a plain-language message.",
+"ASYNC DEFINE and AWAIT let you make network calls without blocking.",
 "Real classes, real errors, real async. That's Erilang."];
 
 

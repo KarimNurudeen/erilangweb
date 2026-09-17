@@ -50,7 +50,7 @@ export interface ContributionPath {
 export const contributionPaths: ContributionPath[] = [
 {
   title: 'Report what’s confusing',
-  body: 'Post questions, friction points, or bugs in the forum — every thread helps shape the next release.',
+  body: 'Post questions, friction points, or bugs in the forum. Every thread helps shape the next release.',
   action: 'Go to the forum',
   to: '/forum'
 },

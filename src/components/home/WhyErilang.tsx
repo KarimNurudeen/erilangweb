@@ -39,8 +39,8 @@ export function WhyErilang() {
         <ScrollReveal>
         <h2 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">Why Erilang?</h2>
         <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-muted">
-          The syntax stays small on purpose. Most of what a team needs — classes, async I/O, modules,
-          and clear errors — is part of the language rather than something you assemble. Edit the code
+          The syntax stays small on purpose. Most of what a team needs, including classes, async I/O,
+          modules, and clear errors, is part of the language rather than something you assemble. Edit the code
           below and run it for real.
         </p>
 
@@ -53,7 +53,7 @@ export function WhyErilang() {
               <span className="h-3 w-3 rounded-full bg-[#27c93f]" />
             </div>
             <span className="truncate text-[12.5px] text-neutral-400">
-              {active.id}.eri — erilang
+              {active.id}.eri · erilang
             </span>
           </div>
 

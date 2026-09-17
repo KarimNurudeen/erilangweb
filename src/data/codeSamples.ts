@@ -49,7 +49,7 @@ END
 
 AWAIT CALL fetch_price WITH "widget", 24.99 INTO price
 show("Price for widget: " + TO_STRING(price))`,
-  note: 'Mark a function ASYNC DEFINE and AWAIT it — the same pattern used for network or file I/O.'
+  note: 'Mark a function ASYNC DEFINE and AWAIT it. It\'s the same pattern used for network or file I/O.'
 },
 {
   id: 'modules',

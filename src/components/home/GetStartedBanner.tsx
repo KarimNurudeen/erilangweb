@@ -15,7 +15,7 @@ export function GetStartedBanner() {
             </h2>
             <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-white/70">
               Install Erilang, save a <span className="font-mono">.eri</span> file, and run it with{' '}
-              <span className="font-mono">erilang run</span> — you'll see output in under five minutes.
+              <span className="font-mono">erilang run</span>. You'll see output in under five minutes.
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-3">

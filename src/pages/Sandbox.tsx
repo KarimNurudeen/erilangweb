@@ -24,14 +24,14 @@ export function Sandbox() {
     <main className="mx-auto max-w-page px-5 py-16 lg:px-8 lg:py-20">
       <h1 className="text-5xl font-bold tracking-tight text-white sm:text-6xl">Sandbox</h1>
       <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-white/80">
-        Write real Erilang and run it against the real interpreter, right here — no install required.
+        Write real Erilang and run it against the real interpreter, right here. No install required.
       </p>
 
       <div className="mt-8 flex items-start gap-3 rounded-xl border border-line bg-surface p-5">
         <TerminalIcon className="mt-0.5 h-4 w-4 shrink-0 text-accent" aria-hidden="true" />
         <p className="text-[13.5px] leading-relaxed text-muted">
-          Edit the code below and hit Run. Each run is a fresh, isolated program — there's no
-          persistent session between runs, and it typically takes 12–20 seconds since it's
+          Edit the code below and hit Run. Each run is a fresh, isolated program, so there's no
+          persistent session between runs, and it typically takes 12 to 20 seconds since it's
           executing on a real sandboxed interpreter, not simulated in your browser.
           {limits ? ` Limited to ${limits.max_runs_per_minute} runs per minute.` : ''}
         </p>

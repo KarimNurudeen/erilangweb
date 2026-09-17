@@ -11,7 +11,7 @@ export function AnnouncementBar() {
   return (
     <div className="relative bg-accent text-ink">
       <div className="mx-auto flex max-w-page flex-wrap items-center justify-center gap-x-2 gap-y-1 px-4 pr-11 py-2.5 text-center text-[13px] font-semibold sm:px-14 sm:text-sm">
-        <span>Erilang 1.0 is here — a declarative, English-like language, ready to read.</span>
+        <span>Erilang 1.0 is here: a declarative, English-like language that's ready to read.</span>
         <Link to="/docs" className="inline-flex items-center gap-1 whitespace-nowrap underline underline-offset-4">
           Read the guide
           <ArrowRightIcon className="h-3.5 w-3.5" aria-hidden="true" />

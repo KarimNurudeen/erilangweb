@@ -147,7 +147,7 @@ export function ForumLayout() {
             !threads ?
             <div className="p-4"><LoadingBanner /></div> :
             threads.length === 0 ?
-            <div className="p-4"><EmptyBanner message="No threads yet — start the first one." /></div> :
+            <div className="p-4"><EmptyBanner message="No threads yet. Start the first one." /></div> :
 
             <ul className="flex flex-col divide-y divide-white/10">
                 {threads.map((t) =>

@@ -9,7 +9,7 @@ const CHART_CODE = `LOAD "monthly_revenue.csv" INTO sales
 CHART sales BY month SHOWING revenue AS "LINE" TO "trend.png" INTO chart
 describe_chart(chart)`;
 
-const CHART_DESCRIPTION = 'This line chart shows revenue over month, starting at 120 and ending at 355 — an increase of 196%. The trend is generally upward. The highest point is 355 at month Jul; the lowest is 120 at month Jan. The largest single change is between month Mar and month Apr, rising by 82.';
+const CHART_DESCRIPTION = 'This line chart shows revenue over month, starting at 120 and ending at 355, an increase of 196%. The trend is generally upward. The highest point is 355 at month Jul; the lowest is 120 at month Jan. The largest single change is between month Mar and month Apr, rising by 82.';
 
 export function InProduction() {
   return (
@@ -23,8 +23,8 @@ export function InProduction() {
           </h2>
           <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-neutral-600">
             CHART never just draws a picture. Every chart also produces a real, data-computed
-            spoken-language description — the trend, the peak and trough, the correlation
-            strength — worked out directly from the numbers, not guessed from the image. That's
+            spoken-language description covering the trend, the peak and trough, and the correlation
+            strength, all worked out directly from the numbers, not guessed from the image. That's
             what makes a chart usable by someone who can't see it, and it's the reason this
             language exists.
           </p>
@@ -53,7 +53,7 @@ export function InProduction() {
                 "{CHART_DESCRIPTION}"
               </p>
               <p className="mt-4 text-[12.5px] text-neutral-500">
-                Real output, straight from the grammar reference — every word here is computed
+                Real output, straight from the grammar reference. Every word here is computed
                 from the data, not written by hand.
               </p>
             </div>

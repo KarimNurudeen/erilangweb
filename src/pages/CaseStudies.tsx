@@ -37,7 +37,7 @@ export function CaseStudies() {
     <main className="mx-auto max-w-page px-5 py-16 lg:px-8 lg:py-20">
       <h1 className="text-5xl font-bold tracking-tight text-white sm:text-6xl">Case studies</h1>
       <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-white/80">
-        How teams put Erilang into production — what they replaced, what got simpler, and what changed
+        How teams put Erilang into production: what they replaced, what got simpler, and what changed
         once the code read like plain English.
       </p>
 

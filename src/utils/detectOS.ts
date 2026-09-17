@@ -1,6 +1,6 @@
 export type DetectedOS = 'windows' | 'macos' | 'linux' | null;
 
-/** Best-effort client OS detection for highlighting the right download first, python.org-style. */
+/** Best-effort client OS detection so we can show the visitor's own download first. */
 export function detectOS(): DetectedOS {
   if (typeof navigator === 'undefined') return null;
   const ua = `${navigator.userAgent} ${navigator.platform || ''}`.toLowerCase();
