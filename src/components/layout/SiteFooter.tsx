@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FacebookIcon, InstagramIcon, XIcon, YoutubeIcon } from 'lucide-react';
+import { FacebookIcon, InstagramIcon, MailIcon, XIcon, YoutubeIcon } from 'lucide-react';
 import { Brand } from '../Brand';
 import { footerGroups } from '../../data/navigation';
 import { SnakeBorder } from '../SnakeBorder';
@@ -44,6 +44,12 @@ export function SiteFooter() {
                 </li>
               )}
             </ul>
+            <a
+              href="mailto:eritten2@gmail.com"
+              className="eri-snake eri-snake-blue mt-4 inline-flex items-center gap-1.5 text-sm text-muted transition-colors duration-150 ease-eri hover:text-white">
+              <MailIcon className="h-3.5 w-3.5" aria-hidden="true" />
+              eritten2@gmail.com
+            </a>
           </div>
 
           <div className="grid gap-8 sm:grid-cols-3">

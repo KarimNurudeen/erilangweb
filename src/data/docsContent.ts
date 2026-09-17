@@ -35,7 +35,7 @@ export const docPages: DocPage[] = [
   blocks: [
   {
     type: 'p',
-    text: 'Erilang is a small, declarative, English-like language built for data science. Erilang source (.eri) transpiles to plain Python that uses pandas — every Erilang program is really just readable shorthand for a pandas script, which means the two ecosystems are never in tension: anything pandas can do is reachable from Erilang, and generated code is ordinary, inspectable Python underneath.'
+    text: 'Erilang is a small, declarative, English-like language built for data science. It reads like plain English rather than dense symbols, and it comes with a real, built-in data engine — loading, cleaning, transforming, grouping, and charting tables of data are first-class parts of the language itself, not something bolted on afterward.'
   },
   {
     type: 'p',
@@ -48,7 +48,7 @@ export const docPages: DocPage[] = [
   { type: 'h3', text: 'What Erilang is good for' },
   {
     type: 'p',
-    text: "Data analysis, cleaning, statistics, and accessible reporting are Erilang's core reason for existing — see the Data Science section of this guide. Beyond that, it is a genuinely general-purpose language: people use it for backend services and APIs, command-line tools, network programming, working with files and databases, small games and graphical programs, and automating everyday tasks. If you have written Python, JavaScript, or a similar language before, most of Erilang's ideas will feel familiar — the syntax is simply more readable, and every .eri file becomes real Python you could read directly if you needed to."
+    text: "Data analysis, cleaning, statistics, and accessible reporting are Erilang's core reason for existing — see the Data Science section of this guide. Beyond that, it is a genuinely general-purpose language: people use it for backend services and APIs, command-line tools, network programming, working with files and databases, small games and graphical programs, and automating everyday tasks. If you have written another programming language before, most of Erilang's ideas will feel familiar — the syntax is simply more readable."
   },
   { type: 'h3', text: 'How this guide is organized' },
   {
@@ -64,14 +64,8 @@ export const docPages: DocPage[] = [
   blocks: [
   { type: 'h3', text: 'Installing Erilang' },
   {
-    type: 'code',
-    code: 'pip install -e .',
-    runnable: false,
-    runNote: 'This is a terminal command, not Erilang source — run it from your own terminal, inside a checkout of the Erilang project.'
-  },
-  {
     type: 'p',
-    text: 'This installs the erilang package in editable mode along with its two real dependencies, pandas and numpy, and registers the erilang command on your PATH.'
+    text: 'Download the installer or package for your platform from the Releases page and follow the on-screen instructions. Once installed, the erilang command is available on your PATH.'
   },
   { type: 'h3', text: 'Your first program' },
   {
@@ -101,7 +95,7 @@ export const docPages: DocPage[] = [
   { type: 'h3', text: 'Documentation comments' },
   {
     type: 'p',
-    text: "A comment written with two hashes (##), immediately before a function, class, or interface, is a doc comment: it becomes that item's real Python __doc__, readable by anything that already reads Python docstrings — not just discarded like a plain comment. Several consecutive ## lines merge into one multi-line doc."
+    text: "A comment written with two hashes (##), immediately before a function, class, or interface, is a doc comment: Erilang keeps it attached to that item as real, structured documentation — retrievable at runtime and picked up by the doc generator — not just discarded like a plain comment. Several consecutive ## lines merge into one multi-line doc."
   },
   {
     type: 'code',
@@ -142,7 +136,7 @@ export const docPages: DocPage[] = [
   { type: 'h3', text: 'Printing values' },
   {
     type: 'p',
-    text: 'The show(...) function prints a value. It works on any kind of value — numbers, text, lists, and more all display sensibly, and it is a thin wrapper around print that renders things like a namespace, a stored function, a SOCKET, or an HTTP response the way an Erilang author should see them, never a raw internal Python repr.'
+    text: 'The show(...) function prints a value. It works on any kind of value — numbers, text, lists, and more all display sensibly, and it renders things like a namespace, a stored function, a SOCKET, or an HTTP response the way an Erilang author should see them, never a raw internal representation.'
   },
   { type: 'code', code: 'show(42)\nshow("a piece of text")\nshow(3.14)' }]
 
@@ -332,12 +326,12 @@ export const docPages: DocPage[] = [
   },
   {
     type: 'note',
-    text: 'One gotcha inherited directly from Python: a function defined inside a loop closes over the loop variable by reference, not by the value it had at that iteration — several such functions, called after the loop ends, all see its final value. Give it its own parameter instead if each call needs its own snapshot.'
+    text: 'One gotcha to know: a function defined inside a loop closes over the loop variable by reference, not by the value it had at that iteration — several such functions, called after the loop ends, all see its final value. Give it its own parameter instead if each call needs its own snapshot.'
   },
   { type: 'h3', text: 'Anonymous functions' },
   {
     type: 'p',
-    text: 'DEFINE with no name is an expression, not a declaration — usable anywhere a value is. It compiles to a real Python lambda, so it is deliberately restricted to a single RETURN <expr> body with no other statements. Its flagship use is sort\'s optional comparator: a two-argument function returning negative/positive/zero.'
+    text: 'DEFINE with no name is an expression, not a declaration — usable anywhere a value is. It is deliberately restricted to a single RETURN <expr> body with no other statements, keeping it a lightweight inline function. Its flagship use is sort\'s optional comparator: a two-argument function returning negative/positive/zero.'
   },
   {
     type: 'code',
@@ -354,7 +348,7 @@ export const docPages: DocPage[] = [
   { type: 'h3', text: 'Variable scoping: GLOBAL and OUTER' },
   {
     type: 'p',
-    text: "Reading an outer or top-level variable from inside a function works with no declaration at all. Writing one needs an explicit declaration: GLOBAL <name>, ... (inside any function, writes the true top-level variable) or OUTER <name>, ... (inside a function nested within another function, writes the nearest enclosing function's local — not the true top level, even from several levels deep). Without either, a plain SET on a name that also exists as a global deliberately creates a fresh local instead, matching Python's own default."
+    text: "Reading an outer or top-level variable from inside a function works with no declaration at all. Writing one needs an explicit declaration: GLOBAL <name>, ... (inside any function, writes the true top-level variable) or OUTER <name>, ... (inside a function nested within another function, writes the nearest enclosing function's local — not the true top level, even from several levels deep). Without either, a plain SET on a name that also exists as a global deliberately creates a fresh local instead."
   },
   {
     type: 'code',
@@ -363,7 +357,7 @@ export const docPages: DocPage[] = [
   },
   {
     type: 'note',
-    text: 'A real compile-time check catches the read-before-assignment shape that would otherwise raise a raw Python UnboundLocalError, and points at GLOBAL/OUTER as the fix.'
+    text: 'A real compile-time check catches the read-before-assignment shape that would otherwise fail at runtime, and points at GLOBAL/OUTER as the fix.'
   }]
 
 },
@@ -385,7 +379,7 @@ export const docPages: DocPage[] = [
     ['STRING', 'Text, written in double quotes.'],
     ['BOOLEAN', 'TRUE or FALSE.'],
     ['NONE', 'Represents an absent or unknown value.'],
-    ['DATASET', 'A loaded table of data — a real pandas DataFrame underneath — produced by LOAD or FILTER.'],
+    ['DATASET', 'A loaded table of data, produced by LOAD or FILTER, with full support for cleaning, transforming, grouping, and joining.'],
     ['LIST', 'An ordered collection.'],
     ['MAP', 'A key-value collection.'],
     ['UNIQUE_LIST', 'A collection with no duplicates.'],
@@ -508,10 +502,10 @@ export const docPages: DocPage[] = [
     text: 'A bare identifier means different things in the two key positions: age OF person treats age as a literal field name, while map_set(person, age, 31) treats age as a variable whose value becomes the key.'
   },
   { type: 'h3', text: 'Sets' },
-  { type: 'p', text: 'A UNIQUE_LIST behaves like a list that never keeps duplicates — backed by a Python set, so iteration order is not guaranteed.' },
+  { type: 'p', text: 'A UNIQUE_LIST behaves like a list that never keeps duplicates — iteration order is not guaranteed.' },
   {
     type: 'code',
-    code: 'SET tags TO UNIQUE_LIST OF "python", "erilang", "python"\nshow(LENGTH OF tags)',
+    code: 'SET tags TO UNIQUE_LIST OF "urgent", "billing", "urgent"\nshow(length(tags))',
     output: '2'
   },
   {
@@ -694,7 +688,7 @@ export const docPages: DocPage[] = [
     ['LINE', 'Trend direction from a real regression slope (classified against the overall Y range, not a bare sign check); start-to-end value and percent change; the peak and trough with their own x position; the single largest step-to-step change.'],
     ['BAR', 'Highest and lowest bar by name and value; every bar in dataset order (or the top 5 by value past 8 bars); a relative-magnitude callout when one bar dominates. If the x column repeats a label — the data was not GROUPed/AGGREGATEd first — it says so explicitly, since raw ungrouped data can otherwise sound self-contradictory.'],
     ['SCATTER', 'Pearson correlation coefficient, described qualitatively (strong/moderate/weak/no clear, positive/negative) against fixed thresholds, plus each axis\'s own range. Both columns must be numeric.'],
-    ['HISTOGRAM', 'Mean, median, and standard deviation; skew direction (via pandas\' own Series.skew()); which bin holds the most values, by its own range.']]
+    ['HISTOGRAM', 'Mean, median, and standard deviation; skew direction; which bin holds the most values, by its own range.']]
 
   },
   {
@@ -800,7 +794,7 @@ export const docPages: DocPage[] = [
   { type: 'h3', text: 'Inheritance and SUPER' },
   {
     type: 'p',
-    text: 'INHERITS gives real Python inheritance. A redefined method overrides the parent\'s. SUPER reaches the parent explicitly — CALL CONSTRUCT ON SUPER [WITH <args>] must be the literal first statement of a subclass\'s own CONSTRUCT (matching Java\'s own rule), and CALL <method> ON SUPER calls the parent\'s version of an overridden method from any method.'
+    text: 'INHERITS gives real, genuine inheritance. A redefined method overrides the parent\'s. SUPER reaches the parent explicitly — CALL CONSTRUCT ON SUPER [WITH <args>] must be the literal first statement of a subclass\'s own CONSTRUCT (matching Java\'s own rule), and CALL <method> ON SUPER calls the parent\'s version of an overridden method from any method.'
   },
   {
     type: 'code',
@@ -814,12 +808,12 @@ export const docPages: DocPage[] = [
   { type: 'h3', text: 'Every class gets a readable repr for free' },
   {
     type: 'p',
-    text: 'show(...) on any CLASS instance with no custom TO_STRING prints a real, generated repr from its actual field values (Circle(radius=5)) — never Python\'s raw default. Define your own TO_STRING method (see below) to fully control this.'
+    text: 'show(...) on any CLASS instance with no custom TO_STRING prints a real, generated summary from its actual field values (Circle(radius=5)) — never a raw, unreadable default. Define your own TO_STRING method (see below) to fully control this.'
   },
   { type: 'h3', text: 'DESTRUCT and WITH RESOURCE' },
   {
     type: 'p',
-    text: 'DESTRUCT DO ... END is deterministic cleanup, independent of garbage collection — never triggered by an ordinary CREATE, only by a WITH RESOURCE CREATE <ClassName> ... INTO <var> DO ... END block exiting. A real Python try/finally guarantees DESTRUCT runs on normal completion, an uncaught error, or a RETURN/BREAK/CONTINUE jumping out — an error inside the block still triggers DESTRUCT before that error propagates outward. Neither CONSTRUCT nor DESTRUCT is directly callable (CALL CONSTRUCT ON SUPER is the one exception), and WITH RESOURCE on a class with no DESTRUCT anywhere in its own INHERITS chain is a compile-time error.'
+    text: 'DESTRUCT DO ... END is deterministic cleanup, independent of garbage collection — never triggered by an ordinary CREATE, only by a WITH RESOURCE CREATE <ClassName> ... INTO <var> DO ... END block exiting. Erilang guarantees DESTRUCT runs on normal completion, an uncaught error, or a RETURN/BREAK/CONTINUE jumping out — an error inside the block still triggers DESTRUCT before that error propagates outward. Neither CONSTRUCT nor DESTRUCT is directly callable (CALL CONSTRUCT ON SUPER is the one exception), and WITH RESOURCE on a class with no DESTRUCT anywhere in its own INHERITS chain is a compile-time error.'
   },
   {
     type: 'code',
@@ -862,7 +856,7 @@ export const docPages: DocPage[] = [
   { type: 'h3', text: 'Operator overloading' },
   {
     type: 'p',
-    text: 'A method named exactly ADD, SUBTRACT, MULTIPLY, DIVIDE, MODULO, POWER, EQUALS, GREATER_THAN, LESS_THAN, GREATER_OR_EQUAL, or LESS_OR_EQUAL generates as the matching Python dunder (__add__, __eq__, ...), so +, ==, and the rest dispatch to it natively on instances. EQUALS alone also makes != correct for free.'
+    text: 'A method named exactly ADD, SUBTRACT, MULTIPLY, DIVIDE, MODULO, POWER, EQUALS, GREATER_THAN, LESS_THAN, GREATER_OR_EQUAL, or LESS_OR_EQUAL is recognized as an operator overload, so +, ==, and the rest dispatch to it natively on instances. EQUALS alone also makes != correct for free.'
   },
   {
     type: 'code',
@@ -872,7 +866,7 @@ export const docPages: DocPage[] = [
   { type: 'h3', text: 'String conversion (TO_STRING)' },
   {
     type: 'p',
-    text: 'A method named exactly TO_STRING controls how an instance renders as text everywhere that happens — show(...), TO_STRING(...), FORMAT, and + string concatenation all already go through Python\'s own str() protocol, so all four automatically respect a custom TO_STRING the moment it exists. Without one, every class still gets the auto-generated repr described above.'
+    text: 'A method named exactly TO_STRING controls how an instance renders as text everywhere that happens — show(...), TO_STRING(...), FORMAT, and + string concatenation all automatically respect a custom TO_STRING the moment it exists. Without one, every class still gets the auto-generated summary described above.'
   },
   {
     type: 'code',
@@ -906,7 +900,7 @@ export const docPages: DocPage[] = [
   },
   {
     type: 'note',
-    text: 'INTERFACE has no runtime representation at all, like EXPORT — the generated Python has no interface class, abc, or protocol underneath. There is no ABSTRACT CLASS either: INTERFACE (a pure contract) and INHERITS (real implementation sharing) already cover the two things an abstract class usually blends together.'
+    text: 'INTERFACE has no runtime representation at all, like EXPORT — it exists purely as a compile-time contract, with nothing underneath at runtime. There is no ABSTRACT CLASS either: INTERFACE (a pure contract) and INHERITS (real implementation sharing) already cover the two things an abstract class usually blends together.'
   }]
 
 },
@@ -988,7 +982,7 @@ export const docPages: DocPage[] = [
   { type: 'code', code: 'SET balance TO 100\nassert(balance >= 0, "Balance should never go negative")' },
   {
     type: 'note',
-    text: 'assert is recognized structurally by text ("assert" immediately followed by "("), not resolved as a bound-name function call — Python\'s own assert is a hard keyword, so a literal assert(...) in generated Python would otherwise parse as the always-truthy assert statement.'
+    text: 'assert is recognized structurally by text ("assert" immediately followed by "("), not resolved as a bound-name function call — this keeps it working reliably as a real, callable check rather than colliding with a reserved word.'
   }]
 
 },
@@ -1094,7 +1088,7 @@ export const docPages: DocPage[] = [
   blocks: [
   {
     type: 'p',
-    text: 'A function marked ASYNC DEFINE can be awaited, allowing other asynchronous work to make progress while it runs — genuinely useful for network-bound work like the net/socket libraries, where waiting on a response is where async actually pays for itself. No erilang run event-loop wrapper is needed: every top-level script stays ordinary synchronous Python, and AWAIT compiles to a real Python await inside an ASYNC DEFINE\'s own body, or to a small asyncio.run bridge everywhere else.'
+    text: 'A function marked ASYNC DEFINE can be awaited, allowing other asynchronous work to make progress while it runs — genuinely useful for network-bound work like the net/socket libraries, where waiting on a response is where async actually pays for itself. No erilang run event-loop wrapper is needed: every top-level script stays ordinary and synchronous, and Erilang bridges into its async runtime automatically wherever AWAIT is used.'
   },
   {
     type: 'code',
@@ -1146,7 +1140,7 @@ export const docPages: DocPage[] = [
   },
   {
     type: 'p',
-    text: 'READ BYTES FROM FILE / WRITE BYTES ... TO FILE are the binary counterparts. Every form wraps a real Python "with open(...)" block, so the file always closes properly, even if an error happens partway through.'
+    text: 'READ BYTES FROM FILE / WRITE BYTES ... TO FILE are the binary counterparts. Every form guarantees the file always closes properly, even if an error happens partway through.'
   },
   { type: 'h3', text: 'Loading tabular data' },
   { type: 'p', text: 'LOAD reads a CSV file into a DATASET, ready for the whole Data Science section of this guide.' },
@@ -1210,7 +1204,7 @@ export const docPages: DocPage[] = [
   blocks: [
   {
     type: 'p',
-    text: 'A handful of Python standard-library wrappers are available in every script with no INCLUDE — pre-built namespaces, reached with the same dotted-call syntax an INCLUDEd file\'s own namespace uses. Each wraps a deliberately small, commonly-needed subset of its Python module, not the whole thing.'
+    text: 'A handful of built-in libraries are available in every script with no INCLUDE — pre-built namespaces, reached with the same dotted-call syntax an INCLUDEd file\'s own namespace uses. Each covers a deliberately small, commonly-needed subset of functionality, not everything imaginable.'
   },
   { type: 'h3', text: 'math' },
   {
@@ -1276,7 +1270,7 @@ export const docPages: DocPage[] = [
   { type: 'h3', text: 'json' },
   { type: 'table', rows: [['json.parse(text)', 'STRING → LIST/MAP/NUMBER/STRING/BOOLEAN/NONE'], ['json.stringify(value)', 'Any value → STRING']] },
   { type: 'h3', text: 'regex' },
-  { type: 'p', text: 'Wraps Python\'s re module — see Working with Files and Data for none of this, it gets its own detail in Regular Expressions below.' },
+  { type: 'p', text: 'A dedicated regular-expressions engine — it gets its own detail in Regular Expressions below.' },
   {
     type: 'table',
     rows: [
@@ -1451,7 +1445,7 @@ export const docPages: DocPage[] = [
     rows: [
     ['bytes.bit_and/bit_or/bit_xor(a, b)', 'On NUMBER, truncated to a whole number first'],
     ['bytes.bit_shift_left/bit_shift_right(value, positions)', 'Shifting'],
-    ['bytes.crc32_checksum(bytes)', 'Matches Python\'s own zlib.crc32']]
+    ['bytes.crc32_checksum(bytes)', 'Standard CRC-32 checksum']]
 
   },
   { type: 'h3', text: 'Mutable byte buffers' },
@@ -1512,7 +1506,7 @@ export const docPages: DocPage[] = [
     ['peek(stack_or_queue)', 'Looks at the next value pop/dequeue would remove, without removing it'],
     ['create_linked_list() / append_node / prepend_node / to_list', 'prepend_node is O(1), unlike a LIST\'s own insert-at-front'],
     ['create_binary_tree() / insert_node / in_order', 'A plain BST (not self-balancing) — in_order gives a sorted LIST'],
-    ['create_heap() / push_heap / pop_heap', 'A plain LIST underneath (matching Python\'s own heapq) — pop_heap always returns the smallest value']]
+    ['create_heap() / push_heap / pop_heap', 'A plain LIST underneath, kept in heap order — pop_heap always returns the smallest value']]
 
   },
   {
@@ -1710,7 +1704,7 @@ export const docPages: DocPage[] = [
   },
   {
     type: 'note',
-    text: 'Be honest about performance: this is the heaviest, slowest area in the whole standard library, and needs ffmpeg genuinely installed and on PATH — a real system dependency, not a lightweight pure-Python operation the way image.*/audio.* mostly are.'
+    text: 'Be honest about performance: this is the heaviest, slowest area in the whole standard library, and needs ffmpeg genuinely installed and on PATH — a real system dependency, unlike image.*/audio.*, which mostly don\'t need one.'
   }]
 
 },
@@ -1824,7 +1818,7 @@ export const docPages: DocPage[] = [
   { type: 'h3', text: 'Bare expressions' },
   {
     type: 'p',
-    text: 'Typing an expression on its own line, without wrapping it in show(...), automatically prints its value and stores it in a special variable named _, letting you reuse the last result on the very next line — Python/Node.js-console style. A statement like SET or IF keeps its own unrelated behavior and is never auto-printed; a result of NONE prints nothing.'
+    text: 'Typing an expression on its own line, without wrapping it in show(...), automatically prints its value and stores it in a special variable named _, letting you reuse the last result on the very next line — familiar interactive-console style. A statement like SET or IF keeps its own unrelated behavior and is never auto-printed; a result of NONE prints nothing.'
   },
   {
     type: 'code',
@@ -1852,7 +1846,7 @@ export const docPages: DocPage[] = [
   {
     type: 'table',
     rows: [
-    [':show on / :show off', 'Reveal or hide the underlying generated Python for each line you run'],
+    [':show on / :show off', 'Reveal or hide the underlying compiled code for each line you run'],
     [':help', 'Show the full list of available commands and shortcuts'],
     [':exit / :quit', 'Leave the shell']]
 
@@ -1871,7 +1865,7 @@ export const docPages: DocPage[] = [
   {
     type: 'table',
     rows: [
-    ['erilang run <script.eri>', 'Lex, parse, transpile to Python, and execute'],
+    ['erilang run <script.eri>', 'Lex, parse, compile, and execute'],
     ['erilang / erilang repl', 'Open the interactive shell'],
     ['erilang lint <target>', 'Check for likely mistakes, without running it — see Linting'],
     ['erilang format <target>', 'Rewrite into a consistent, standard style — see Formatter'],
@@ -1993,10 +1987,10 @@ export const docPages: DocPage[] = [
     type: 'p',
     text: 'Auto-generated by erilang install, never hand-edited — records the exact resolved version, download URL, checksum, and dependency list of every direct and transitive dependency, so a later install reproduces the identical set rather than potentially landing on newer versions.'
   },
-  { type: 'h3', text: 'Resolution is pip-style, not npm-style' },
+  { type: 'h3', text: 'One flat version per package, not nested/duplicated versions' },
   {
     type: 'p',
-    text: "One version of each package for the whole project, not nested/duplicated versions. Erilang's own INCLUDE model gives every included file one flat namespace in the same process — no per-package isolated scoping the way npm's nested node_modules relies on — so resolution fails loudly, naming every conflicting requirer, rather than silently picking one, if no single version satisfies every constraint on a package across the whole dependency graph."
+    text: "One version of each package for the whole project, not nested/duplicated versions. Erilang's own INCLUDE model gives every included file one flat namespace in the same process — no per-package isolated scoping — so resolution fails loudly, naming every conflicting requirer, rather than silently picking one, if no single version satisfies every constraint on a package across the whole dependency graph."
   },
   { type: 'h3', text: 'Install hooks are off by default, always' },
   {
@@ -2065,7 +2059,7 @@ export const docPages: DocPage[] = [
   blocks: [
   {
     type: 'p',
-    text: 'Most of Erilang\'s grammar words (IF, WHILE, DEFINE, AND, ...) are true reserved words — never usable as a name anywhere. A smaller set of contextual (soft) keywords are special only in the one grammatical shape their own construct needs, and an ordinary identifier everywhere else — the same idea as Python\'s match/case/type/_. Each is recognized by a structural check at the exact point its construct can start.'
+    text: 'Most of Erilang\'s grammar words (IF, WHILE, DEFINE, AND, ...) are true reserved words — never usable as a name anywhere. A smaller set of contextual (soft) keywords are special only in the one grammatical shape their own construct needs, and an ordinary identifier everywhere else. Each is recognized by a structural check at the exact point its construct can start.'
   },
   {
     type: 'table',
@@ -2103,10 +2097,6 @@ export const docPages: DocPage[] = [
     ['PRIVATE / STATIC', 'Immediately before FIELD/DEFINE inside a CLASS body'],
     ['CASE', 'Inside a WHEN ... DO ... END block']]
 
-  },
-  {
-    type: 'note',
-    text: 'CLASS and GLOBAL are also Python\'s own hard-reserved keywords. Using either as a plain Erilang name (SET class TO "A") would otherwise generate invalid Python — the compiler transparently renames it with a trailing underscore in the generated code only (class_), invisible from Erilang\'s own side.'
   }]
 
 },
@@ -2153,7 +2143,7 @@ export const docPages: DocPage[] = [
     type: 'table',
     rows: [
     ['NUMBER, STRING, BOOLEAN, NONE, BYTES', 'Core scalar types'],
-    ['DATASET', 'A real pandas DataFrame — from LOAD or FILTER'],
+    ['DATASET', 'A loaded table of data — from LOAD or FILTER'],
     ['LIST OF ... / MAP WITH key AS value, ... / UNIQUE_LIST OF ...', 'Ordered / key-value / no-duplicates collections'],
     ['SOCKET, UDP_SOCKET, CONNECTION, WEB_APP', 'Networking'],
     ['STACK, QUEUE, LINKED_LIST, BINARY_TREE', 'Advanced data structures'],

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowUpRightIcon, SparklesIcon } from 'lucide-react';
+import { ArrowUpRightIcon, MailIcon, SparklesIcon } from 'lucide-react';
 import { channels, contributionPaths } from '../data/community';
 import { CHANNEL_ICONS } from '../components/channelIcons';
 import { SnakeBorder } from '../components/SnakeBorder';
@@ -29,6 +29,15 @@ export function Community() {
             Erilang just shipped 1.0, and its community is really just getting started — a handful of
             people building the language and the first few trying it out. Ask something in the forum,
             publish a package if you've built one, or subscribe to hear what ships next.
+          </p>
+          <p className="mt-4 flex items-center gap-1.5 max-w-xl text-[15px] leading-relaxed text-neutral-600">
+            Prefer to reach the team directly?
+            <a
+              href="mailto:eritten2@gmail.com"
+              className="eri-snake eri-snake-blue inline-flex items-center gap-1.5 font-semibold text-ink underline decoration-neutral-300 underline-offset-2 hover:decoration-ink">
+              <MailIcon className="h-4 w-4" aria-hidden="true" />
+              eritten2@gmail.com
+            </a>
           </p>
 
           <ul className="mt-10 flex flex-wrap gap-3">
