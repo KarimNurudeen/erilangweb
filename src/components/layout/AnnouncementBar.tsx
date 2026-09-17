@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRightIcon, XIcon } from 'lucide-react';
+import { ArrowRightIcon, XIcon, YoutubeIcon } from 'lucide-react';
 import { SnakeBorder } from '../SnakeBorder';
 
 export function AnnouncementBar() {
@@ -10,12 +10,22 @@ export function AnnouncementBar() {
 
   return (
     <div className="relative bg-accent text-ink">
-      <div className="mx-auto flex max-w-page flex-wrap items-center justify-center gap-x-2 gap-y-1 px-4 pr-11 py-2.5 text-center text-[13px] font-semibold sm:px-14 sm:text-sm">
+      <div className="mx-auto flex max-w-page flex-wrap items-center justify-center gap-x-3 gap-y-1 px-4 pr-11 py-2.5 text-center text-[13px] font-semibold sm:px-14 sm:text-sm">
         <span>Erilang 1.0 is here: a declarative, English-like language that's ready to read.</span>
-        <Link to="/docs" className="inline-flex items-center gap-1 whitespace-nowrap underline underline-offset-4">
-          Read the guide
-          <ArrowRightIcon className="h-3.5 w-3.5" aria-hidden="true" />
-        </Link>
+        <span className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1">
+          <Link to="/releases" className="inline-flex items-center gap-1 whitespace-nowrap underline underline-offset-4">
+            Get the release
+            <ArrowRightIcon className="h-3.5 w-3.5" aria-hidden="true" />
+          </Link>
+          <a
+            href="https://www.youtube.com/@Erilang"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1 whitespace-nowrap underline underline-offset-4">
+            <YoutubeIcon className="h-3.5 w-3.5" aria-hidden="true" />
+            Watch on YouTube
+          </a>
+        </span>
       </div>
       <button
         type="button"
